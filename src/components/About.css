@@ -80,9 +80,11 @@
     text-align: left;
     margin-bottom: 1rem;
 }
+
 .about-seo-details p {
     margin-bottom: 0.75rem;
 }
+
 .about-seo-details p:last-child {
     margin-bottom: 0;
 }
@@ -101,6 +103,7 @@
     cursor: pointer;
     transition: background 0.2s, color 0.2s;
 }
+
 .about-seo-toggle:hover {
     background: var(--color-primary);
     color: #fff;
