@@ -1,0 +1,8 @@
+RewriteEngine On
+RewriteBase /
+
+# Redirect to API if accessing root
+RewriteRule ^$ api/test-email.php [L]
+
+# API routes
+RewriteRule ^api/(.*)$ api/$1 [L]

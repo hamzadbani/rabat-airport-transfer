@@ -1,0 +1,27 @@
+services:
+  php:
+    build:
+      context: ./php
+      dockerfile: Dockerfile
+    container_name: taxi-em-php
+    ports:
+      - "9090:80"
+    volumes:
+      - ./php:/var/www/html
+    depends_on:
+      - mailhog
+    networks:
+      - taxi-network
+
+  mailhog:
+    image: mailhog/mailhog:latest
+    container_name: taxi-em-mailhog
+    ports:
+      - "1026:1025"  # SMTP port (mappé sur 1026 pour éviter les conflits)
+      - "8026:8025"  # Web UI port (mappé sur 8026 pour éviter les conflits)
+    networks:
+      - taxi-network
+
+networks:
+  taxi-network:
+    driver: bridge

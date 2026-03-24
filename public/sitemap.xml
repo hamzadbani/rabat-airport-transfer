@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:xhtml="http://www.w3.org/1999/xhtml">
+  <!-- Single canonical URL (SPA). Hash URLs (#services, etc.) are not separate pages for indexing. -->
+  <url>
+    <loc>https://em-taxi.com/</loc>
+    <lastmod>2026-02-13</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://em-taxi.com/?lang=fr" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://em-taxi.com/?lang=en" />
+    <xhtml:link rel="alternate" hreflang="ar" href="https://em-taxi.com/?lang=ar" />
+  </url>
+</urlset>

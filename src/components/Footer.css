@@ -1,0 +1,668 @@
+/* Footer Section */
+.footer {
+    position: relative;
+    overflow: hidden;
+    background-color: #0b0f19;
+    color: #ffffff;
+}
+
+/* Footer Content */
+.footer-content {
+    position: relative;
+    z-index: 2;
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 4rem 2rem 0;
+}
+
+/* Main Footer Grid */
+.footer-main {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr 1.5fr;
+    gap: 3rem;
+    padding-bottom: 3rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* Share this page */
+.footer-share {
+    padding: 1.5rem 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    flex-wrap: wrap;
+}
+
+.footer-share-title {
+    font-size: 1rem;
+    font-weight: 600;
+    color: #ffffff;
+    margin: 0;
+}
+
+.footer-share-buttons {
+    display: flex;
+    gap: 0.5rem;
+}
+
+.footer-share-buttons .share-btn {
+    width: 40px;
+    height: 40px;
+}
+
+/* Footer Columns */
+.footer-column {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.footer-column-title {
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: #ffffff;
+    margin-bottom: 0.5rem;
+    position: relative;
+    padding-bottom: 0.75rem;
+}
+
+.footer-column-title::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 40px;
+    height: 3px;
+    background: linear-gradient(90deg, var(--color-primary), var(--color-secondary));
+    border-radius: 2px;
+}
+
+/* Company Info */
+.footer-about {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1rem;
+}
+
+.footer-logo {
+    height: 85px;
+    width: auto;
+    max-width: 100%;
+    object-fit: contain;
+    object-position: left center;
+    margin-bottom: 1rem;
+}
+
+.footer-company-name {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #ffffff;
+    margin: 0;
+}
+
+.footer-description {
+    font-size: 0.95rem;
+    line-height: 1.7;
+    color: rgba(255, 255, 255, 0.7);
+    margin: 0;
+}
+
+/* Social Links */
+.footer-social {
+    display: flex;
+    gap: 1rem;
+    margin-top: 0.5rem;
+}
+
+.footer-social-link {
+    width: 40px;
+    height: 40px;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #ffffff;
+    transition: all 0.3s ease;
+    text-decoration: none;
+}
+
+.footer-social-link:hover {
+    background: var(--color-primary);
+    transform: translateY(-3px);
+    box-shadow: 0 5px 15px rgba(255, 107, 53, 0.3);
+}
+
+/* Footer Links */
+.footer-links {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+}
+
+.footer-links li a,
+.footer-links li span {
+    color: rgba(255, 255, 255, 0.7);
+    text-decoration: none;
+    font-size: 0.95rem;
+    transition: all 0.3s ease;
+    display: inline-block;
+}
+
+.footer-links li a:hover {
+    color: var(--color-primary);
+    padding-left: 0.5rem;
+}
+
+.footer-links li a::before {
+    content: '→';
+    opacity: 0;
+    margin-right: 0.5rem;
+    transition: opacity 0.3s ease;
+}
+
+.footer-links li a:hover::before {
+    opacity: 1;
+}
+
+/* Contact Info */
+.footer-contact-list {
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+}
+
+.footer-contact-item {
+    display: flex;
+    gap: 1rem;
+    align-items: flex-start;
+}
+
+.footer-contact-icon {
+    width: 35px;
+    height: 35px;
+    background: rgba(255, 107, 53, 0.2);
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--color-primary);
+    flex-shrink: 0;
+}
+
+.footer-contact-content {
+    flex: 1;
+}
+
+.footer-contact-title {
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: rgba(255, 255, 255, 0.5);
+    margin: 0 0 0.25rem 0;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.footer-contact-content a,
+.footer-contact-content span {
+    color: rgba(255, 255, 255, 0.9);
+    text-decoration: none;
+    font-size: 0.95rem;
+    transition: color 0.3s ease;
+}
+
+.footer-contact-content a:hover {
+    color: var(--color-primary);
+}
+
+/* Footer Bottom */
+.footer-bottom {
+    padding: 2rem 0;
+}
+
+.footer-bottom-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 1rem;
+}
+
+.footer-copyright {
+    color: rgba(255, 255, 255, 0.6);
+    font-size: 0.9rem;
+    margin: 0;
+}
+
+.footer-legal {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.footer-legal a {
+    color: rgba(255, 255, 255, 0.6);
+    text-decoration: none;
+    font-size: 0.9rem;
+    transition: color 0.3s ease;
+}
+
+.footer-legal a:hover {
+    color: var(--color-primary);
+}
+
+.footer-separator {
+    color: rgba(255, 255, 255, 0.3);
+}
+
+/* Footer Developers */
+.footer-developers {
+    margin-top: 1rem;
+    padding-top: 1rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    text-align: center;
+}
+
+.footer-developer-text {
+    color: rgba(0, 0, 0, 0.6);
+    font-size: 0.85rem;
+    margin: 0;
+}
+
+.footer-developer-link {
+    color: var(--color-primary);
+    text-decoration: none;
+    font-weight: 600;
+    transition: color 0.3s ease;
+}
+
+.footer-developer-link:hover {
+    color: var(--color-primary-dark, #e65a2b);
+    text-decoration: underline;
+}
+
+/* Payment Methods */
+.footer-payment {
+    padding: 2rem 0;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    margin: 2rem 0;
+}
+
+.footer-payment-title {
+    font-size: 1rem;
+    font-weight: 600;
+    color: rgba(255, 255, 255, 0.7);
+    margin: 0 0 1.5rem 0;
+    text-align: center;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.footer-payment-methods {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 2rem;
+    flex-wrap: wrap;
+}
+
+.footer-payment-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+    transition: transform 0.3s ease;
+    cursor: pointer;
+}
+
+.footer-payment-item:hover {
+    transform: translateY(-3px);
+}
+
+.payment-icon {
+    width: 60px;
+    height: 40px;
+    border-radius: 6px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    transition: box-shadow 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    font-size: 0.7rem;
+    letter-spacing: 0.5px;
+    position: relative;
+    overflow: hidden;
+}
+
+.footer-payment-item:hover .payment-icon {
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.payment-icon.no-bg {
+    background: transparent !important;
+    box-shadow: none !important;
+}
+
+.payment-img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+/* Visa Icon */
+.payment-visa {
+    background: linear-gradient(135deg, #1434CB 0%, #1A1F71 100%);
+    color: #fff;
+    font-family: 'Arial', sans-serif;
+    font-weight: 700;
+    letter-spacing: 1px;
+}
+
+.payment-visa::before {
+    content: '';
+    position: absolute;
+    top: 8px;
+    left: 8px;
+    width: 12px;
+    height: 8px;
+    background: #fff;
+    border-radius: 2px;
+    opacity: 0.3;
+}
+
+.payment-visa::after {
+    content: '';
+    position: absolute;
+    bottom: 8px;
+    right: 8px;
+    width: 8px;
+    height: 8px;
+    background: #fff;
+    border-radius: 50%;
+    opacity: 0.3;
+}
+
+/* Mastercard Icon */
+.payment-mastercard {
+    background: #000;
+    color: #fff;
+}
+
+.mc-circle {
+    position: absolute;
+    width: 22px;
+    height: 22px;
+    border-radius: 50%;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.mc-circle-left {
+    left: 10px;
+    background: #EB001B;
+}
+
+.mc-circle-right {
+    right: 10px;
+    background: #F79E1B;
+}
+
+.payment-mastercard::before {
+    content: '';
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    width: 14px;
+    height: 14px;
+    background: linear-gradient(135deg, #EB001B 0%, #F79E1B 100%);
+    border-radius: 50%;
+    opacity: 0.6;
+    z-index: 1;
+}
+
+.footer-payment-item span {
+    font-size: 0.75rem;
+    color: rgba(255, 255, 255, 0.6);
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+/* Responsive Design */
+@media (max-width: 1100px) {
+    .footer-main {
+        grid-template-columns: 1fr 1fr;
+        gap: 2.5rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .footer-content {
+        padding: 3rem 1.5rem 0;
+    }
+
+    .footer-main {
+        grid-template-columns: 1fr;
+        gap: 2.5rem;
+        padding-bottom: 2rem;
+    }
+
+    .footer-bottom-content {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .footer-legal {
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+    .footer-developers {
+        margin-top: 1.5rem;
+    }
+
+    .footer-payment {
+        padding: 1.5rem 0;
+        margin: 1.5rem 0;
+    }
+
+    .footer-payment-methods {
+        gap: 1.5rem;
+    }
+
+    .payment-icon {
+        width: 50px;
+        height: 33px;
+        font-size: 0.6rem;
+    }
+
+    .payment-visa::before {
+        width: 10px;
+        height: 6px;
+        top: 6px;
+        left: 6px;
+    }
+
+    .payment-visa::after {
+        width: 6px;
+        height: 6px;
+        bottom: 6px;
+        right: 6px;
+    }
+
+    .mc-circle {
+        width: 18px;
+        height: 18px;
+    }
+
+    .mc-circle-left {
+        left: 8px;
+    }
+
+    .mc-circle-right {
+        right: 8px;
+    }
+
+    .payment-mastercard::before {
+        width: 12px;
+        height: 12px;
+    }
+
+    .payment-paypal {
+        font-size: 0.5rem;
+    }
+
+    .payment-paypal::before {
+        font-size: 0.9rem;
+        left: 6px;
+    }
+
+    .payment-paypal::after {
+        width: 5px;
+        height: 5px;
+        right: 6px;
+    }
+
+    .payment-payoneer {
+        font-size: 1.1rem;
+    }
+
+    .payment-payoneer::before {
+        width: 16px;
+        top: 5px;
+    }
+
+    .payment-payoneer::after {
+        width: 12px;
+        bottom: 5px;
+    }
+}
+
+@media (max-width: 480px) {
+    .footer-content {
+        padding: 2.5rem 1rem 0;
+    }
+
+    .footer-main {
+        gap: 2rem;
+    }
+
+    .footer-logo {
+        height: 55px;
+    }
+
+    .footer-company-name {
+        font-size: 1.25rem;
+    }
+
+    .footer-description {
+        font-size: 0.9rem;
+    }
+
+    .footer-column-title {
+        font-size: 1.1rem;
+    }
+
+    .footer-social-link {
+        width: 36px;
+        height: 36px;
+    }
+
+    .footer-contact-icon {
+        width: 32px;
+        height: 32px;
+    }
+
+    .footer-payment {
+        padding: 1.5rem 0;
+        margin: 1rem 0;
+    }
+
+    .footer-payment-title {
+        font-size: 0.9rem;
+        margin-bottom: 1rem;
+    }
+
+    .footer-payment-methods {
+        gap: 1rem;
+    }
+
+    .payment-icon {
+        width: 45px;
+        height: 30px;
+        font-size: 0.55rem;
+    }
+
+    .payment-visa::before {
+        width: 8px;
+        height: 5px;
+        top: 5px;
+        left: 5px;
+    }
+
+    .payment-visa::after {
+        width: 5px;
+        height: 5px;
+        bottom: 5px;
+        right: 5px;
+    }
+
+    .mc-circle {
+        width: 16px;
+        height: 16px;
+    }
+
+    .mc-circle-left {
+        left: 6px;
+    }
+
+    .mc-circle-right {
+        right: 6px;
+    }
+
+    .payment-mastercard::before {
+        width: 10px;
+        height: 10px;
+    }
+
+    .payment-paypal {
+        font-size: 0.45rem;
+    }
+
+    .payment-paypal::before {
+        font-size: 0.8rem;
+        left: 5px;
+    }
+
+    .payment-paypal::after {
+        width: 4px;
+        height: 4px;
+        right: 5px;
+    }
+
+    .payment-payoneer {
+        font-size: 1rem;
+    }
+
+    .payment-payoneer::before {
+        width: 14px;
+        top: 4px;
+    }
+
+    .payment-payoneer::after {
+        width: 10px;
+        bottom: 4px;
+    }
+
+    .footer-payment-item span {
+        font-size: 0.7rem;
+    }
+}

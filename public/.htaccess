@@ -1,0 +1,53 @@
+# Canonical URL: https://em-taxi.com/
+# All four variants redirect here (301 permanent):
+#   http://em-taxi.com      -> https://em-taxi.com/
+#   http://www.em-taxi.com  -> https://em-taxi.com/
+#   https://www.em-taxi.com -> https://em-taxi.com/
+#   https://em-taxi.com     -> no redirect (canonical)
+#
+# Charset in HTTP response (fixes "charset encoding missing in HTTP header")
+AddDefaultCharset UTF-8
+
+RewriteEngine On
+RewriteBase /
+
+# 1) Force HTTPS (301). Handles: http -> https (for both www and non-www).
+#    If behind a proxy, server may see HTTP; use X-Forwarded-Proto when set.
+RewriteCond %{HTTPS} off
+RewriteCond %{HTTP:X-Forwarded-Proto} !https
+RewriteRule ^ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+
+# 2) Force non-www (301). Handles: https://www.em-taxi.com -> https://em-taxi.com/
+RewriteCond %{HTTP_HOST} ^www\.em-taxi\.com [NC]
+RewriteRule ^ https://em-taxi.com%{REQUEST_URI} [L,R=301]
+
+# SPA fallback: serve index.html for non-file routes (enables custom 404 via React Router)
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule . /index.html [L]
+
+# HSTS: force HTTPS for 1 year (recommended for SEO/security)
+# Content-Language so SEO checkers and crawlers detect default language (fr)
+<IfModule mod_headers.c>
+  Header always set Strict-Transport-Security "max-age=31536000; includeSubDomains; preload"
+  Header set Content-Language "fr"
+</IfModule>
+
+# Cache static assets (improves repeat visits, ~28 KiB savings)
+<IfModule mod_expires.c>
+  ExpiresActive On
+  ExpiresByType image/jpeg "access plus 1 year"
+  ExpiresByType image/png "access plus 1 year"
+  ExpiresByType image/webp "access plus 1 year"
+  ExpiresByType image/gif "access plus 1 year"
+  ExpiresByType image/svg+xml "access plus 1 year"
+  ExpiresByType video/mp4 "access plus 1 year"
+  ExpiresByType text/css "access plus 1 month"
+  ExpiresByType application/javascript "access plus 1 month"
+  ExpiresByType font/woff2 "access plus 1 year"
+</IfModule>
+<IfModule mod_headers.c>
+  <FilesMatch "\.(jpg|jpeg|png|gif|webp|svg|mp4|css|js|woff2)$">
+    Header set Cache-Control "public, max-age=31536000"
+  </FilesMatch>
+</IfModule>

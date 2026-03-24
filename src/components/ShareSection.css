@@ -1,0 +1,37 @@
+.share-section {
+    padding: 3rem 2rem;
+    background: linear-gradient(180deg, #f8f8f8 0%, #fff 100%);
+    text-align: center;
+}
+
+.share-section-inner {
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.share-section-title {
+    font-size: 1.75rem;
+    font-weight: 700;
+    color: var(--color-dark);
+    margin: 0 0 0.5rem;
+}
+
+.share-section-title .highlight {
+    color: var(--color-primary);
+}
+
+.share-section-subtitle {
+    font-size: 1rem;
+    color: var(--color-gray);
+    margin: 0 0 1.5rem;
+    line-height: 1.5;
+}
+
+.share-section-buttons {
+    justify-content: center;
+}
+
+.share-section-buttons .share-btn {
+    width: 48px;
+    height: 48px;
+}

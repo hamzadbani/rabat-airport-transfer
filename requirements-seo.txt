@@ -1,0 +1,3 @@
+# SEO check script (scripts/seo_check.py)
+# No extra packages required — uses Python 3 standard library only.
+# Python 3.8+ recommended.

@@ -1,0 +1,262 @@
+{
+  "navbar": {
+    "home": "Home",
+    "services": "Services",
+    "pricing": "Pricing",
+    "about": "About",
+    "reviews": "Reviews",
+    "contact": "Contact",
+    "call": "Call"
+  },
+  "hero": {
+    "subtitle": "LUXURY TRANSPORT SERVICE IN MOROCCO — RABAT-SALÉ AIRPORT",
+    "title": "Premium transport & tourist taxi",
+    "titleLine2": "Luxury cars with chauffeur — Rabat-Salé Airport",
+    "cta": "Book Now",
+    "ctaPricing": "View pricing",
+    "learnMore": "Learn more",
+    "learnMoreLinks": "Services · Pricing · About · Contact"
+  },
+  "services": {
+    "label": "TOURIST & PREMIUM TRANSPORT",
+    "title": "Luxury Transport",
+    "titleHighlight": "Services",
+    "subtitle": "Private chauffeur and tourist transport: airport transfers, business, events. Mercedes & BMW fleet, 24/7.",
+    "airport": {
+      "title": "Airport Transfers",
+      "description": "Reliable pickup and drop-off service to all airports. Flight tracking for perfect punctuality and stress-free travel."
+    },
+    "business": {
+      "title": "Business & Corporate",
+      "description": "Professional transportation for executives, meetings and corporate events. Punctual, discreet and always reliable."
+    },
+    "events": {
+      "title": "Events & Special Occasions",
+      "description": "Make your special moments unforgettable with our premium chauffeur service for weddings, celebrations and VIP events."
+    },
+    "onDemand": {
+      "title": "On-Demand Service",
+      "description": "Flexible hourly service for tourist visits, shopping or multiple destinations. Your personal chauffeur at your disposal."
+    },
+    "privateDriver": "Private Chauffeur"
+  },
+  "pricing": {
+    "label": "OUR PRICING",
+    "title": "Choose Your",
+    "titleHighlight": "Premium Package",
+    "subtitle": "Transparent and competitive rates for all our premium transportation services",
+    "standard": {
+      "name": "Standard",
+      "description": "Perfect for airport transfers and city trips",
+      "category": "LUXURY SEDAN",
+      "vehicle": "Mercedes E-Class, BMW 5 Series"
+    },
+    "business": {
+      "name": "Business",
+      "badge": "MOST POPULAR",
+      "description": "Ideal for executives and business travel",
+      "category": "EXECUTIVE SEDAN",
+      "vehicle": "Mercedes S-Class, BMW 7 Series"
+    },
+    "premium": {
+      "name": "Premium",
+      "description": "Ultimate luxury for special occasions",
+      "category": "LUXURY VAN / SUV",
+      "vehicle": "Mercedes V-Class, Range Rover"
+    },
+    "features": {
+      "driver": "Professional chauffeur",
+      "flightTracking": "Flight tracking",
+      "chargers": "Phone chargers",
+      "passengers3": "Up to 3 passengers",
+      "passengers7": "Up to 7 passengers",
+      "wifi": "On-board Wi-Fi",
+      "privacy": "Privacy partition",
+      "champagne": "Champagne service",
+      "audio": "Premium audio system",
+      "lighting": "Ambient lighting",
+      "allStandard": "All Standard options",
+      "allBusiness": "All Business options"
+    },
+    "buttonStandard": "Book Standard",
+    "buttonBusiness": "Book Business",
+    "buttonPremium": "Book Premium",
+    "customQuote": {
+      "title": "Need a Custom Quote?",
+      "description": "For long-distance trips, hourly packages or special events, contact us for a personalized quote tailored to your needs.",
+      "button": "Request a Quote"
+    }
+  },
+  "about": {
+    "label": "ABOUT US",
+    "seo": {
+      "brief": "Rabat Transfert offers luxury cars with chauffeur and tourist transport in Casablanca, Marrakech and Rabat since 2009. Private chauffeur, airport transfers, business and events — Mercedes and BMW, 24/7.",
+      "discoverLinksBefore": "Discover our ",
+      "discoverLinksMiddle": " and our ",
+      "discoverLinksAfter": ".",
+      "showMore": "Show more details",
+      "showLess": "Show less",
+      "p1": "Rabat Transfert is your private chauffeur and premium transport partner in Morocco. Since 2009, Rabat Transfert Aéroport has been offering luxury transport in Casablanca, Marrakech, Rabat and across Morocco.",
+      "p2": "Book a private chauffeur for airport transfers, business travel, events and special occasions. Our Mercedes and BMW fleet provides comfortable, punctual premium transport, available 24/7.",
+      "p3": "Services: airport transfers with flight tracking, professional and corporate transport, chauffeur for events and weddings, on-demand service for tourist visits. Transparent pricing and Standard, Business and Premium packages.",
+      "p4": "Rabat Transfert - Private Chauffeur & Premium Transport Morocco: experienced drivers, high-end vehicles and a commitment to quality for all your travel in Morocco. Easy booking by phone or online form.",
+      "p5": "Whether you travel for business or leisure, choosing Rabat Transfert means reliability, comfort and professionalism. Contact us to book your private chauffeur or get a personalised quote for premium transport in Morocco.",
+      "p6": "Book by phone on 06 72 72 87 06 or via the contact form. Rabat Transfert - Private Chauffeur & Premium Transport Morocco: your reference for luxury transport in Casablanca, Marrakech, Rabat, Fès and Moroccan airports."
+    },
+    "title": "Your Trusted Partner",
+    "titleHighlight": "in Premium Transportation",
+    "subtitle": "Since 2009, Rabat Transfert Aéroport has been offering luxury transportation services in Morocco, combining excellence, punctuality and comfort.",
+    "fleet": {
+      "title": "Fleet",
+      "description": "Premium vehicles maintained to the highest standards. Mercedes S-Class, executive vans equipped with the latest technology."
+    },
+    "team": {
+      "title": "Expert Team",
+      "description": "Rigorously trained, licensed and checked drivers. Discretion, punctuality and service excellence guaranteed."
+    },
+    "stats": {
+      "clients": "Satisfied Clients",
+      "rating": "Average Rating",
+      "experience": "Years of Experience",
+      "security": "Security Guaranteed"
+    },
+    "excellence": {
+      "title": "Excellence in",
+      "titleHighlight": "Every Journey",
+      "description": "Since 2009, RABAT TRANSFERT AÉROPORT has been the preferred choice for high-end transportation services. We combine professional expertise and unwavering commitment to excellence.",
+      "reserveLink": "Contact us to book.",
+      "quote": "Whether you're traveling for business or pleasure, we are committed to making every ride a smooth and luxurious experience.",
+      "badge": "Years of Excellence"
+    },
+    "whyChoose": {
+      "title": "Why Choose",
+      "titleHighlight": "Rabat Transfert Aéroport",
+      "security": {
+        "title": "Safety First",
+        "description": "Licensed, insured and regularly trained drivers. Your safety is our absolute priority."
+      },
+      "quality": {
+        "title": "Premium Quality",
+        "description": "Impeccable vehicles, professional service and attention to detail for an exceptional experience."
+      },
+      "reference": {
+        "title": "Industry Reference",
+        "description": "Thousands of satisfied customers and consistent 5-star reviews attest to our excellence."
+      }
+    }
+  },
+  "reviews": {
+    "label": "CUSTOMER REVIEWS",
+    "title": "What Our",
+    "titleHighlight": "Clients Say",
+    "subtitle": "See what our customers say on Google. Book with confidence.",
+    "loading": "Loading reviews…",
+    "noReviews": "Reviews will appear here once the API is set up.",
+    "seeOnGoogle": "See reviews on Google",
+    "seeOnGoogleA11y": "See all reviews on Google Maps (new window)",
+    "writeReview": "Leave a review",
+    "writeReviewA11y": "Leave a review on Google (new window)",
+    "qrAlt": "QR code to leave a review on Google — Rabat Transfert Maroc",
+    "qrCaption": "Scan to leave a review on Google",
+    "disclaimer": "Google reviews — Rabat Transfert Maroc. Reviews are managed by Google.",
+    "ariaLabel": "Google customer reviews — Rabat Transfert"
+  },
+  "contact": {
+    "label": "CONTACT US",
+    "title": "Book Your",
+    "titleHighlight": "Premium Transportation",
+    "subtitle": "Fill out the form below and our team will contact you as soon as possible",
+    "form": {
+      "name": "Full Name *",
+      "namePlaceholder": "John Doe",
+      "email": "Email Address",
+      "emailPlaceholder": "johndoe@example.com",
+      "phone": "Phone Number",
+      "phonePlaceholder": "+212 6XX XX XX XX",
+      "flightNumber": "Flight Number",
+      "flightNumberPlaceholder": "e.g. AF1234",
+      "service": "Service Type",
+      "servicePlaceholder": "Select a service",
+      "serviceOptions": {
+        "airport": "Airport Transfer",
+        "taxi": "Taxi Service",
+        "tourist": "Tourist Transport"
+      },
+      "message": "Your Message *",
+      "messagePlaceholder": "How can we help you?",
+      "characters": "characters",
+      "send": "Send Message",
+      "sending": "Sending...",
+      "success": "Message sent successfully!",
+      "error": "Error sending message. Please try again.",
+      "whatsappMessage": "Hello Rabat Transfert,\nI am requesting a service:\n*Name*: {name}\n*Phone*: {phone}\n*Service*: {service}\n*Flight Number*: {flightNumber}\n*Email*: {email}\n*Message*: {message}"
+    },
+    "info": {
+      "phone": {
+        "title": "Phone",
+        "subtitle": "Call to book"
+      },
+      "whatsapp": {
+        "title": "WhatsApp",
+        "subtitle": "Message us on WhatsApp"
+      },
+      "email": {
+        "title": "Email",
+        "subtitle": "Click to send an email"
+      }
+    },
+    "mapTitle": "Find us on the map",
+    "emailCta": {
+      "title": "Contact us by Email",
+      "description": "Send us an email and we will respond as soon as possible.",
+      "button": "Send an Email"
+    }
+  },
+  "footer": {
+    "description": "Your trusted partner for premium and professional transportation in Morocco. Excellence, punctuality and comfort since 2009.",
+    "share": "Share this page",
+    "shareTwitter": "Share on Twitter",
+    "shareFacebook": "Share on Facebook",
+    "shareLinkedIn": "Share on LinkedIn",
+    "shareWhatsApp": "Share on WhatsApp",
+    "shareTelegram": "Share on Telegram",
+    "shareEmail": "Share by email",
+    "shareCopyLink": "Copy link",
+    "shareCopied": "Copied!",
+    "shareSectionTitle": "Share Rabat Transfert",
+    "shareSectionSubtitle": "Recommend our private chauffeur and luxury car service to others.",
+    "quickLinks": "Quick Links",
+    "ourServices": "Our Services",
+    "contactUs": "Contact Us",
+    "address": "Address",
+    "addressValue": "Rabat-Salé Airport",
+    "phone": "Phone",
+    "email": "Email",
+    "hours": "Hours",
+    "hoursValue": "24/7 - Service available",
+    "paymentMethods": "Accepted Payment Methods",
+    "copyright": "All rights reserved.",
+    "privacy": "Privacy Policy",
+    "terms": "Terms of Use",
+    "legal": "Legal Notice",
+    "developedBy": "Developed by"
+  },
+  "welcomeAssistant": {
+    "title": "EM Assistant",
+    "online": "Online",
+    "message": "Hello! Welcome to Rabat Transfert Aéroport. I am your virtual assistant. We are here to ensure your comfort and safety during all your travels. How can I help you today?",
+    "cta": "Request a ride",
+    "close": "Close assistant",
+    "open": "Open assistant"
+  },
+  "notFound": {
+    "title": "Page not found",
+    "description": "The page you are looking for does not exist or has been moved. Use the links below to find your way.",
+    "home": "Back to home",
+    "services": "Our services",
+    "contact": "Contact",
+    "helpBefore": "Found a broken link? ",
+    "reportLink": "Contact us",
+    "helpAfter": " to report it."
+  }
+}

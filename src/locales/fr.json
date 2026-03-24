@@ -1,0 +1,262 @@
+{
+  "navbar": {
+    "home": "Accueil",
+    "services": "Services",
+    "pricing": "Tarifs",
+    "about": "À propos",
+    "reviews": "Avis",
+    "contact": "Contact",
+    "call": "Appeler"
+  },
+  "hero": {
+    "subtitle": "SERVICE DE TRANSPORT DE LUXE AU MAROC — AÉROPORT RABAT-SALÉ",
+    "title": "Transport premium & taxi touristique",
+    "titleLine2": "Voitures de luxe avec chauffeur — Aéroport Rabat-Salé",
+    "cta": "Réservez Maintenant",
+    "ctaPricing": "Voir les tarifs",
+    "learnMore": "En savoir plus",
+    "learnMoreLinks": "Services · Tarifs · À propos · Contact"
+  },
+  "services": {
+    "label": "TRANSPORT TOURISTIQUE & PREMIUM",
+    "title": "Services de Transport",
+    "titleHighlight": "de Luxe",
+    "subtitle": "Chauffeur privé et transport touristique : transferts aéroport, affaires, événements. Flotte Mercedes & BMW, disponible 24h/24.",
+    "airport": {
+      "title": "Transferts Aéroport",
+      "description": "Service de prise en charge et dépose fiable vers tous les aéroports. Suivi de vol pour une parfaite ponctualité et un voyage sans stress."
+    },
+    "business": {
+      "title": "Professionnel & Entreprise",
+      "description": "Transport professionnel pour dirigeants, réunions et événements corporatifs. Ponctuel, discret et toujours fiable."
+    },
+    "events": {
+      "title": "Événements & Occasions Spéciales",
+      "description": "Rendez vos moments spéciaux inoubliables avec notre service de chauffeur premium pour mariages, célébrations et événements VIP."
+    },
+    "onDemand": {
+      "title": "Service à la Demande",
+      "description": "Service horaire flexible pour visites touristiques, shopping ou destinations multiples. Votre chauffeur personnel à disposition."
+    },
+    "privateDriver": "Chauffeur Privé"
+  },
+  "pricing": {
+    "label": "NOS TARIFS",
+    "title": "Choisissez Votre",
+    "titleHighlight": "Formule Premium",
+    "subtitle": "Tarifs transparents et compétitifs pour tous nos services de transport premium",
+    "standard": {
+      "name": "Standard",
+      "description": "Parfait pour les transferts aéroport et les trajets en ville",
+      "category": "BERLINE LUXE",
+      "vehicle": "Mercedes Classe E, BMW Série 5"
+    },
+    "business": {
+      "name": "Affaires",
+      "badge": "LE PLUS POPULAIRE",
+      "description": "Idéal pour les dirigeants et voyages professionnels",
+      "category": "BERLINE EXECUTIVE",
+      "vehicle": "Mercedes Classe S, BMW Série 7"
+    },
+    "premium": {
+      "name": "Premium",
+      "description": "Luxe ultime pour les occasions spéciales",
+      "category": "VAN / SUV DE LUXE",
+      "vehicle": "Mercedes V-Class, Range Rover"
+    },
+    "features": {
+      "driver": "Chauffeur professionnel",
+      "flightTracking": "Suivi de vol",
+      "chargers": "Chargeurs téléphone",
+      "passengers3": "Jusqu'à 6 passagers",
+      "passengers7": "Jusqu'à 6 passagers",
+      "wifi": "Wi-Fi à bord",
+      "privacy": "Cloison de confidentialité",
+      "champagne": "Service champagne",
+      "audio": "Système audio premium",
+      "lighting": "Éclairage d'ambiance",
+      "allStandard": "Toutes les options Standard",
+      "allBusiness": "Toutes les options Affaires"
+    },
+    "buttonStandard": "Réserver Standard",
+    "buttonBusiness": "Réserver Affaires",
+    "buttonPremium": "Réserver Premium",
+    "customQuote": {
+      "title": "Besoin d'un Devis Personnalisé ?",
+      "description": "Pour les trajets longue distance, forfaits horaires ou événements spéciaux, contactez-nous pour un devis personnalisé adapté à vos besoins.",
+      "button": "Demander un Devis"
+    }
+  },
+  "about": {
+    "label": "À PROPOS DE NOUS",
+    "seo": {
+      "brief": "Rabat Transfert propose des voitures de luxe avec chauffeur et du transport touristique à Casablanca, Marrakech et Rabat depuis 2009. Chauffeur privé, transferts aéroport, affaires et événements — Mercedes et BMW, 24h/24.",
+      "discoverLinksBefore": "Découvrez nos ",
+      "discoverLinksMiddle": " et nos ",
+      "discoverLinksAfter": ".",
+      "showMore": "Voir plus de détails",
+      "showLess": "Voir moins",
+      "p1": "Rabat Transfert est votre partenaire chauffeur privé et transport premium au Maroc. Depuis 2009, Rabat Transfert Aéroport propose un service de transport de luxe à Casablanca, Marrakech, Rabat et dans tout le Maroc.",
+      "p2": "Réservez un chauffeur privé pour vos transferts aéroport, déplacements professionnels, événements et occasions spéciales. Notre flotte Mercedes et BMW assure un transport premium confortable et ponctuel, disponible 24h/24 et 7j/7.",
+      "p3": "Services proposés : transferts aéroport avec suivi de vol, transport professionnel et entreprise, chauffeur pour événements et mariages, service à la demande pour visites touristiques. Tarifs transparents et formules Standard, Affaires et Premium.",
+      "p4": "Rabat Transfert - Chauffeur Privé & Transport Premium Maroc : une équipe de chauffeurs expérimentés, des véhicules haut de gamme et un engagement qualité pour tous vos déplacements au Maroc. Réservation simple par téléphone ou formulaire en ligne.",
+      "p5": "Que vous voyagiez pour affaires ou pour le tourisme, choisir Rabat Transfert c'est opter pour la fiabilité, le confort et le professionnalisme. Contactez-nous pour réserver votre chauffeur privé ou obtenir un devis personnalisé pour votre transport premium au Maroc.",
+      "p6": "Réservation par téléphone au 06 72 72 87 06 ou via le formulaire de contact. Rabat Transfert - Chauffeur Privé & Transport Premium Maroc : votre référence pour le transport de luxe à Casablanca, Marrakech, Rabat, Fès et aéroports du Maroc."
+    },
+    "title": "Votre Partenaire de Confiance",
+    "titleHighlight": "en Transport Premium",
+    "subtitle": "Depuis 2009, Rabat Transfert Aéroport offre des services de transport de luxe au Maroc, alliant excellence, ponctualité et confort.",
+    "fleet": {
+      "title": "Parc Automobile",
+      "description": "Véhicules premium entretenus selon les standards les plus élevés. Mercedes Classe S, Vans executive équipés des dernières technologies."
+    },
+    "team": {
+      "title": "Équipe Expert",
+      "description": "Chauffeurs rigoureusement formés, licenciés et contrôlés. Discrétion, ponctualité et excellence du service garanties."
+    },
+    "stats": {
+      "clients": "Clients Satisfaits",
+      "rating": "Note Moyenne",
+      "experience": "Années d'Expérience",
+      "security": "Sécurité Garantie"
+    },
+    "excellence": {
+      "title": "L'Excellence à",
+      "titleHighlight": "Chaque Trajet",
+      "description": "Depuis 2009, RABAT TRANSFERT AÉROPORT est le choix privilégié pour les services de transport haut de gamme. Nous allions expertise professionnelle et engagement indéfectible pour l'excellence.",
+      "reserveLink": "Contactez-nous pour réserver.",
+      "quote": "Que vous voyagiez pour affaires ou pour le plaisir, nous nous engageons à faire de chaque course une expérience fluide et luxueuse.",
+      "badge": "Ans d'Excellence"
+    },
+    "whyChoose": {
+      "title": "Pourquoi Choisir",
+      "titleHighlight": "Rabat Transfert Aéroport",
+      "security": {
+        "title": "Sécurité Avant Tout",
+        "description": "Chauffeurs licenciés, assurés et formés régulièrement. Votre sécurité est notre priorité absolue."
+      },
+      "quality": {
+        "title": "Qualité Premium",
+        "description": "Véhicules impeccables, service professionnel et attention aux détails pour une expérience d'exception."
+      },
+      "reference": {
+        "title": "Référence du Secteur",
+        "description": "Des milliers de clients satisfaits et des avis 5 étoiles constants témoignent de notre excellence."
+      }
+    }
+  },
+  "reviews": {
+    "label": "AVIS CLIENTS",
+    "title": "Ce Que Disent",
+    "titleHighlight": "Nos Clients",
+    "subtitle": "Découvrez les avis Google de nos clients. Réservez en confiance.",
+    "loading": "Chargement des avis…",
+    "noReviews": "Les avis seront affichés ici une fois l’API configurée.",
+    "seeOnGoogle": "Voir les avis sur Google",
+    "seeOnGoogleA11y": "Voir tous les avis sur Google Maps (nouvelle fenêtre)",
+    "writeReview": "Laisser un avis",
+    "writeReviewA11y": "Laisser un avis sur Google (nouvelle fenêtre)",
+    "qrAlt": "QR code pour laisser un avis sur Google — Rabat Transfert Maroc",
+    "qrCaption": "Scannez pour laisser un avis sur Google",
+    "disclaimer": "Avis Google — Rabat Transfert Maroc. Les avis sont gérés par Google.",
+    "ariaLabel": "Avis clients Google — Rabat Transfert"
+  },
+  "contact": {
+    "label": "CONTACTEZ-NOUS",
+    "title": "Réservez Votre",
+    "titleHighlight": "Transport Premium",
+    "subtitle": "Remplissez le formulaire ci-dessous et notre équipe vous contactera dans les plus brefs délais",
+    "form": {
+      "name": "Nom complet *",
+      "namePlaceholder": "Jean Dupont",
+      "email": "Adresse E-mail",
+      "emailPlaceholder": "jeandupont@exemple.com",
+      "phone": "Numéro de Téléphone",
+      "phonePlaceholder": "+212 6XX XX XX XX",
+      "flightNumber": "Numéro de Vol",
+      "flightNumberPlaceholder": "ex: AF1234",
+      "service": "Type de Service",
+      "servicePlaceholder": "Sélectionnez un service",
+      "serviceOptions": {
+        "airport": "Transport Aéroport",
+        "taxi": "Service Taxi",
+        "tourist": "Transport Touristique"
+      },
+      "message": "Votre Message *",
+      "messagePlaceholder": "Comment pouvons-nous vous aider ?",
+      "characters": "caractères",
+      "send": "Envoyer le Message",
+      "sending": "Envoi en cours...",
+      "success": "Message envoyé avec succès !",
+      "error": "Erreur lors de l'envoi. Veuillez réessayer.",
+      "whatsappMessage": "Bonjour Rabat Transfert,\nJe demande un service :\n*Nom*: {name}\n*Téléphone*: {phone}\n*Service*: {service}\n*Numéro de vol*: {flightNumber}\n*Email*: {email}\n*Message*: {message}"
+    },
+    "info": {
+      "phone": {
+        "title": "Téléphone",
+        "subtitle": "Nous appeler pour réserver"
+      },
+      "whatsapp": {
+        "title": "WhatsApp",
+        "subtitle": "Nous écrire sur WhatsApp"
+      },
+      "email": {
+        "title": "Email",
+        "subtitle": "Cliquez pour envoyer un email"
+      }
+    },
+    "mapTitle": "Nous trouver sur la carte",
+    "emailCta": {
+      "title": "Contactez-nous par Email",
+      "description": "Envoyez-nous un email et nous vous répondrons dans les plus brefs délais.",
+      "button": "Envoyer un Email"
+    }
+  },
+  "footer": {
+    "description": "Votre partenaire de confiance pour un transport premium et professionnel au Maroc. Excellence, ponctualité et confort depuis 2009.",
+    "share": "Partager cette page",
+    "shareTwitter": "Partager sur Twitter",
+    "shareFacebook": "Partager sur Facebook",
+    "shareLinkedIn": "Partager sur LinkedIn",
+    "shareWhatsApp": "Partager sur WhatsApp",
+    "shareTelegram": "Partager sur Telegram",
+    "shareEmail": "Partager par e-mail",
+    "shareCopyLink": "Copier le lien",
+    "shareCopied": "Copié !",
+    "shareSectionTitle": "Partagez Rabat Transfert",
+    "shareSectionSubtitle": "Recommandez notre service de chauffeur privé et voitures de luxe autour de vous.",
+    "quickLinks": "Liens Rapides",
+    "ourServices": "Nos Services",
+    "contactUs": "Contactez-nous",
+    "address": "Adresse",
+    "addressValue": "Aéroport Rabat-Salé",
+    "phone": "Téléphone",
+    "email": "Email",
+    "hours": "Horaires",
+    "hoursValue": "24/7 - Service disponible",
+    "paymentMethods": "Moyens de paiement acceptés",
+    "copyright": "Tous droits réservés.",
+    "privacy": "Politique de confidentialité",
+    "terms": "Conditions d'utilisation",
+    "legal": "Mentions légales",
+    "developedBy": "Développé par"
+  },
+  "welcomeAssistant": {
+    "title": "EM Assistant",
+    "online": "En ligne",
+    "message": "Bonjour ! Bienvenue chez Rabat Transfert Aéroport. Je suis votre assistant virtuel. Nous sommes là pour assurer votre confort et votre sécurité lors de tous vos déplacements. Comment puis-je vous aider aujourd'hui ?",
+    "cta": "Demander un trajet",
+    "close": "Fermer l'assistant",
+    "open": "Ouvrir l'assistant"
+  },
+  "notFound": {
+    "title": "Page introuvable",
+    "description": "La page que vous recherchez n'existe pas ou a été déplacée. Utilisez les liens ci-dessous pour retrouver votre chemin.",
+    "home": "Retour à l'accueil",
+    "services": "Nos services",
+    "contact": "Contact",
+    "helpBefore": "Vous avez trouvé un lien cassé ? ",
+    "reportLink": "Contactez-nous",
+    "helpAfter": " pour nous le signaler."
+  }
+}

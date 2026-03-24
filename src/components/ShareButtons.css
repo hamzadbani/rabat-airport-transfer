@@ -1,0 +1,36 @@
+.share-buttons {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    align-items: center;
+}
+
+.share-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    background: rgba(0, 0, 0, 0.06);
+    color: #1a1a1a;
+    transition: background 0.2s, color 0.2s, transform 0.2s;
+}
+
+.share-btn:hover {
+    background: var(--color-primary);
+    color: #fff;
+    transform: scale(1.05);
+}
+
+.share-btn-copy {
+    border: none;
+    cursor: pointer;
+    font-family: inherit;
+}
+
+.share-btn-copy .share-copied-text {
+    font-size: 0.7rem;
+    font-weight: 600;
+    padding: 0 4px;
+}

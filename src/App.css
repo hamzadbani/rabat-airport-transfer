@@ -1,0 +1,11 @@
+/* App Component Styles */
+.app {
+  width: 100%;
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+/* LazyWhenVisible placeholder: height set via CSS variable (avoids inline style) */
+.lazy-section-placeholder {
+  min-height: var(--section-min-height, 400px);
+}

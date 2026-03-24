@@ -1,0 +1,421 @@
+/* Pricing Section */
+.pricing {
+    padding: 6rem 0;
+    background: linear-gradient(180deg, #f8f8f8 0%, #ffffff 100%);
+    position: relative;
+}
+
+.pricing-container {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 2rem;
+}
+
+/* Section Header */
+.pricing-header {
+    text-align: center;
+    margin-bottom: 4rem;
+    animation: fadeInUp 1s ease;
+}
+
+.pricing-label {
+    color: var(--color-primary);
+    font-size: 0.9rem;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    margin-bottom: 1rem;
+    display: inline-block;
+}
+
+.pricing-title {
+    font-size: 3rem;
+    font-weight: 700;
+    color: var(--color-dark);
+    margin-bottom: 1.5rem;
+    line-height: 1.2;
+}
+
+.pricing-subtitle {
+    font-size: 1.1rem;
+    color: var(--color-gray);
+    max-width: 700px;
+    margin: 0 auto;
+    line-height: 1.8;
+}
+
+/* Pricing Grid */
+.pricing-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+    margin-bottom: 4rem;
+}
+
+/* Pricing Card with 3D Tilt */
+.pricing-card {
+    background: #ffffff;
+    border-radius: 20px;
+    padding: 2.5rem;
+    position: relative;
+    transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1);
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+    border: 2px solid transparent;
+    display: flex;
+    flex-direction: column;
+    transform-style: preserve-3d;
+    perspective: 1000px;
+}
+
+.pricing-card:hover {
+    transform: translateY(-15px) rotateY(3deg) rotateX(3deg);
+    box-shadow: 0 25px 50px rgba(0, 0, 0, 0.15);
+}
+
+/* 3D Glow on Hover */
+.pricing-card::after {
+    content: '';
+    position: absolute;
+    top: -3px;
+    left: -3px;
+    right: -3px;
+    bottom: -3px;
+    background: linear-gradient(135deg, var(--color-primary), var(--color-secondary));
+    border-radius: 20px;
+    opacity: 0;
+    z-index: -1;
+    filter: blur(15px);
+    transition: opacity 0.5s ease;
+}
+
+.pricing-card:hover::after {
+    opacity: 0.4;
+}
+
+/* Highlighted Card (Affaires) with Pulse */
+.pricing-card-highlighted {
+    border: 3px solid var(--color-primary);
+    box-shadow: 0 10px 40px rgba(255, 107, 53, 0.2);
+    transform: scale(1.05);
+    animation: pulse 3s ease-in-out infinite;
+}
+
+@keyframes pulse {
+
+    0%,
+    100% {
+        box-shadow: 0 10px 40px rgba(255, 107, 53, 0.2);
+    }
+
+    50% {
+        box-shadow: 0 15px 50px rgba(255, 107, 53, 0.4);
+    }
+}
+
+.pricing-card-highlighted:hover {
+    transform: translateY(-15px) scale(1.05) rotateY(3deg);
+    box-shadow: 0 30px 60px rgba(255, 107, 53, 0.35);
+}
+
+/* Badge */
+.pricing-badge {
+    position: absolute;
+    top: -12px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: var(--color-primary);
+    color: #ffffff;
+    font-size: 0.7rem;
+    font-weight: 700;
+    letter-spacing: 1px;
+    padding: 0.4rem 1.2rem;
+    border-radius: 20px;
+    text-transform: uppercase;
+}
+
+/* Card Header */
+.pricing-card-header {
+    margin-bottom: 1.5rem;
+    padding-bottom: 1.5rem;
+    border-bottom: 1px solid #e5e5e5;
+}
+
+.pricing-plan-name {
+    font-size: 1.75rem;
+    font-weight: 700;
+    color: var(--color-dark);
+    margin-bottom: 0.5rem;
+}
+
+.pricing-plan-description {
+    font-size: 0.95rem;
+    color: var(--color-gray);
+    line-height: 1.6;
+}
+
+/* Vehicle Info */
+.pricing-vehicle {
+    margin-bottom: 2rem;
+}
+
+.pricing-category {
+    font-size: 0.85rem;
+    font-weight: 700;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    margin-bottom: 0.5rem;
+}
+
+.pricing-card:nth-child(1) .pricing-category {
+    color: var(--color-primary);
+}
+
+.pricing-card-highlighted .pricing-category {
+    color: var(--color-primary);
+}
+
+.pricing-card:nth-child(3) .pricing-category {
+    color: var(--color-primary);
+}
+
+.pricing-vehicle-name {
+    font-size: 0.9rem;
+    color: var(--color-gray);
+}
+
+/* Features List */
+.pricing-features {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    margin-bottom: 2rem;
+    flex-grow: 1;
+}
+
+.pricing-feature {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.75rem;
+    margin-bottom: 1rem;
+    font-size: 0.95rem;
+    color: var(--color-dark);
+}
+
+.pricing-check-icon {
+    color: var(--color-primary);
+    flex-shrink: 0;
+    margin-top: 2px;
+}
+
+/* CTA Button */
+.pricing-button {
+    width: 100%;
+    padding: 1rem 2rem;
+    border-radius: 50px;
+    font-size: 0.95rem;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    border: 2px solid var(--color-dark);
+    background: var(--color-dark);
+    color: #ffffff;
+    text-decoration: none;
+    display: inline-block;
+    text-align: center;
+}
+
+.pricing-button:hover {
+    background: transparent;
+    color: var(--color-dark);
+    transform: translateY(-2px);
+}
+
+.pricing-button-highlighted {
+    background: var(--color-primary);
+    border-color: var(--color-primary);
+    color: #ffffff;
+    box-shadow: 0 8px 20px rgba(255, 107, 53, 0.3);
+}
+
+.pricing-button-highlighted:hover {
+    background: var(--color-primary-dark);
+    border-color: var(--color-primary-dark);
+    color: #ffffff;
+    box-shadow: 0 12px 30px rgba(255, 107, 53, 0.4);
+}
+
+/* Custom Quote Section */
+.pricing-custom {
+    background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+    border-radius: 20px;
+    padding: 3rem;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+}
+
+.pricing-custom::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: radial-gradient(circle at top right, rgba(255, 107, 53, 0.1), transparent);
+    pointer-events: none;
+}
+
+.pricing-custom-content {
+    position: relative;
+    z-index: 1;
+}
+
+.pricing-custom-title {
+    font-size: 2rem;
+    font-weight: 700;
+    color: #ffffff;
+    margin-bottom: 1rem;
+}
+
+.pricing-custom-description {
+    font-size: 1.05rem;
+    color: rgba(255, 255, 255, 0.85);
+    max-width: 700px;
+    margin: 0 auto 2rem;
+    line-height: 1.8;
+}
+
+.pricing-custom-button {
+    background: var(--color-primary);
+    color: #ffffff;
+    border: none;
+    padding: 1rem 2.5rem;
+    border-radius: 50px;
+    font-size: 1rem;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.75rem;
+    transition: all 0.3s ease;
+    box-shadow: 0 8px 25px rgba(255, 107, 53, 0.3);
+    text-decoration: none;
+}
+
+.pricing-custom-button:hover {
+    background: var(--color-primary-dark);
+    transform: translateY(-3px);
+    box-shadow: 0 12px 35px rgba(255, 107, 53, 0.4);
+}
+
+/* Fade In Animation */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Responsive Design */
+@media (max-width: 1100px) {
+    .pricing-grid {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+    }
+
+    .pricing-card-highlighted {
+        transform: scale(1);
+    }
+
+    .pricing-card-highlighted:hover {
+        transform: translateY(-10px) scale(1);
+    }
+}
+
+@media (max-width: 968px) {
+    .pricing {
+        padding: 4rem 0;
+    }
+
+    .pricing-title {
+        font-size: 2.25rem;
+    }
+
+    .pricing-subtitle {
+        font-size: 1rem;
+    }
+
+    .pricing-card {
+        padding: 2rem;
+    }
+
+    .pricing-custom {
+        padding: 2.5rem 2rem;
+    }
+
+    .pricing-custom-title {
+        font-size: 1.75rem;
+    }
+
+    .pricing-custom-description {
+        font-size: 1rem;
+    }
+}
+
+@media (max-width: 640px) {
+    .pricing {
+        padding: 3rem 0;
+    }
+
+    .pricing-container {
+        padding: 0 1rem;
+    }
+
+    .pricing-header {
+        margin-bottom: 2.5rem;
+    }
+
+    .pricing-title {
+        font-size: 1.85rem;
+    }
+
+    .pricing-subtitle {
+        font-size: 0.95rem;
+    }
+
+    .pricing-grid {
+        gap: 1.5rem;
+    }
+
+    .pricing-card {
+        padding: 1.75rem;
+    }
+
+    .pricing-plan-name {
+        font-size: 1.5rem;
+    }
+
+    .pricing-custom {
+        padding: 2rem 1.5rem;
+    }
+
+    .pricing-custom-title {
+        font-size: 1.5rem;
+    }
+
+    .pricing-custom-description {
+        font-size: 0.95rem;
+    }
+
+    .pricing-custom-button {
+        padding: 0.9rem 2rem;
+        font-size: 0.95rem;
+    }
+}
