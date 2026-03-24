@@ -1,331 +1,305 @@
-/* Services Section */
-.services {
-    padding: 6rem 0;
-    background: linear-gradient(180deg, #ffffff 0%, #f8f8f8 100%);
+/* Ultra-Premium Services Section */
+.services-modern {
+    padding: 8rem 0;
+    background-color: #fdfdfd;
     position: relative;
+    overflow: hidden;
 }
 
-.services-container {
+.services-modern-container {
     max-width: 1400px;
     margin: 0 auto;
     padding: 0 2rem;
+    position: relative;
+    z-index: 2;
 }
 
-/* Section Header */
-.services-header {
+.services-bg-ornament {
+    position: absolute;
+    top: 20%;
+    left: -10%;
+    width: 600px;
+    height: 600px;
+    background: radial-gradient(circle, rgba(212, 175, 55, 0.05) 0%, transparent 70%);
+    border-radius: 50%;
+    z-index: 0;
+    pointer-events: none;
+}
+
+/* Header */
+.services-modern-header {
     text-align: center;
-    margin-bottom: 4rem;
-    animation: fadeInUp 1s ease;
+    margin-bottom: 8rem;
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
 }
 
-.services-label {
-    color: var(--color-primary);
-    font-size: 0.9rem;
-    font-weight: 700;
-    letter-spacing: 2px;
-    text-transform: uppercase;
-    margin-bottom: 1rem;
+.services-modern-tag {
     display: inline-block;
+    padding: 0.5rem 1.75rem;
+    background: rgba(212, 175, 55, 0.1);
+    color: var(--color-primary);
+    border-radius: 50px;
+    font-size: 0.95rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 2.5px;
+    margin-bottom: 1.5rem;
 }
 
-.services-title {
-    font-size: 3rem;
-    font-weight: 700;
+.services-modern-title {
+    font-size: 3.5rem;
+    font-weight: 800;
     color: var(--color-dark);
     margin-bottom: 1.5rem;
-    line-height: 1.2;
+    line-height: 1.1;
+    letter-spacing: -1px;
 }
 
-.services-title .highlight {
+.text-gold {
     color: var(--color-primary);
 }
 
-.services-subtitle {
-    font-size: 1.1rem;
+.services-modern-subtitle {
+    font-size: 1.15rem;
     color: var(--color-gray);
-    max-width: 800px;
-    margin: 0 auto;
     line-height: 1.8;
 }
 
-/* Services Grid */
-.services-grid {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 2rem;
-    margin-top: 3rem;
-}
-
-/* Service Card with 3D Effects */
-.service-card {
-    position: relative;
-    height: 400px;
-    border-radius: 20px;
-    overflow: hidden;
-    cursor: pointer;
-    transition: all 0.6s cubic-bezier(0.23, 1, 0.32, 1);
-    transform-style: preserve-3d;
-    perspective: 1000px;
-    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.15);
-}
-
-.service-card:hover {
-    transform: translateY(-20px) rotateX(2deg) scale(1.02);
-    box-shadow: 0 30px 60px rgba(212, 175, 55, 0.25);
-}
-
-/* 3D Glow Effect */
-.service-card::before {
-    content: '';
-    position: absolute;
-    top: -2px;
-    left: -2px;
-    right: -2px;
-    bottom: -2px;
-    background: linear-gradient(135deg,
-            var(--color-primary) 0%,
-            var(--color-secondary) 100%);
-    border-radius: 20px;
-    opacity: 0;
-    transition: opacity 0.6s ease;
-    z-index: -1;
-    filter: blur(20px);
-}
-
-.service-card:hover::before {
-    opacity: 0.6;
-}
-
-/* Floating Animation */
-@keyframes float {
-
-    0%,
-    100% {
-        transform: translateY(0px);
-    }
-
-    50% {
-        transform: translateY(-15px);
-    }
-}
-
-.service-card:nth-child(1) {
-    animation: float 6s ease-in-out infinite;
-}
-
-.service-card:nth-child(2) {
-    animation: float 7s ease-in-out infinite;
-    animation-delay: 1s;
-}
-
-.service-card:nth-child(3) {
-    animation: float 8s ease-in-out infinite;
-    animation-delay: 2s;
-}
-
-.service-card:nth-child(4) {
-    animation: float 6.5s ease-in-out infinite;
-    animation-delay: 3s;
-}
-
-/* Background Image */
-.service-card-bg {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    z-index: 1;
-}
-
-.service-card-bg img {
-    width: 100%;
-    height: 100%;
-    aspect-ratio: 4 / 3;
-    object-fit: cover;
-    transition: transform 0.8s cubic-bezier(0.23, 1, 0.32, 1);
-    transform: scale(1);
-}
-
-.service-card:hover .service-card-bg img {
-    transform: scale(1.15) translateZ(30px);
-}
-
-/* Dark Overlay */
-.service-card-overlay {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(180deg,
-            rgba(0, 0, 0, 0.3) 0%,
-            rgba(0, 0, 0, 0.7) 100%);
-    transition: background 0.4s ease;
-}
-
-.service-card:hover .service-card-overlay {
-    background: linear-gradient(180deg,
-            rgba(0, 0, 0, 0.5) 0%,
-            rgba(0, 0, 0, 0.85) 100%);
-}
-
-/* Card Content */
-.service-card-content {
-    position: relative;
-    z-index: 2;
-    padding: 2.5rem;
-    height: 100%;
+/* Lookbook Rows */
+.services-lookbook {
     display: flex;
     flex-direction: column;
-    justify-content: flex-end;
-    color: var(--color-white);
+    gap: 10rem;
 }
 
-/* Service Icon */
-.service-icon {
-    width: 60px;
-    height: 60px;
-    background: linear-gradient(135deg, var(--color-primary), var(--color-secondary));
-    border-radius: 50%;
+.lookbook-row {
+    display: flex;
+    align-items: center;
+    gap: 6rem;
+}
+
+.lookbook-row.reverse {
+    flex-direction: row-reverse;
+}
+
+/* Images */
+.lookbook-image {
+    flex: 1.1;
+    position: relative;
+}
+
+.lookbook-image-wrapper {
+    position: relative;
+    border-radius: 24px;
+    overflow: hidden;
+    box-shadow: 0 40px 80px rgba(10, 25, 47, 0.08);
+    transition: all 0.6s cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+.lookbook-row:hover .lookbook-image-wrapper {
+    transform: translateY(-15px);
+    box-shadow: 0 50px 100px rgba(10, 25, 47, 0.15);
+}
+
+.lookbook-image-wrapper img {
+    width: 100%;
+    aspect-ratio: 4/3;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.8s ease;
+}
+
+.lookbook-row:hover .lookbook-image-wrapper img {
+    transform: scale(1.05);
+}
+
+.lookbook-number {
+    position: absolute;
+    bottom: -20px;
+    right: 20px;
+    font-size: 10rem;
+    font-weight: 900;
+    color: #ffffff;
+    line-height: 1;
+    opacity: 0.3;
+    text-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
+    font-family: serif;
+    pointer-events: none;
+    transition: all 0.6s ease;
+}
+
+.lookbook-row:hover .lookbook-number {
+    opacity: 0.9;
+    color: var(--color-primary);
+    transform: translateY(-15px);
+}
+
+.lookbook-row.reverse .lookbook-number {
+    left: 20px;
+    right: auto;
+}
+
+/* Content */
+.lookbook-content {
+    flex: 1;
+    padding: 2rem 0;
+}
+
+.lookbook-icon {
+    width: 80px;
+    height: 80px;
+    background: #0a192f;
+    color: var(--color-primary);
+    border-radius: 24px;
     display: flex;
     align-items: center;
     justify-content: center;
-    margin-bottom: 1.5rem;
+    margin-bottom: 2.5rem;
+    box-shadow: 0 15px 30px rgba(10, 25, 47, 0.15);
     transition: all 0.4s ease;
-    box-shadow: 0 8px 20px rgba(212, 175, 55, 0.3);
 }
 
-.service-card:hover .service-icon {
-    transform: scale(1.1) rotate(5deg);
-    box-shadow: 0 12px 30px rgba(212, 175, 55, 0.5);
+.lookbook-row:hover .lookbook-icon {
+    transform: scale(1.1) rotate(10deg);
+    background: var(--color-primary);
+    color: #fff;
+    box-shadow: 0 20px 40px rgba(212, 175, 55, 0.3);
 }
 
-.service-icon svg {
-    color: var(--color-white);
+.lookbook-title {
+    font-size: 2.75rem;
+    font-weight: 800;
+    color: var(--color-dark);
+    margin-bottom: 1.25rem;
+    line-height: 1.2;
 }
 
-/* Service Title */
-.service-title {
-    font-size: 1.75rem;
+.lookbook-description {
+    font-size: 1.2rem;
+    color: var(--color-gray);
+    line-height: 1.8;
+    margin-bottom: 2.5rem;
+}
+
+.lookbook-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.75rem;
+    font-size: 1.05rem;
     font-weight: 700;
-    color: var(--color-white);
-    margin-bottom: 1rem;
-    line-height: 1.3;
+    color: var(--color-dark);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    text-decoration: none;
+    padding-bottom: 0.5rem;
     transition: all 0.3s ease;
+    position: relative;
 }
 
-.service-card:hover .service-title {
-    transform: translateX(5px);
+.lookbook-btn:hover {
+    color: var(--color-primary);
+    gap: 1.25rem;
 }
 
-/* Service Description */
-.service-description {
-    font-size: 1rem;
-    color: rgba(255, 255, 255, 0.9);
-    line-height: 1.7;
-    opacity: 0.95;
-    transition: all 0.3s ease;
+.lookbook-btn::after {
+    content: '';
+    display: block;
+    width: 100%;
+    height: 2px;
+    background: var(--color-primary);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.3s ease;
+    position: absolute;
+    bottom: 0;
+    left: 0;
 }
 
-.service-card:hover .service-description {
-    opacity: 1;
+.lookbook-btn:hover::after {
+    transform: scaleX(1);
 }
 
-/* Fade In Animation */
-@keyframes fadeInUp {
-    from {
-        opacity: 0;
-        transform: translateY(30px);
-    }
-
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
-
-/* Responsive Design */
-@media (max-width: 968px) {
-    .services {
-        padding: 4rem 0;
-    }
-
-    .services-title {
-        font-size: 2.25rem;
-    }
-
-    .services-subtitle {
-        font-size: 1rem;
-    }
-
-    .services-grid {
-        grid-template-columns: 1fr;
-        gap: 1.5rem;
-    }
-
-    .service-card {
-        height: 350px;
-    }
-
-    .service-card-content {
-        padding: 2rem;
-    }
-
-    .service-title {
-        font-size: 1.5rem;
-    }
-
-    .service-description {
-        font-size: 0.95rem;
+/* Responsive */
+@media (max-width: 1200px) {
+    .lookbook-row {
+        gap: 4rem;
     }
 }
 
-@media (max-width: 640px) {
-    .services {
-        padding: 3rem 0;
+@media (max-width: 1024px) {
+    .services-lookbook {
+        gap: 6rem;
     }
 
-    .services-container {
-        padding: 0 1rem;
+    .lookbook-row,
+    .lookbook-row.reverse {
+        flex-direction: column;
+        gap: 3rem;
     }
 
-    .services-header {
-        margin-bottom: 2.5rem;
+    .lookbook-image {
+        width: 100%;
+        max-width: 700px;
+        margin: 0 auto;
     }
 
-    .services-title {
-        font-size: 1.85rem;
+    .lookbook-content {
+        padding: 0;
+        text-align: center;
+        max-width: 600px;
+        margin: 0 auto;
     }
 
-    .services-subtitle {
-        font-size: 0.95rem;
+    .lookbook-icon {
+        margin: 0 auto 1.5rem;
     }
 
-    .service-card {
-        height: 320px;
+    .lookbook-btn::after {
+        transform-origin: center;
+    }
+}
+
+@media (max-width: 768px) {
+    .services-modern {
+        padding: 6rem 0;
     }
 
-    .service-card-content {
-        padding: 1.75rem;
+    .services-modern-title {
+        font-size: 2.5rem;
     }
 
-    .service-icon {
-        width: 50px;
-        height: 50px;
-        margin-bottom: 1rem;
+    .services-modern-header {
+        margin-bottom: 5rem;
     }
 
-    .service-icon svg {
-        width: 20px;
-        height: 20px;
+    .lookbook-number {
+        font-size: 6rem;
+        bottom: 10px;
     }
 
-    .service-title {
-        font-size: 1.35rem;
+    .lookbook-title {
+        font-size: 2rem;
     }
 
-    .service-description {
-        font-size: 0.9rem;
+    .lookbook-description {
+        font-size: 1.1rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .services-modern-title {
+        font-size: 2rem;
+    }
+
+    .lookbook-number {
+        font-size: 4rem;
+        bottom: 5px;
+        right: 15px;
+    }
+
+    .lookbook-row.reverse .lookbook-number {
+        left: 15px;
     }
 }
