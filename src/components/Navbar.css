@@ -90,12 +90,12 @@
     left: 0;
     width: 0;
     height: 2px;
-    background: linear-gradient(90deg, #ff6b35, #ff8c42);
+    background: linear-gradient(90deg, var(--color-primary), var(--color-secondary));
     transition: width 0.3s ease;
 }
 
 .navbar-links a:hover {
-    color: #ff6b35;
+    color: var(--color-primary);
 }
 
 .navbar-links a:hover::after {
@@ -132,7 +132,7 @@
 }
 
 .btn-call {
-    background: linear-gradient(135deg, #ff6b35, #ff8c42);
+    background: linear-gradient(135deg, var(--color-primary), var(--color-secondary));
     color: #ffffff;
     border: none;
     padding: 0.75rem 2rem;
@@ -145,14 +145,14 @@
     gap: 0.5rem;
     transition: all 0.3s ease;
     letter-spacing: 0.5px;
-    box-shadow: 0 4px 15px rgba(255, 107, 53, 0.3);
+    box-shadow: 0 4px 15px rgba(212, 175, 55, 0.3);
     text-decoration: none;
 }
 
 .btn-call:hover {
     transform: translateY(-2px);
-    box-shadow: 0 6px 20px rgba(255, 107, 53, 0.4);
-    background: linear-gradient(135deg, #ff8c42, #ff6b35);
+    box-shadow: 0 6px 20px rgba(212, 175, 55, 0.4);
+    background: linear-gradient(135deg, var(--color-secondary), var(--color-primary));
 }
 
 .btn-call:active {
@@ -172,7 +172,7 @@
 
 
 .mobile-menu-toggle:hover {
-    color: #ff6b35;
+    color: var(--color-primary);
 }
 
 /* Mobile Menu */
@@ -226,7 +226,7 @@
 
 
 .mobile-menu-links a:hover {
-    color: #ff6b35;
+    color: var(--color-primary);
     padding-left: 1rem;
 }
 
@@ -303,7 +303,7 @@
 }
 
 .language-option.active {
-    background: rgba(255, 107, 53, 0.1);
+    background: rgba(212, 175, 55, 0.1);
     color: var(--color-primary);
     font-weight: 600;
 }
@@ -333,7 +333,7 @@
 }
 
 .mobile-language-btn.active {
-    background: rgba(255, 107, 53, 0.2);
+    background: rgba(212, 175, 55, 0.2);
     border-color: var(--color-primary);
 }
 

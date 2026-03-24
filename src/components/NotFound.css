@@ -62,7 +62,7 @@
 
 .not-found-btn-primary:hover {
   transform: translateY(-2px);
-  box-shadow: 0 8px 20px rgba(255, 107, 53, 0.35);
+  box-shadow: 0 8px 20px rgba(212, 175, 55, 0.35);
 }
 
 .not-found-btn-secondary {

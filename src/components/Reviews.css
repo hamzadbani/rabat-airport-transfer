@@ -153,7 +153,7 @@
 }
 
 .reviews-btn-primary {
-    background: linear-gradient(135deg, #000000, #1a1a1a);
+    background: linear-gradient(135deg, var(--color-black), var(--color-dark));
     color: #fff;
     border: 2px solid rgba(255, 255, 255, 0.15);
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
@@ -172,7 +172,7 @@
 }
 
 .reviews-btn-secondary:hover {
-    background: rgba(255, 107, 53, 0.08);
+    background: rgba(212, 175, 55, 0.08);
     transform: translateY(-2px);
 }
 

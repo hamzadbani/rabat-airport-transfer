@@ -95,7 +95,7 @@
 /* Highlighted Card (Affaires) with Pulse */
 .pricing-card-highlighted {
     border: 3px solid var(--color-primary);
-    box-shadow: 0 10px 40px rgba(255, 107, 53, 0.2);
+    box-shadow: 0 10px 40px rgba(212, 175, 55, 0.2);
     transform: scale(1.05);
     animation: pulse 3s ease-in-out infinite;
 }
@@ -104,17 +104,17 @@
 
     0%,
     100% {
-        box-shadow: 0 10px 40px rgba(255, 107, 53, 0.2);
+        box-shadow: 0 10px 40px rgba(212, 175, 55, 0.2);
     }
 
     50% {
-        box-shadow: 0 15px 50px rgba(255, 107, 53, 0.4);
+        box-shadow: 0 15px 50px rgba(212, 175, 55, 0.4);
     }
 }
 
 .pricing-card-highlighted:hover {
     transform: translateY(-15px) scale(1.05) rotateY(3deg);
-    box-shadow: 0 30px 60px rgba(255, 107, 53, 0.35);
+    box-shadow: 0 30px 60px rgba(212, 175, 55, 0.35);
 }
 
 /* Badge */
@@ -235,14 +235,14 @@
     background: var(--color-primary);
     border-color: var(--color-primary);
     color: #ffffff;
-    box-shadow: 0 8px 20px rgba(255, 107, 53, 0.3);
+    box-shadow: 0 8px 20px rgba(212, 175, 55, 0.3);
 }
 
 .pricing-button-highlighted:hover {
     background: var(--color-primary-dark);
     border-color: var(--color-primary-dark);
     color: #ffffff;
-    box-shadow: 0 12px 30px rgba(255, 107, 53, 0.4);
+    box-shadow: 0 12px 30px rgba(212, 175, 55, 0.4);
 }
 
 /* Custom Quote Section */
@@ -262,7 +262,7 @@
     left: 0;
     right: 0;
     bottom: 0;
-    background: radial-gradient(circle at top right, rgba(255, 107, 53, 0.1), transparent);
+    background: radial-gradient(circle at top right, rgba(212, 175, 55, 0.1), transparent);
     pointer-events: none;
 }
 
@@ -300,14 +300,14 @@
     align-items: center;
     gap: 0.75rem;
     transition: all 0.3s ease;
-    box-shadow: 0 8px 25px rgba(255, 107, 53, 0.3);
+    box-shadow: 0 8px 25px rgba(212, 175, 55, 0.3);
     text-decoration: none;
 }
 
 .pricing-custom-button:hover {
     background: var(--color-primary-dark);
     transform: translateY(-3px);
-    box-shadow: 0 12px 35px rgba(255, 107, 53, 0.4);
+    box-shadow: 0 12px 35px rgba(212, 175, 55, 0.4);
 }
 
 /* Fade In Animation */
