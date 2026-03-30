@@ -1,10 +1,14 @@
+import { useState } from 'react';
 import { Award, Clock, ArrowRight, Star, ShieldCheck } from 'lucide-react';
 import { useLanguage } from '../contexts/LanguageContext';
-import driverImg from '../assets/driver.jpg';
+import driverImg from '../assets/client-happy.jpg';
+import client1Img from '../assets/client-1.jpeg';
+import client2Img from '../assets/client-2.jpeg';
 import './About.css';
 
 const About = () => {
     const { t } = useLanguage();
+    const [showSeoDetails, setShowSeoDetails] = useState(false);
 
     const stats = [
         { id: 1, value: '10K+', label: t('about.stats.clients') },
@@ -68,6 +72,22 @@ const About = () => {
                 </div>
             </div>
 
+            {/* Client Photos */}
+            <div className="about-client-photos container">
+                <header className="about-client-photos-header">
+                    <h3>{t('about.clientPhotos.title')}</h3>
+                    <p>{t('about.clientPhotos.subtitle')}</p>
+                </header>
+                <div className="about-client-photos-grid">
+                    <figure className="about-client-photo-card">
+                        <img src={client1Img} alt="Photo client Rabat Transfert 1" loading="lazy" />
+                    </figure>
+                    <figure className="about-client-photo-card">
+                        <img src={client2Img} alt="Photo client Rabat Transfert 2" loading="lazy" />
+                    </figure>
+                </div>
+            </div>
+
             {/* Dark Stats Banner */}
             <div className="about-stats-banner">
                 <div className="container stats-grid-modern">
@@ -112,7 +132,30 @@ const About = () => {
 
             {/* Minimalist SEO Block */}
             <div className="about-seo-modern container">
-                <p>{t('about.seo.brief')} {t('about.seo.p1')} {t('about.seo.p2')} Visitez la section <a href="#services">{t('navbar.services')}</a> ou découvrez nos <a href="#tarifs">{t('navbar.pricing')}</a>.</p>
+                <p>{t('about.seo.brief')}</p>
+                <button
+                    type="button"
+                    className="about-seo-toggle"
+                    onClick={() => setShowSeoDetails((prev) => !prev)}
+                    aria-expanded={showSeoDetails}
+                >
+                    {showSeoDetails ? t('about.seo.showLess') : t('about.seo.showMore')}
+                </button>
+
+                {showSeoDetails && (
+                    <div className="about-seo-details" aria-label="Détails SEO">
+                        <p>{t('about.seo.p1')}</p>
+                        <p>{t('about.seo.p2')}</p>
+                        <p>{t('about.seo.p3')}</p>
+                        <p>{t('about.seo.p4')}</p>
+                        <p>{t('about.seo.p5')}</p>
+                        <p>{t('about.seo.p6')}</p>
+                        <p>
+                            Visitez la section <a href="#services">{t('navbar.services')}</a> ou découvrez nos{' '}
+                            <a href="#tarifs">{t('navbar.pricing')}</a>.
+                        </p>
+                    </div>
+                )}
             </div>
         </section>
     );

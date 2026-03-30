@@ -49,7 +49,7 @@
       "name": "Standard",
       "description": "Perfect for airport transfers and city trips",
       "category": "LUXURY SEDAN",
-      "vehicle": "Mercedes E-Class, BMW 5 Series"
+      "vehicle": ""
     },
     "business": {
       "name": "Business",
@@ -106,6 +106,10 @@
     "title": "Your Trusted Partner",
     "titleHighlight": "in Premium Transportation",
     "subtitle": "Since 2009, Rabat Transfert Aéroport has been offering luxury transportation services in Morocco, combining excellence, punctuality and comfort.",
+    "clientPhotos": {
+      "title": "Client photos",
+      "subtitle": "A glimpse of our satisfied clients with Rabat Transfert."
+    },
     "fleet": {
       "title": "Fleet",
       "description": "Premium vehicles maintained to the highest standards. Mercedes S-Class, executive vans equipped with the latest technology."
@@ -243,12 +247,20 @@
     "developedBy": "Developed by"
   },
   "welcomeAssistant": {
-    "title": "Taxi Assistant",
+    "title": "Assistant",
     "online": "Online",
     "message": "Hello! Welcome to Rabat Transfert Aéroport. I am your virtual assistant. We are here to ensure your comfort and safety during all your travels. How can I help you today?",
     "cta": "Request a ride",
     "close": "Close assistant",
     "open": "Open assistant"
+  },
+  "whatsappQuick": {
+    "title": "WhatsApp",
+    "defaultMessage": "salut Rabat Transfert",
+    "send": "Send on WhatsApp",
+    "open": "Open WhatsApp popup",
+    "close": "Close WhatsApp popup",
+    "inputAria": "WhatsApp message"
   },
   "notFound": {
     "title": "Page not found",

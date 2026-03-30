@@ -5,7 +5,7 @@
     left: 0;
     right: 0;
     z-index: 1000;
-    background-color: rgba(11, 15, 25, 0.95);
+    background-color: #514949;
     backdrop-filter: blur(10px);
     transition: all 0.3s ease;
     padding: 1rem 0;
@@ -13,7 +13,7 @@
 
 
 .navbar-scrolled {
-    background-color: rgba(11, 15, 25, 0.98);
+    background-color: #514949;
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
     padding: 0.5rem 0;
 }

@@ -1,6 +1,8 @@
 import { useEffect, useState } from 'react';
 import { useLanguage } from '../contexts/LanguageContext';
 import { Star, ExternalLink, MessageCircle } from 'lucide-react';
+import client1Image from '../assets/client-1.jpeg';
+import client2Image from '../assets/client-2.jpeg';
 import './Reviews.css';
 
 /** Google Maps place page for Rabat Transfert Maroc — view & leave reviews */
@@ -36,6 +38,7 @@ const Reviews = () => {
   const [reviews, setReviews] = useState<GoogleReview[]>([]);
   const [loading, setLoading] = useState(!!(API_KEY && PLACE_ID));
   const [error, setError] = useState(false);
+  const clientImages = [client1Image, client2Image];
 
   useEffect(() => {
     if (!API_KEY || !PLACE_ID) {
@@ -100,6 +103,20 @@ const Reviews = () => {
                 itemScope
                 itemType="https://schema.org/Review"
               >
+                <header className="review-card-author">
+                  <img
+                    src={clientImages[index % clientImages.length]}
+                    alt={review.name ? `Photo client ${review.name}` : 'Photo client'}
+                    className="review-card-avatar"
+                    loading="lazy"
+                  />
+                  <div className="review-card-author-meta">
+                    {review.name && <span itemProp="author">{review.name}</span>}
+                    {review.relativePublishTimeDescription && (
+                      <span className="review-card-date">{review.relativePublishTimeDescription}</span>
+                    )}
+                  </div>
+                </header>
                 <div className="review-card-stars" aria-hidden="true">
                   {[1, 2, 3, 4, 5].map((i) => (
                     <Star
@@ -115,12 +132,6 @@ const Reviews = () => {
                     {review.text.length > 220 ? `${review.text.slice(0, 220)}…` : review.text}
                   </p>
                 )}
-                <footer className="review-card-meta">
-                  {review.name && <span itemProp="author">{review.name}</span>}
-                  {review.relativePublishTimeDescription && (
-                    <span className="review-card-date">{review.relativePublishTimeDescription}</span>
-                  )}
-                </footer>
               </article>
               ))}
             </div>

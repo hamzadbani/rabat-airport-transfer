@@ -53,7 +53,11 @@ export const LanguageProvider = ({ children }: { children: ReactNode }) => {
             value = value?.[k];
         }
 
-        return value || key;
+        // Keep intentionally empty translations (e.g. "") instead of falling back to key name.
+        if (value === undefined || value === null) {
+            return key;
+        }
+        return String(value);
     };
 
     return (

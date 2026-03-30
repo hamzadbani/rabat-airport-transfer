@@ -1,5 +1,6 @@
 import { Check } from 'lucide-react';
 import { useLanguage } from '../contexts/LanguageContext';
+import driverProImage from '../assets/driver-pro.jpg';
 import './Pricing.css';
 
 const Pricing = () => {
@@ -13,6 +14,7 @@ const Pricing = () => {
             description: t('pricing.standard.description'),
             category: t('pricing.standard.category'),
             vehicle: t('pricing.standard.vehicle'),
+            image: driverProImage,
             features: [
                 t('pricing.features.driver'),
                 t('pricing.features.flightTracking'),
@@ -30,6 +32,7 @@ const Pricing = () => {
             description: t('pricing.business.description'),
             category: t('pricing.business.category'),
             vehicle: t('pricing.business.vehicle'),
+            image: driverProImage,
             features: [
                 t('pricing.features.allStandard'),
                 t('pricing.features.wifi'),
@@ -46,6 +49,7 @@ const Pricing = () => {
             description: t('pricing.premium.description'),
             category: t('pricing.premium.category'),
             vehicle: t('pricing.premium.vehicle'),
+            image: driverProImage,
             features: [
                 t('pricing.features.allBusiness'),
                 t('pricing.features.champagne'),
@@ -85,6 +89,14 @@ const Pricing = () => {
                             )}
 
                             {/* Card Header */}
+                            <div className="pricing-car-image-wrapper">
+                                <img
+                                    src={plan.image}
+                                    alt={`${plan.name} - image véhicule`}
+                                    className="pricing-car-image"
+                                    loading="lazy"
+                                />
+                            </div>
                             <div className="pricing-card-header">
                                 <h3 className="pricing-plan-name">{plan.name}</h3>
                                 <p className="pricing-plan-description">{plan.description}</p>
@@ -93,7 +105,7 @@ const Pricing = () => {
                             {/* Vehicle Info */}
                             <div className="pricing-vehicle">
                                 <p className="pricing-category">{plan.category}</p>
-                                <p className="pricing-vehicle-name">{plan.vehicle}</p>
+                                {plan.vehicle ? <p className="pricing-vehicle-name">{plan.vehicle}</p> : null}
                             </div>
 
                             {/* Features List */}

@@ -48,7 +48,7 @@
       "name": "قياسي",
       "description": "مثالي لنقل المطار والرحلات داخل المدينة",
       "category": "سيارة فاخرة",
-      "vehicle": "مرسيدس فئة E، بي إم دبليو سلسلة 5"
+      "vehicle": ""
     },
     "business": {
       "name": "الأعمال",
@@ -105,6 +105,10 @@
     "title": "شريكك الموثوق",
     "titleHighlight": "في النقل المميز",
     "subtitle": "منذ عام 2009، تقدم Rabat Transfert Aéroport خدمات النقل الفاخرة في المغرب، مجتمعة بين التميز والدقة والراحة.",
+    "clientPhotos": {
+      "title": "صور العملاء",
+      "subtitle": "لمحة عن عملائنا الراضين مع Rabat Transfert."
+    },
     "fleet": {
       "title": "أسطول السيارات",
       "description": "سيارات مميزة محفوظة بأعلى المعايير. مرسيدس فئة S، فانات تنفيذية مجهزة بأحدث التقنيات."
@@ -236,12 +240,20 @@
     "developedBy": "طور بواسطة"
   },
   "welcomeAssistant": {
-    "title": "Taxi Assistant",
+    "title": "المساعد",
     "online": "متصل",
     "message": "مرحباً! أهلاً بك في Rabat Transfert Aéroport. أنا مساعدك الافتراضي. نحن هنا لضمان راحتك وأمانك خلال جميع رحلاتك. كيف يمكنني مساعدتك اليوم؟",
     "cta": "اطلب رحلة",
     "close": "إغلاق المساعد",
     "open": "فتح المساعد"
+  },
+  "whatsappQuick": {
+    "title": "واتساب",
+    "defaultMessage": "salut Rabat Transfert",
+    "send": "إرسال عبر واتساب",
+    "open": "فتح نافذة واتساب",
+    "close": "إغلاق نافذة واتساب",
+    "inputAria": "رسالة واتساب"
   },
   "notFound": {
     "title": "الصفحة غير موجودة",

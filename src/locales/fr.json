@@ -49,20 +49,20 @@
       "name": "Standard",
       "description": "Parfait pour les transferts aéroport et les trajets en ville",
       "category": "BERLINE LUXE",
-      "vehicle": "Mercedes Classe E, BMW Série 5"
+      "vehicle": ""
     },
     "business": {
       "name": "Affaires",
       "badge": "LE PLUS POPULAIRE",
       "description": "Idéal pour les dirigeants et voyages professionnels",
       "category": "BERLINE EXECUTIVE",
-      "vehicle": "Mercedes Classe S, BMW Série 7"
+      "vehicle": ""
     },
     "premium": {
       "name": "Premium",
       "description": "Luxe ultime pour les occasions spéciales",
       "category": "VAN / SUV DE LUXE",
-      "vehicle": "Mercedes V-Class, Range Rover"
+      "vehicle": ""
     },
     "features": {
       "driver": "Chauffeur professionnel",
@@ -105,7 +105,11 @@
     },
     "title": "Votre Partenaire de Confiance",
     "titleHighlight": "en Transport Premium",
-    "subtitle": "Depuis 2009, Rabat Transfert Aéroport offre des services de transport de luxe au Maroc, alliant excellence, ponctualité et confort.",
+    "subtitle": "",
+    "clientPhotos": {
+      "title": "Photos clients",
+      "subtitle": "Aperçu de nos clients satisfaits avec Rabat Transfert."
+    },
     "fleet": {
       "title": "Parc Automobile",
       "description": "Véhicules premium entretenus selon les standards les plus élevés. Mercedes Classe S, Vans executive équipés des dernières technologies."
@@ -243,12 +247,20 @@
     "developedBy": "Développé par"
   },
   "welcomeAssistant": {
-    "title": "Taxi Assistant",
+    "title": "Assistant",
     "online": "En ligne",
     "message": "Bonjour ! Bienvenue chez Rabat Transfert Aéroport. Je suis votre assistant virtuel. Nous sommes là pour assurer votre confort et votre sécurité lors de tous vos déplacements. Comment puis-je vous aider aujourd'hui ?",
     "cta": "Demander un trajet",
     "close": "Fermer l'assistant",
     "open": "Ouvrir l'assistant"
+  },
+  "whatsappQuick": {
+    "title": "WhatsApp",
+    "defaultMessage": "salut Rabat Transfert",
+    "send": "Envoyer sur WhatsApp",
+    "open": "Ouvrir le popup WhatsApp",
+    "close": "Fermer le popup WhatsApp",
+    "inputAria": "Message WhatsApp"
   },
   "notFound": {
     "title": "Page introuvable",

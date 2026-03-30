@@ -112,8 +112,8 @@
     color: var(--color-dark);
 }
 
-.assistant-info h3 {
-    font-size: 1.1rem;
+.assistant-info h2 {
+    font-size: 0.95rem;
     font-weight: 800;
     margin: 0;
     color: var(--color-primary);
