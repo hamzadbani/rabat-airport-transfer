@@ -55,8 +55,8 @@ const Footer = () => {
     ];
 
     const socialLinks = [
-        { icon: Facebook, href: '#', label: 'Facebook' },
-        { icon: Instagram, href: '#', label: 'Instagram' },
+        { icon: Facebook, href: 'https://www.facebook.com/share/187AWL3tu6', label: 'Facebook' },
+        { icon: Instagram, href: 'https://www.instagram.com/taxi__aeroport', label: 'Instagram' },
         { icon: Linkedin, href: '#', label: 'LinkedIn' },
     ];
 
