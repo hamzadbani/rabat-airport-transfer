@@ -17,11 +17,17 @@ const Contact = () => {
     const [status, setStatus] = useState<'idle' | 'submitting' | 'success' | 'error'>('idle');
 
     useEffect(() => {
-        // Check if there's a pre-selected service type from URL hash
         const hash = window.location.hash;
         if (hash.includes('service=')) {
             const serviceType = hash.split('service=')[1];
             setFormData(prev => ({ ...prev, serviceType: decodeURIComponent(serviceType) }));
+        }
+        if (hash.startsWith('#contact')) {
+            requestAnimationFrame(() => {
+                requestAnimationFrame(() => {
+                    document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                });
+            });
         }
     }, []);
 

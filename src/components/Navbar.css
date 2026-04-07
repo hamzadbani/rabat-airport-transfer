@@ -37,7 +37,7 @@
 }
 
 .navbar-logo img {
-    height: 85px;
+    height: 94px;
     width: auto;
     max-width: 100%;
     object-fit: contain;
@@ -52,7 +52,7 @@
 }
 
 .navbar-scrolled .navbar-logo img {
-    height: 65px;
+    height: 72px;
 }
 
 /* Navigation Links */
@@ -366,11 +366,11 @@
 
 @media (max-width: 480px) {
     .navbar-logo img {
-        height: 65px;
+        height: 72px;
     }
 
     .navbar-scrolled .navbar-logo img {
-        height: 55px;
+        height: 60px;
     }
 
     .navbar-container {

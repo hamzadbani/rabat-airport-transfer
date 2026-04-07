@@ -67,7 +67,7 @@ const Footer = () => {
                 <div className="footer-main">
                     {/* Company Info */}
                     <div className="footer-column footer-about">
-                        <img src={logo} alt="Rabat Transfert Aéroport - Logo - Transport Premium au Maroc" className="footer-logo" width="140" height="70" loading="lazy" />
+                        <img src={logo} alt="Rabat Transfert Aéroport - Logo - Transport Premium au Maroc" className="footer-logo" width="155" height="78" loading="lazy" />
                         <h3 className="footer-company-name">Rabat Transfert Aéroport</h3>
                         <p className="footer-description">
                             {t('footer.description')}
@@ -206,13 +206,13 @@ const Footer = () => {
                         <p className="footer-developer-text">
                             {t('footer.developedBy')}{' '}
                             <a
-                                href="https://wa.me/212630258502?text=slt%20jai%20besoin%20de%20site%20web%20pour"
+                                href="https://abdelazizelhathout.com/"
                                 target="_blank"
                                 rel="noopener noreferrer"
                                 className="footer-developer-link"
-                                aria-label="Contacter Abdelaziz & Hamza sur WhatsApp"
+                                aria-label={t('footer.developerLinkAria')}
                             >
-                                Abdelaziz & Hamza
+                                {t('footer.developerLinkLabel')}
                             </a>
                         </p>
                     </div>

@@ -47,7 +47,7 @@ if ($email && !filter_var($email, FILTER_VALIDATE_EMAIL)) {
 }
 
 // Email configuration
-$to = 'taxirabatairoport@gmail.com';
+$to = 'Taxi.toursrabat@gmail.com';
 $subject = "Nouveau message de contact - Rabat Transfert Aéroport";
 $from = "noreply@taxirabatairoport.com";
 

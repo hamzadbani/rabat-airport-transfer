@@ -37,7 +37,7 @@ if (empty($name) || empty($email) || empty($serviceType) || empty($message) || !
 }
 
 // Configuration
-$to_email = 'taxirabatairoport@gmail.com';
+$to_email = 'Taxi.toursrabat@gmail.com';
 $from_email = 'no-reply@taxirabatairoport.com'; // Use a domain-based email for Hostinger
 $whatsapp_number = '212674545939'; // Fixed format (212 + national number, no +)
 $site_url = (isset($_SERVER['HTTPS']) ? "https" : "http") . "://$_SERVER[HTTP_HOST]";

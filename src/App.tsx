@@ -73,7 +73,7 @@ function App() {
         <LazyWhenVisible component={ShareSection} minHeight={280} />
         <LazyWhenVisible component={Services} minHeight={800} />
         <LazyWhenVisible component={Pricing} minHeight={600} />
-        <LazyWhenVisible component={Contact} minHeight={700} />
+        <LazyWhenVisible component={Contact} minHeight={700} eagerForHashPrefix="#contact" />
         <LazyWhenVisible component={Footer} minHeight={400} />
       </div>
     </>

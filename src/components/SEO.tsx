@@ -81,7 +81,7 @@ const SEO = () => {
                 : 'Services de transport de luxe au Maroc depuis 2009. Chauffeur privé, Mercedes & BMW. Transferts aéroport, transport touristique. Casablanca, Marrakech, Rabat. 24/7.',
         url: 'https://taxirabatairoport.com/',
         telephone: '+212674545939',
-        email: 'taxirabatairoport@gmail.com',
+        email: 'Taxi.toursrabat@gmail.com',
         address: {
             '@type': 'PostalAddress',
             addressCountry: 'MA',

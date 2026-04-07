@@ -124,26 +124,24 @@ const Pricing = () => {
                                 className={`pricing-button ${plan.highlighted ? 'pricing-button-highlighted' : ''}`}
                                 onClick={(e) => {
                                     e.preventDefault();
+                                    const serviceMapping: { [key: string]: string } = {
+                                        'Standard': 'Service Taxi',
+                                        'Business': 'Transport Aeroport',
+                                        'Premium': 'Transport Touristique'
+                                    };
+                                    const serviceType = serviceMapping[plan.name] || '';
                                     const contactSection = document.getElementById('contact');
                                     if (contactSection) {
                                         contactSection.scrollIntoView({ behavior: 'smooth' });
-                                        // Update URL hash
-                                        // Map pricing plans to new service types
-                                        const serviceMapping: { [key: string]: string } = {
-                                            'Standard': 'Service Taxi',
-                                            'Business': 'Transport Aeroport',
-                                            'Premium': 'Transport Touristique'
-                                        };
-                                        const serviceType = serviceMapping[plan.name] || '';
-
                                         window.history.pushState(null, '', `#contact?service=${encodeURIComponent(serviceType)}`);
-                                        // Trigger service type selection
                                         setTimeout(() => {
                                             const serviceSelect = document.getElementById('serviceType') as HTMLSelectElement;
                                             if (serviceSelect) {
                                                 serviceSelect.value = serviceType;
                                             }
                                         }, 500);
+                                    } else {
+                                        window.location.hash = `contact?service=${encodeURIComponent(serviceType)}`;
                                     }
                                 }}
                             >
@@ -168,6 +166,8 @@ const Pricing = () => {
                                 const contactSection = document.getElementById('contact');
                                 if (contactSection) {
                                     contactSection.scrollIntoView({ behavior: 'smooth' });
+                                } else {
+                                    window.location.hash = 'contact';
                                 }
                             }}
                         >

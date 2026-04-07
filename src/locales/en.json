@@ -245,7 +245,9 @@
     "terms": "Terms of Use",
     "legal": "Legal Notice",
     "sitemap": "Sitemap",
-    "developedBy": "Developed by"
+    "developedBy": "Developed by",
+    "developerLinkLabel": "Abdelaziz Elhathout",
+    "developerLinkAria": "Visit Abdelaziz Elhathout’s website, freelance web developer"
   },
   "welcomeAssistant": {
     "title": "Assistant",

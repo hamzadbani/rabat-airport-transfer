@@ -238,7 +238,9 @@
     "terms": "شروط الاستخدام",
     "legal": "إشعار قانوني",
     "sitemap": "خريطة الموقع",
-    "developedBy": "طور بواسطة"
+    "developedBy": "طور بواسطة",
+    "developerLinkLabel": "عبد العزيز الحاتوت",
+    "developerLinkAria": "زيارة موقع عبد العزيز الحاتوت، مطوّر ويب مستقل"
   },
   "welcomeAssistant": {
     "title": "المساعد",

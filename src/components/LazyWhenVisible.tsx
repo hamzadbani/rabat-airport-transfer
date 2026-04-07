@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useRef, Suspense, type LazyExoticComponent, type ComponentType } from 'react'
+import React, { useEffect, useLayoutEffect, useState, useRef, Suspense, type LazyExoticComponent, type ComponentType } from 'react'
 
 type Props = {
   /** Lazy-loaded component (from React.lazy()) */
@@ -7,6 +7,11 @@ type Props = {
   minHeight?: string | number
   /** IntersectionObserver rootMargin – load a bit before section enters view */
   rootMargin?: string
+  /**
+   * If set, mount the section when `window.location.hash` starts with this value
+   * (e.g. '#contact') so `<a href="#contact">` works before the user scrolls there.
+   */
+  eagerForHashPrefix?: string
 }
 
 /**
@@ -17,9 +22,20 @@ const LazyWhenVisible = ({
   component: LazyComponent,
   minHeight = '400px',
   rootMargin = '200px',
+  eagerForHashPrefix,
 }: Props) => {
   const [inView, setInView] = useState(false)
   const ref = useRef<HTMLDivElement>(null)
+
+  useLayoutEffect(() => {
+    if (!eagerForHashPrefix || typeof window === 'undefined') return
+    const matchHash = () => {
+      if (window.location.hash.startsWith(eagerForHashPrefix)) setInView(true)
+    }
+    matchHash()
+    window.addEventListener('hashchange', matchHash)
+    return () => window.removeEventListener('hashchange', matchHash)
+  }, [eagerForHashPrefix])
 
   useEffect(() => {
     const el = ref.current

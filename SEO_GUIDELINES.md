@@ -142,7 +142,7 @@ The site uses **LocalBusiness** schema with the following structure:
   "@type": "LocalBusiness",
   "name": "Rabat Transfert Aéroport",
   "telephone": "+212674545939",
-  "email": "taxirabatairoport@gmail.com",
+  "email": "Taxi.toursrabat@gmail.com",
   "address": { "@type": "PostalAddress", "addressCountry": "MA" },
   "openingHoursSpecification": { "opens": "00:00", "closes": "23:59" },
   "serviceType": ["Airport Transfer", "Private Chauffeur", ...],

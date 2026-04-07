@@ -84,7 +84,7 @@ const Navbar = () => {
                 {/* Logo */}
                 <div className="navbar-logo">
                     <a href="#accueil" aria-label="Rabat Transfert Aéroport - Accueil">
-                        <img src={logo} alt="Rabat Transfert Aéroport - Logo - Transport Premium au Maroc" width="180" height="50" />
+                        <img src={logo} alt="Rabat Transfert Aéroport - Logo - Transport Premium au Maroc" width="200" height="56" />
                     </a>
                 </div>
 
