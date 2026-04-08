@@ -65,7 +65,7 @@ const Contact = () => {
             .replace('{service}', formData.serviceType)
             .replace('{flightNumber}', formData.flightNumber || 'N/A')
             .replace('{email}', formData.email || 'N/A')
-            .replace('{message}', formData.message);
+            .replace('{message}', formData.message.trim() || 'N/A');
 
         const encodedMessage = encodeURIComponent(message);
         const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${encodedMessage}`;
@@ -264,7 +264,6 @@ const Contact = () => {
                                     onChange={handleChange}
                                     placeholder={t('contact.form.messagePlaceholder')}
                                     rows={5}
-                                    required
                                     disabled={status === 'submitting'}
                                 />
                                 <span className="character-count">{formData.message.length}/500 {t('contact.form.characters')}</span>

@@ -22,7 +22,7 @@ $input = file_get_contents('php://input');
 $data = json_decode($input, true);
 
 // Validate required fields
-$required = ['name', 'message'];
+$required = ['name'];
 foreach ($required as $field) {
     if (empty($data[$field])) {
         http_response_code(400);
@@ -37,7 +37,7 @@ $email = isset($data['email']) ? filter_var($data['email'], FILTER_SANITIZE_EMAI
 $phone = isset($data['phone']) ? htmlspecialchars(strip_tags($data['phone'])) : '';
 $serviceType = isset($data['serviceType']) ? htmlspecialchars(strip_tags($data['serviceType'])) : '';
 $flightNumber = isset($data['flightNumber']) ? htmlspecialchars(strip_tags($data['flightNumber'])) : '';
-$message = htmlspecialchars(strip_tags($data['message']));
+$message = htmlspecialchars(strip_tags($data['message'] ?? ''));
 
 // Validate email if provided
 if ($email && !filter_var($email, FILTER_VALIDATE_EMAIL)) {
@@ -64,7 +64,7 @@ if ($serviceType) {
 if ($flightNumber) {
     $emailBody .= "Numéro de vol: $flightNumber\n";
 }
-$emailBody .= "\nMessage:\n$message\n";
+$emailBody .= "\nMessage:\n" . ($message !== '' ? $message : '(non renseigné)') . "\n";
 
 // Email headers
 $headers = "From: $from\r\n";

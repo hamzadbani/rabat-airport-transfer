@@ -30,7 +30,7 @@ $phone = strip_tags(trim($data['phone'] ?? ''));
 $serviceType = strip_tags(trim($data['serviceType'] ?? ''));
 $message = strip_tags(trim($data['message'] ?? ''));
 
-if (empty($name) || empty($email) || empty($serviceType) || empty($message) || !filter_var($email, FILTER_VALIDATE_EMAIL)) {
+if (empty($name) || empty($email) || empty($serviceType) || !filter_var($email, FILTER_VALIDATE_EMAIL)) {
     http_response_code(400);
     echo json_encode(['success' => false, 'message' => 'Veuillez remplir tous les champs obligatoires.']);
     exit();
@@ -92,7 +92,7 @@ $email_content = "
             
             <div class='field'>
                 <span class='label'>Message</span>
-                <div class='value'>" . nl2br($message) . "</div>
+                <div class='value'>" . ($message !== '' ? nl2br($message) : 'Non fourni') . "</div>
             </div>
         </div>
         <div class='footer'>

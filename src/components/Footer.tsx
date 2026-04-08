@@ -67,7 +67,9 @@ const Footer = () => {
                 <div className="footer-main">
                     {/* Company Info */}
                     <div className="footer-column footer-about">
-                        <img src={logo} alt="Rabat Transfert Aéroport - Logo - Transport Premium au Maroc" className="footer-logo" width="155" height="78" loading="lazy" />
+                        <div className="footer-logo-pill">
+                            <img src={logo} alt="Rabat Transfert Aéroport - Logo - Transport Premium au Maroc" className="footer-logo" width="194" height="98" loading="lazy" />
+                        </div>
                         <h3 className="footer-company-name">Rabat Transfert Aéroport</h3>
                         <p className="footer-description">
                             {t('footer.description')}

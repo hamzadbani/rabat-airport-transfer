@@ -187,7 +187,7 @@
         "taxi": "Taxi Service",
         "tourist": "Tourist Transport"
       },
-      "message": "Your Message *",
+      "message": "Your message (optional)",
       "messagePlaceholder": "How can we help you?",
       "characters": "characters",
       "send": "Send Message",
