@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import logo from '../assets/logo.png';
+import { SITE_LOGO_PATH } from '../constants/siteLogo';
 import { Phone, Menu, X, Globe, ChevronDown } from 'lucide-react';
 import { useLanguage } from '../contexts/LanguageContext';
 import './Navbar.css';
@@ -84,7 +84,7 @@ const Navbar = () => {
                 {/* Logo */}
                 <div className="navbar-logo">
                     <a href="#accueil" aria-label="Rabat Transfert Aéroport - Accueil">
-                        <img src={logo} alt="Rabat Transfert Aéroport - Logo - Transport Premium au Maroc" width="250" height="70" />
+                        <img src={SITE_LOGO_PATH} alt="Taxi Rabat Airport — Rabat Transfert Aéroport" width="380" height="109" />
                     </a>
                 </div>
 

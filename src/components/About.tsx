@@ -2,8 +2,6 @@ import { useState } from 'react';
 import { Award, Clock, ArrowRight, Star, ShieldCheck } from 'lucide-react';
 import { useLanguage } from '../contexts/LanguageContext';
 import driverImg from '../assets/client-happy.jpg';
-import client1Img from '../assets/client-1.jpeg';
-import client2Img from '../assets/client-2.jpeg';
 import './About.css';
 
 const About = () => {
@@ -69,22 +67,6 @@ const About = () => {
                     <a href="#contact" className="about-btn-modern">
                         {t('navbar.reserve')} <ArrowRight size={18} />
                     </a>
-                </div>
-            </div>
-
-            {/* Client Photos */}
-            <div className="about-client-photos container">
-                <header className="about-client-photos-header">
-                    <h3>{t('about.clientPhotos.title')}</h3>
-                    <p>{t('about.clientPhotos.subtitle')}</p>
-                </header>
-                <div className="about-client-photos-grid">
-                    <figure className="about-client-photo-card">
-                        <img src={client1Img} alt="Photo client Rabat Transfert 1" loading="lazy" />
-                    </figure>
-                    <figure className="about-client-photo-card">
-                        <img src={client2Img} alt="Photo client Rabat Transfert 2" loading="lazy" />
-                    </figure>
                 </div>
             </div>
 

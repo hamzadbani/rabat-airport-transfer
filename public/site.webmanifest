@@ -3,9 +3,11 @@
   "short_name": "Rabat Transfert",
   "description": "Transport premium et taxi touristique au Maroc",
   "start_url": "/",
+  "scope": "/",
   "display": "standalone",
+  "display_override": ["standalone", "browser"],
   "background_color": "#ffffff",
-  "theme_color": "#ff6b35",
+  "theme_color": "#0d9488",
   "icons": [
     {
       "src": "/favicon.png",

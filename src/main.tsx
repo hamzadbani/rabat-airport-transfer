@@ -4,8 +4,11 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import { LanguageProvider } from './contexts/LanguageContext'
 import App from './App.tsx'
 import './index.css'
+import { registerServiceWorker } from './lib/register-service-worker'
 
 const NotFound = lazy(() => import('./components/NotFound'))
+
+registerServiceWorker()
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>

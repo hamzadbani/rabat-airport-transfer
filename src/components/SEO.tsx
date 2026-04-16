@@ -1,5 +1,6 @@
 import { useEffect } from 'react';
 import { useLanguage } from '../contexts/LanguageContext';
+import { SITE_LOGO_ABSOLUTE_URL } from '../constants/siteLogo';
 
 const SEO = () => {
     const { language } = useLanguage();
@@ -57,6 +58,8 @@ const SEO = () => {
         updateMetaTag('og:description', content.description, true);
         updateMetaTag('twitter:title', content.title, true);
         updateMetaTag('twitter:description', content.description, true);
+        updateMetaTag('og:image', SITE_LOGO_ABSOLUTE_URL, true);
+        updateMetaTag('twitter:image', SITE_LOGO_ABSOLUTE_URL, true);
 
         // Update Open Graph locale
         const localeMap: Record<string, string> = {
@@ -107,7 +110,7 @@ const SEO = () => {
             closes: '23:59',
         },
         priceRange: '$$$',
-        image: 'https://taxirabatairoport.com/logo.png',
+        image: SITE_LOGO_ABSOLUTE_URL,
         sameAs: [],
         aggregateRating: {
             '@type': 'AggregateRating',

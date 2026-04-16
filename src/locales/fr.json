@@ -7,7 +7,22 @@
     "reviews": "Avis",
     "contact": "Contact",
     "call": "Appeler",
-    "reserve": "Réservez Maintenant"
+    "reserve": "Réservez Maintenant",
+    "stickyReserve": {
+      "button": "Réserver",
+      "aria": "Aller au formulaire de réservation"
+    }
+  },
+  "pwa": {
+    "installRegion": "Installer l’application",
+    "installTitle": "Installer Rabat Transfert",
+    "installDesc": "Ajoutez un raccourci sur l’écran d’accueil (Android / Chrome).",
+    "installButton": "Installer",
+    "dismiss": "Plus tard",
+    "iosInstallRegion": "Ajouter sur l’écran d’accueil (iPhone / iPad)",
+    "iosInstallTitle": "Rabat Transfert sur votre écran d’accueil",
+    "iosInstallDesc": "Sur iPhone et iPad, ouvrez le site dans Safari, touchez Partager (carré avec flèche vers le haut), puis « Sur l’écran d’accueil ».",
+    "iosDismiss": "Compris"
   },
   "hero": {
     "subtitle": "SERVICE DE TRANSPORT DE LUXE AU MAROC — AÉROPORT RABAT-SALÉ",
@@ -73,9 +88,6 @@
       "passengers7": "Jusqu'à 6 passagers",
       "wifi": "Wi-Fi à bord",
       "privacy": "Cloison de confidentialité",
-      "champagne": "Service champagne",
-      "audio": "Système audio premium",
-      "lighting": "Éclairage d'ambiance",
       "allStandard": "Toutes les options Standard",
       "allBusiness": "Toutes les options Affaires"
     },
@@ -174,12 +186,18 @@
     "form": {
       "name": "Nom complet *",
       "namePlaceholder": "Jean Dupont",
-      "email": "Adresse E-mail",
+      "email": "Adresse e-mail *",
       "emailPlaceholder": "jeandupont@exemple.com",
       "phone": "Numéro de Téléphone",
       "phonePlaceholder": "+212 6XX XX XX XX",
-      "flightNumber": "Numéro de Vol",
+      "flightNumber": "Numéro de vol",
       "flightNumberPlaceholder": "ex: AF1234",
+      "dateCourse": "Date du trajet",
+      "dateArriver": "Heure (arrivée / prise en charge)",
+      "adultsCount": "Nombre d’adultes",
+      "childrenCount": "Nombre d’enfants",
+      "baggage": "Bagages",
+      "baggagePlaceholder": "ex: 2 valises, 1 sac cabine",
       "service": "Type de Service",
       "servicePlaceholder": "Sélectionnez un service",
       "serviceOptions": {
@@ -194,7 +212,7 @@
       "sending": "Envoi en cours...",
       "success": "Message envoyé avec succès !",
       "error": "Erreur lors de l'envoi. Veuillez réessayer.",
-      "whatsappMessage": "Bonjour Rabat Transfert,\nJe demande un service :\n*Nom*: {name}\n*Téléphone*: {phone}\n*Service*: {service}\n*Numéro de vol*: {flightNumber}\n*Email*: {email}\n*Message*: {message}"
+      "whatsappMessage": "Bonjour Rabat Transfert,\nJe demande une réservation :\n*Nom*: {name}\n*Téléphone*: {phone}\n*Email*: {email}\n*Service*: {service}\n*Numéro de vol*: {flightNumber}\n*Date du trajet*: {dateCourse}\n*Heure*: {dateArriver}\n*Adultes*: {adultsCount}\n*Enfants*: {childrenCount}\n*Bagages*: {baggage}\n*Message*: {message}"
     },
     "info": {
       "phone": {

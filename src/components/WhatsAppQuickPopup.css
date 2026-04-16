@@ -6,6 +6,13 @@
   padding: 16px;
 }
 
+/* Au-dessus de la barre fixe « Réserver » (MobileReserveBar) */
+@media (max-width: 768px) {
+  .wa-quick-widget {
+    bottom: calc(64px + env(safe-area-inset-bottom, 0px));
+  }
+}
+
 .wa-quick-button {
   width: 58px;
   height: 58px;

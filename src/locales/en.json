@@ -7,7 +7,22 @@
     "reviews": "Reviews",
     "contact": "Contact",
     "call": "Call",
-    "reserve": "Book Now"
+    "reserve": "Book Now",
+    "stickyReserve": {
+      "button": "Book",
+      "aria": "Go to booking form"
+    }
+  },
+  "pwa": {
+    "installRegion": "Install app",
+    "installTitle": "Install Rabat Transfert",
+    "installDesc": "Add a shortcut on your home screen (Android / Chrome).",
+    "installButton": "Install",
+    "dismiss": "Not now",
+    "iosInstallRegion": "Add to Home Screen (iPhone / iPad)",
+    "iosInstallTitle": "Rabat Transfert on your Home Screen",
+    "iosInstallDesc": "On iPhone and iPad, open the site in Safari, tap Share (square with arrow), then “Add to Home Screen”.",
+    "iosDismiss": "Got it"
   },
   "hero": {
     "subtitle": "LUXURY TRANSPORT SERVICE IN MOROCCO — RABAT-SALÉ AIRPORT",
@@ -73,9 +88,6 @@
       "passengers7": "Up to 7 passengers",
       "wifi": "On-board Wi-Fi",
       "privacy": "Privacy partition",
-      "champagne": "Champagne service",
-      "audio": "Premium audio system",
-      "lighting": "Ambient lighting",
       "allStandard": "All Standard options",
       "allBusiness": "All Business options"
     },
@@ -174,12 +186,18 @@
     "form": {
       "name": "Full Name *",
       "namePlaceholder": "John Doe",
-      "email": "Email Address",
+      "email": "Email address *",
       "emailPlaceholder": "johndoe@example.com",
       "phone": "Phone Number",
       "phonePlaceholder": "+212 6XX XX XX XX",
-      "flightNumber": "Flight Number",
+      "flightNumber": "Flight number",
       "flightNumberPlaceholder": "e.g. AF1234",
+      "dateCourse": "Trip date",
+      "dateArriver": "Time (arrival / pickup)",
+      "adultsCount": "Number of adults",
+      "childrenCount": "Number of children",
+      "baggage": "Luggage",
+      "baggagePlaceholder": "e.g. 2 suitcases, 1 carry-on",
       "service": "Service Type",
       "servicePlaceholder": "Select a service",
       "serviceOptions": {
@@ -194,7 +212,7 @@
       "sending": "Sending...",
       "success": "Message sent successfully!",
       "error": "Error sending message. Please try again.",
-      "whatsappMessage": "Hello Rabat Transfert,\nI am requesting a service:\n*Name*: {name}\n*Phone*: {phone}\n*Service*: {service}\n*Flight Number*: {flightNumber}\n*Email*: {email}\n*Message*: {message}"
+      "whatsappMessage": "Hello Rabat Transfert,\nI would like to book:\n*Name*: {name}\n*Phone*: {phone}\n*Email*: {email}\n*Service*: {service}\n*Flight number*: {flightNumber}\n*Trip date*: {dateCourse}\n*Time*: {dateArriver}\n*Adults*: {adultsCount}\n*Children*: {childrenCount}\n*Luggage*: {baggage}\n*Message*: {message}"
     },
     "info": {
       "phone": {

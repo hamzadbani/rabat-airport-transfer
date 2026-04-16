@@ -85,27 +85,14 @@
     gap: 1rem;
 }
 
-.footer-logo-pill {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    padding: 0.35rem 1rem;
-    margin-bottom: 1rem;
-    border-radius: 9999px;
-    overflow: hidden;
-    line-height: 0;
-    background: var(--logo-pill-bg);
-    border: 1px solid var(--logo-pill-border);
-    box-shadow: var(--logo-pill-shadow);
-}
-
 .footer-logo {
-    height: 118px;
+    height: 152px;
     width: auto;
     max-width: 100%;
     object-fit: contain;
     object-position: left center;
-    border-radius: 9999px;
+    border-radius: 0;
+    margin-bottom: 1rem;
 }
 
 .footer-company-name {
@@ -295,7 +282,7 @@
 }
 
 .footer-developer-link:hover {
-    color: var(--color-primary-dark, #e65a2b);
+    color: var(--color-primary-dark, #0f766e);
     text-decoration: underline;
 }
 
@@ -569,7 +556,7 @@
     }
 
     .footer-logo {
-        height: 74px;
+        height: 94px;
     }
 
     .footer-company-name {

@@ -52,9 +52,6 @@ const Pricing = () => {
             image: driverProImage,
             features: [
                 t('pricing.features.allBusiness'),
-                t('pricing.features.champagne'),
-                t('pricing.features.audio'),
-                t('pricing.features.lighting'),
                 t('pricing.features.passengers7')
             ],
             buttonText: t('pricing.buttonPremium'),

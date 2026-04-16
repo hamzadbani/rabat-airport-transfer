@@ -24,10 +24,21 @@ if (!$data) {
     exit();
 }
 
+function h($s)
+{
+    return htmlspecialchars((string) $s, ENT_QUOTES, 'UTF-8');
+}
+
 $name = strip_tags(trim($data['name'] ?? ''));
 $email = filter_var(trim($data['email'] ?? ''), FILTER_SANITIZE_EMAIL);
 $phone = strip_tags(trim($data['phone'] ?? ''));
 $serviceType = strip_tags(trim($data['serviceType'] ?? ''));
+$flightNumber = strip_tags(trim($data['flightNumber'] ?? ''));
+$dateCourse = strip_tags(trim($data['dateCourse'] ?? ''));
+$dateArriver = strip_tags(trim($data['dateArriver'] ?? ''));
+$adultsCount = max(1, min(50, (int) ($data['adultsCount'] ?? 1)));
+$childrenCount = max(0, min(20, (int) ($data['childrenCount'] ?? 0)));
+$baggage = strip_tags(trim($data['baggage'] ?? ''));
 $message = strip_tags(trim($data['message'] ?? ''));
 
 if (empty($name) || empty($email) || empty($serviceType) || !filter_var($email, FILTER_VALIDATE_EMAIL)) {
@@ -38,14 +49,23 @@ if (empty($name) || empty($email) || empty($serviceType) || !filter_var($email, 
 
 // Configuration
 $to_email = 'Taxi.toursrabat@gmail.com';
-$from_email = 'no-reply@taxirabatairoport.com'; // Use a domain-based email for Hostinger
-$whatsapp_number = '212674545939'; // Fixed format (212 + national number, no +)
+$from_email = 'no-reply@taxirabatairoport.com';
 $site_url = (isset($_SERVER['HTTPS']) ? "https" : "http") . "://$_SERVER[HTTP_HOST]";
-$logo_url = $site_url . '/logo.png';
+$logo_url = $site_url . '/assets/new-logo-taxi-rabat-removebg-preview.png';
 
 // Construct HTML Email
 $subject = "Nouvelle réservation - $serviceType - Rabat Transfert Aéroport";
-$subject = "=?UTF-8?B?" . base64_encode($subject) . "?="; // Encoding subject for UTF-8
+$subject = "=?UTF-8?B?" . base64_encode($subject) . "?=";
+
+$hn = h($name);
+$he = h($email);
+$hp = $phone !== '' ? h($phone) : 'Non fourni';
+$hf = $flightNumber !== '' ? h($flightNumber) : 'Non fourni';
+$hd = $dateCourse !== '' ? h($dateCourse) : 'Non fourni';
+$ht = $dateArriver !== '' ? h($dateArriver) : 'Non fourni';
+$hs = h($serviceType);
+$hba = $baggage !== '' ? h($baggage) : 'Non fourni';
+$hm = $message !== '' ? nl2br(h($message)) : 'Non fourni';
 
 $email_content = "
 <html>
@@ -57,7 +77,7 @@ $email_content = "
         .header img { max-width: 150px; }
         .content { padding: 30px; }
         .field { margin-bottom: 20px; }
-        .label { font-weight: bold; color: #ff6b35; display: block; margin-bottom: 5px; text-transform: uppercase; font-size: 12px; }
+        .label { font-weight: bold; color: #0d9488; display: block; margin-bottom: 5px; text-transform: uppercase; font-size: 12px; }
         .value { font-size: 16px; background: #f9f9f9; padding: 10px; border-radius: 5px; }
         .footer { background: #f4f4f4; padding: 20px; text-align: center; font-size: 12px; color: #777; }
     </style>
@@ -65,38 +85,68 @@ $email_content = "
 <body>
     <div class='container'>
         <div class='header'>
-            <img src='$logo_url' alt='EM Taxi Touristique'>
+            <img src='$logo_url' alt='Rabat Transfert Aéroport'>
         </div>
         <div class='content'>
-            <h2 style='text-align: center; color: #1a1a1a;'>Nouvelle Demande de Service</h2>
-            
+            <h2 style='text-align: center; color: #1a1a1a;'>Nouvelle réservation</h2>
+
             <div class='field'>
                 <span class='label'>Nom complet</span>
-                <div class='value'>$name</div>
+                <div class='value'>$hn</div>
             </div>
-            
+
             <div class='field'>
                 <span class='label'>Email</span>
-                <div class='value'>$email</div>
+                <div class='value'>$he</div>
             </div>
-            
+
             <div class='field'>
                 <span class='label'>Téléphone</span>
-                <div class='value'>" . ($phone ?: 'Non fourni') . "</div>
+                <div class='value'>$hp</div>
             </div>
-            
+
             <div class='field'>
-                <span class='label'>Type de Service</span>
-                <div class='value'>$serviceType</div>
+                <span class='label'>Numéro de vol</span>
+                <div class='value'>$hf</div>
             </div>
-            
+
+            <div class='field'>
+                <span class='label'>Date du trajet</span>
+                <div class='value'>$hd</div>
+            </div>
+
+            <div class='field'>
+                <span class='label'>Heure (arrivée / prise en charge)</span>
+                <div class='value'>$ht</div>
+            </div>
+
+            <div class='field'>
+                <span class='label'>Type de service</span>
+                <div class='value'>$hs</div>
+            </div>
+
+            <div class='field'>
+                <span class='label'>Passagers adultes</span>
+                <div class='value'>$adultsCount</div>
+            </div>
+
+            <div class='field'>
+                <span class='label'>Enfants</span>
+                <div class='value'>$childrenCount</div>
+            </div>
+
+            <div class='field'>
+                <span class='label'>Bagages</span>
+                <div class='value'>$hba</div>
+            </div>
+
             <div class='field'>
                 <span class='label'>Message</span>
-                <div class='value'>" . ($message !== '' ? nl2br($message) : 'Non fourni') . "</div>
+                <div class='value'>$hm</div>
             </div>
         </div>
         <div class='footer'>
-            Cet email a été envoyé depuis le formulaire de contact de EM Taxi Touristique.
+            Cet email a été envoyé depuis le formulaire de contact de Rabat Transfert Aéroport.
         </div>
     </div>
 </body>
@@ -124,4 +174,3 @@ if ($mail_success) {
         'message' => 'Une erreur est survenue lors de l\'envoi de l\'email.'
     ]);
 }
-?>

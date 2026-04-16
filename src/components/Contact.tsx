@@ -4,43 +4,59 @@ import { useLanguage } from '../contexts/LanguageContext';
 import ObfuscatedEmail, { CONTACT_EMAIL_ENCODED, ObfuscatedEmailDisplay } from './ObfuscatedEmail';
 import './Contact.css';
 
+const emptyForm = {
+    name: '',
+    email: '',
+    phone: '',
+    serviceType: '',
+    flightNumber: '',
+    dateCourse: '',
+    dateArriver: '',
+    adultsCount: '1',
+    childrenCount: '',
+    baggage: '',
+    message: '',
+};
+
 const Contact = () => {
     const { t } = useLanguage();
-    const [formData, setFormData] = useState({
-        name: '',
-        email: '',
-        phone: '',
-        serviceType: '',
-        flightNumber: '',
-        message: '',
-    });
+    const [formData, setFormData] = useState(emptyForm);
     const [status, setStatus] = useState<'idle' | 'submitting' | 'success' | 'error'>('idle');
 
     useEffect(() => {
-        const hash = window.location.hash;
-        if (hash.includes('service=')) {
-            const serviceType = hash.split('service=')[1];
-            setFormData(prev => ({ ...prev, serviceType: decodeURIComponent(serviceType) }));
-        }
-        if (hash.startsWith('#contact')) {
-            requestAnimationFrame(() => {
+        const applyHash = () => {
+            const hash = window.location.hash;
+            if (hash.includes('service=')) {
+                const raw = hash.split('service=')[1]?.split('&')[0] ?? '';
+                const serviceType = decodeURIComponent(raw);
+                if (serviceType) {
+                    setFormData((prev) => ({ ...prev, serviceType }));
+                }
+            }
+            if (hash.startsWith('#contact')) {
                 requestAnimationFrame(() => {
-                    document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                    requestAnimationFrame(() => {
+                        document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                    });
                 });
-            });
-        }
+            }
+        };
+        applyHash();
+        window.addEventListener('hashchange', applyHash);
+        return () => window.removeEventListener('hashchange', applyHash);
     }, []);
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
         const { name, value } = e.target;
 
-        // Limit message to 500 characters
         if (name === 'message' && value.length > 500) {
             return;
         }
+        if (name === 'baggage' && value.length > 255) {
+            return;
+        }
 
-        setFormData(prev => ({ ...prev, [name]: value }));
-        // Clear status when user starts typing
+        setFormData((prev) => ({ ...prev, [name]: value }));
         if (status !== 'idle') {
             setStatus('idle');
         }
@@ -49,9 +65,12 @@ const Contact = () => {
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
 
-        // Validate message length
         if (formData.message.length > 500) {
-            setStatus('error'); // Or we could add a specific message if needed, but the UI has a counter
+            setStatus('error');
+            return;
+        }
+        if (formData.baggage.length > 255) {
+            setStatus('error');
             return;
         }
 
@@ -63,31 +82,50 @@ const Contact = () => {
             .replace('{name}', formData.name)
             .replace('{phone}', formData.phone || 'N/A')
             .replace('{service}', formData.serviceType)
-            .replace('{flightNumber}', formData.flightNumber || 'N/A')
+            .replace('{flightNumber}', formData.flightNumber.trim() || 'N/A')
+            .replace('{dateCourse}', formData.dateCourse || 'N/A')
+            .replace('{dateArriver}', formData.dateArriver || 'N/A')
             .replace('{email}', formData.email || 'N/A')
+            .replace('{adultsCount}', formData.adultsCount.trim() || '1')
+            .replace('{childrenCount}', formData.childrenCount.trim() || '0')
+            .replace('{baggage}', formData.baggage.trim() || 'N/A')
             .replace('{message}', formData.message.trim() || 'N/A');
 
         const encodedMessage = encodeURIComponent(message);
         const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${encodedMessage}`;
 
-        // Localhost bypass: Let user test WhatsApp even if PHP is not running
+        const childrenParsed = Math.max(0, Math.min(20, Number(formData.childrenCount.trim()) || 0));
+        const adultsParsed = Math.max(1, Math.min(50, Number(formData.adultsCount.trim()) || 1));
+        const mailPayload = {
+            name: formData.name.trim(),
+            email: formData.email.trim(),
+            phone: formData.phone.trim(),
+            serviceType: formData.serviceType.trim(),
+            flightNumber: formData.flightNumber.trim(),
+            dateCourse: formData.dateCourse.trim(),
+            dateArriver: formData.dateArriver.trim(),
+            adultsCount: adultsParsed,
+            childrenCount: childrenParsed,
+            baggage: formData.baggage.trim(),
+            message: formData.message.trim(),
+        };
+
         if (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1') {
             console.log('Localhost detected: Opening WhatsApp and simulating success.');
             setStatus('success');
             window.open(whatsappUrl, '_blank');
-            setFormData({ name: '', email: '', phone: '', serviceType: '', flightNumber: '', message: '' });
+            setFormData({ ...emptyForm });
             setTimeout(() => setStatus('idle'), 5000);
             return;
         }
 
         try {
-            console.log('Sending form data to PHP...', formData);
             const response = await fetch('/contact.php', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
                 },
-                body: JSON.stringify(formData),
+                body: JSON.stringify(mailPayload),
             });
 
             if (!response.ok) {
@@ -95,20 +133,16 @@ const Contact = () => {
             }
 
             const result = await response.json();
-            console.log('PHP Response:', result);
 
             if (result.success) {
                 setStatus('success');
-                console.log('Success! Preparing WhatsApp redirect...');
 
-                // Open WhatsApp in a new tab
                 const newWindow = window.open(whatsappUrl, '_blank');
                 if (!newWindow || newWindow.closed || typeof newWindow.closed === 'undefined') {
-                    console.error('Popup blocked!');
                     alert('Le message a été envoyé par email, mais l\'ouverture de WhatsApp a été bloquée par votre navigateur. Veuillez autoriser les pop-ups pour ce site.');
                 }
 
-                setFormData({ name: '', email: '', phone: '', serviceType: '', flightNumber: '', message: '' });
+                setFormData({ ...emptyForm });
                 setTimeout(() => setStatus('idle'), 5000);
             } else {
                 console.error('PHP returned success: false', result.message);
@@ -121,7 +155,6 @@ const Contact = () => {
             setTimeout(() => setStatus('idle'), 5000);
         }
     };
-
 
     const contactInfo = [
         {
@@ -152,20 +185,15 @@ const Contact = () => {
     return (
         <section className="contact" id="contact" aria-label="Contactez-nous pour réserver votre transport premium">
             <div className="contact-container">
-                {/* Section Header */}
                 <header className="contact-header">
                     <p className="contact-label">{t('contact.label')}</p>
                     <h2 className="contact-title">
                         {t('contact.title')} <span className="highlight">{t('contact.titleHighlight')}</span>
                     </h2>
-                    <p className="contact-subtitle">
-                        {t('contact.subtitle')}
-                    </p>
+                    <p className="contact-subtitle">{t('contact.subtitle')}</p>
                 </header>
 
-                {/* Contact Content Grid */}
                 <div className="contact-content">
-                    {/* Left Side - Contact Form */}
                     <div className="contact-form-wrapper">
                         <form className="contact-form" onSubmit={handleSubmit}>
                             {status === 'success' && (
@@ -179,7 +207,6 @@ const Contact = () => {
                                 </div>
                             )}
 
-                            {/* Name Field */}
                             <div className="form-group">
                                 <label htmlFor="name">{t('contact.form.name')}</label>
                                 <input
@@ -194,7 +221,6 @@ const Contact = () => {
                                 />
                             </div>
 
-                            {/* Email Field */}
                             <div className="form-group">
                                 <label htmlFor="email">{t('contact.form.email')}</label>
                                 <input
@@ -204,11 +230,11 @@ const Contact = () => {
                                     value={formData.email}
                                     onChange={handleChange}
                                     placeholder={t('contact.form.emailPlaceholder')}
+                                    required
                                     disabled={status === 'submitting'}
                                 />
                             </div>
 
-                            {/* Phone Field */}
                             <div className="form-group">
                                 <label htmlFor="phone">{t('contact.form.phone')}</label>
                                 <input
@@ -217,12 +243,11 @@ const Contact = () => {
                                     name="phone"
                                     value={formData.phone}
                                     onChange={handleChange}
-                                    placeholder="+212 6XX XX XX XX"
+                                    placeholder={t('contact.form.phonePlaceholder')}
                                     disabled={status === 'submitting'}
                                 />
                             </div>
 
-                            {/* Flight Number Field */}
                             <div className="form-group">
                                 <label htmlFor="flightNumber">{t('contact.form.flightNumber')}</label>
                                 <input
@@ -236,7 +261,30 @@ const Contact = () => {
                                 />
                             </div>
 
-                            {/* Service Type Dropdown */}
+                            <div className="form-group">
+                                <label htmlFor="dateCourse">{t('contact.form.dateCourse')}</label>
+                                <input
+                                    type="date"
+                                    id="dateCourse"
+                                    name="dateCourse"
+                                    value={formData.dateCourse}
+                                    onChange={handleChange}
+                                    disabled={status === 'submitting'}
+                                />
+                            </div>
+
+                            <div className="form-group">
+                                <label htmlFor="dateArriver">{t('contact.form.dateArriver')}</label>
+                                <input
+                                    type="time"
+                                    id="dateArriver"
+                                    name="dateArriver"
+                                    value={formData.dateArriver}
+                                    onChange={handleChange}
+                                    disabled={status === 'submitting'}
+                                />
+                            </div>
+
                             <div className="form-group">
                                 <label htmlFor="serviceType">{t('contact.form.service')} *</label>
                                 <select
@@ -254,7 +302,50 @@ const Contact = () => {
                                 </select>
                             </div>
 
-                            {/* Message Field */}
+                            <div className="form-group">
+                                <label htmlFor="adultsCount">{t('contact.form.adultsCount')}</label>
+                                <input
+                                    type="number"
+                                    id="adultsCount"
+                                    name="adultsCount"
+                                    min={1}
+                                    max={50}
+                                    value={formData.adultsCount}
+                                    onChange={handleChange}
+                                    placeholder="1"
+                                    disabled={status === 'submitting'}
+                                />
+                            </div>
+
+                            <div className="form-group">
+                                <label htmlFor="childrenCount">{t('contact.form.childrenCount')}</label>
+                                <input
+                                    type="number"
+                                    id="childrenCount"
+                                    name="childrenCount"
+                                    min={0}
+                                    max={20}
+                                    value={formData.childrenCount}
+                                    onChange={handleChange}
+                                    placeholder="0"
+                                    disabled={status === 'submitting'}
+                                />
+                            </div>
+
+                            <div className="form-group">
+                                <label htmlFor="baggage">{t('contact.form.baggage')}</label>
+                                <input
+                                    type="text"
+                                    id="baggage"
+                                    name="baggage"
+                                    value={formData.baggage}
+                                    onChange={handleChange}
+                                    placeholder={t('contact.form.baggagePlaceholder')}
+                                    maxLength={255}
+                                    disabled={status === 'submitting'}
+                                />
+                            </div>
+
                             <div className="form-group">
                                 <label htmlFor="message">{t('contact.form.message')}</label>
                                 <textarea
@@ -266,12 +357,11 @@ const Contact = () => {
                                     rows={5}
                                     disabled={status === 'submitting'}
                                 />
-                                <span className="character-count">{formData.message.length}/500 {t('contact.form.characters')}</span>
+                                <span className="character-count">
+                                    {formData.message.length}/500 {t('contact.form.characters')}
+                                </span>
                             </div>
 
-
-
-                            {/* Submit Button */}
                             <button
                                 type="submit"
                                 className={`contact-submit-btn ${status === 'submitting' ? 'loading' : ''}`}
@@ -289,7 +379,6 @@ const Contact = () => {
                         </form>
                     </div>
 
-                    {/* Right Side - Contact Info Cards */}
                     <div className="contact-info-wrapper">
                         {contactInfo.map((info) => {
                             const IconComponent = info.icon;
@@ -301,7 +390,9 @@ const Contact = () => {
                                     </div>
                                     <div className="contact-info-content">
                                         <h3 className="contact-info-title">{info.title}</h3>
-                                        <p className="contact-info-value"><ObfuscatedEmailDisplay encoded={CONTACT_EMAIL_ENCODED} /></p>
+                                        <p className="contact-info-value">
+                                            <ObfuscatedEmailDisplay encoded={CONTACT_EMAIL_ENCODED} />
+                                        </p>
                                         <p className="contact-info-subtitle">{info.subtitle}</p>
                                     </div>
                                 </ObfuscatedEmail>
@@ -326,7 +417,6 @@ const Contact = () => {
                             return isEmail ? <span key={info.id}>{content}</span> : content;
                         })}
 
-                        {/* Google Maps - Rabat Transfert Maroc location */}
                         <div className="contact-map-wrapper">
                             <h2 className="contact-map-title">{t('contact.mapTitle')}</h2>
                             <div className="contact-map-embed">
@@ -341,18 +431,17 @@ const Contact = () => {
                             </div>
                         </div>
 
-                        {/* Email CTA Box */}
                         <div className="contact-email-cta">
                             <div className="contact-email-icon">
                                 <Mail size={32} />
                             </div>
                             <h2 className="contact-email-title">{t('contact.emailCta.title')}</h2>
-                            <p className="contact-email-description">
-                                {t('contact.emailCta.description')}
-                            </p>
+                            <p className="contact-email-description">{t('contact.emailCta.description')}</p>
                             <ObfuscatedEmail encoded={CONTACT_EMAIL_ENCODED} className="contact-email-btn" title={t('contact.emailCta.title')}>
                                 <Mail size={18} />
-                                <span className="contact-email-btn-text"><ObfuscatedEmailDisplay encoded={CONTACT_EMAIL_ENCODED} /></span>
+                                <span className="contact-email-btn-text">
+                                    <ObfuscatedEmailDisplay encoded={CONTACT_EMAIL_ENCODED} />
+                                </span>
                             </ObfuscatedEmail>
                         </div>
                     </div>

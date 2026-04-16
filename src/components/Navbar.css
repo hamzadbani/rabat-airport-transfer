@@ -1,20 +1,22 @@
-/* Navbar Container */
+/* Navbar Container — light glass */
 .navbar {
     position: fixed;
     top: 0;
     left: 0;
     right: 0;
     z-index: 1000;
-    background-color: #514949;
-    backdrop-filter: blur(10px);
-    transition: all 0.3s ease;
+    background: rgba(248, 250, 252, 0.88);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border-bottom: 1px solid var(--color-border);
+    transition: background 0.3s ease, box-shadow 0.3s ease, padding 0.3s ease;
     padding: 1rem 0;
 }
 
 
 .navbar-scrolled {
-    background-color: #514949;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+    background: rgba(255, 255, 255, 0.94);
+    box-shadow: 0 8px 32px rgba(15, 23, 42, 0.08);
     padding: 0.5rem 0;
 }
 
@@ -39,23 +41,16 @@
 .navbar-logo a {
     display: inline-flex;
     align-items: center;
-    justify-content: center;
-    padding: 0.3rem 0.9rem;
-    border-radius: 9999px;
-    overflow: hidden;
     line-height: 0;
-    /* background: var(--logo-pill-bg); */
-    border: 1px solid var(--logo-pill-border);
-    box-shadow: var(--logo-pill-shadow);
 }
 
 .navbar-logo img {
-    height: 118px;
+    height: 152px;
     width: auto;
     max-width: 100%;
     object-fit: contain;
     object-position: left center;
-    border-radius: 9999px;
+    border-radius: 0;
     transition: transform 0.3s ease;
     image-rendering: -webkit-optimize-contrast;
 }
@@ -66,7 +61,7 @@
 }
 
 .navbar-scrolled .navbar-logo img {
-    height: 90px;
+    height: 116px;
 }
 
 /* Navigation Links */
@@ -85,11 +80,11 @@
 }
 
 .navbar-links a {
-    color: #ffffff;
+    color: var(--color-dark);
     text-decoration: none;
     font-size: 1rem;
-    font-weight: 500;
-    letter-spacing: 0.5px;
+    font-weight: 600;
+    letter-spacing: 0.02em;
     transition: all 0.3s ease;
     padding: 0.5rem 0;
     display: block;
@@ -125,32 +120,32 @@
 
 .btn-contact {
     background: transparent;
-    color: #ffffff;
-    border: 2px solid rgba(255, 255, 255, 0.3);
+    color: var(--color-dark);
+    border: 2px solid var(--color-border);
     padding: 0.75rem 1.75rem;
-    border-radius: 50px;
+    border-radius: 12px;
     font-size: 0.95rem;
     font-weight: 600;
     cursor: pointer;
     transition: all 0.3s ease;
-    letter-spacing: 0.5px;
+    letter-spacing: 0.02em;
     text-decoration: none;
     display: inline-block;
 }
 
 
 .btn-contact:hover {
-    background: rgba(255, 255, 255, 0.1);
-    border-color: rgba(255, 255, 255, 0.5);
+    background: rgba(13, 148, 136, 0.08);
+    border-color: rgba(13, 148, 136, 0.35);
     transform: translateY(-2px);
 }
 
 .btn-call {
-    background: linear-gradient(135deg, var(--color-primary), var(--color-secondary));
+    background: linear-gradient(135deg, var(--color-primary-dark), var(--color-primary));
     color: #ffffff;
     border: none;
     padding: 0.75rem 2rem;
-    border-radius: 50px;
+    border-radius: 12px;
     font-size: 0.95rem;
     font-weight: 600;
     cursor: pointer;
@@ -158,15 +153,16 @@
     align-items: center;
     gap: 0.5rem;
     transition: all 0.3s ease;
-    letter-spacing: 0.5px;
-    box-shadow: 0 4px 15px rgba(212, 175, 55, 0.3);
+    letter-spacing: 0.02em;
+    box-shadow: 0 6px 20px rgba(13, 148, 136, 0.35);
     text-decoration: none;
 }
 
 .btn-call:hover {
     transform: translateY(-2px);
-    box-shadow: 0 6px 20px rgba(212, 175, 55, 0.4);
-    background: linear-gradient(135deg, var(--color-secondary), var(--color-primary));
+    box-shadow: 0 10px 28px rgba(13, 148, 136, 0.4);
+    background: linear-gradient(135deg, var(--color-primary), #14b8a6);
+    filter: brightness(1.03);
 }
 
 .btn-call:active {
@@ -178,7 +174,7 @@
     display: none;
     background: transparent;
     border: none;
-    color: #ffffff;
+    color: var(--color-dark);
     cursor: pointer;
     padding: 0.5rem;
     transition: all 0.3s ease;
@@ -193,20 +189,22 @@
 .mobile-menu {
     display: none;
     position: fixed;
-    top: 106px;
+    top: 188px;
     left: 0;
     right: 0;
-    background-color: rgba(11, 15, 25, 0.98);
-    backdrop-filter: blur(10px);
+    background-color: rgba(255, 255, 255, 0.97);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+    border-bottom: 1px solid var(--color-border);
     padding: 2rem;
     transform: translateY(-100%);
     opacity: 0;
     visibility: hidden;
     pointer-events: none;
     transition: transform 0.3s ease, opacity 0.3s ease, visibility 0.3s ease;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 16px 40px rgba(15, 23, 42, 0.08);
     z-index: 999;
-    max-height: calc(100vh - 106px);
+    max-height: calc(100vh - 188px);
     overflow-y: auto;
 }
 
@@ -229,10 +227,10 @@
 }
 
 .mobile-menu-links a {
-    color: #ffffff;
+    color: var(--color-dark);
     text-decoration: none;
     font-size: 1.25rem;
-    font-weight: 500;
+    font-weight: 600;
     transition: all 0.3s ease;
     display: block;
     padding: 0.5rem 0;
@@ -262,11 +260,11 @@
 }
 
 .btn-language {
-    background: transparent;
-    color: #ffffff;
-    border: 2px solid rgba(255, 255, 255, 0.2);
+    background: rgba(255, 255, 255, 0.6);
+    color: var(--color-dark);
+    border: 2px solid var(--color-border);
     padding: 0.5rem 0.75rem;
-    border-radius: 8px;
+    border-radius: 10px;
     font-size: 0.9rem;
     font-weight: 600;
     cursor: pointer;
@@ -278,21 +276,21 @@
 
 
 .btn-language:hover {
-    background: rgba(255, 255, 255, 0.1);
-    border-color: rgba(255, 255, 255, 0.3);
+    background: rgba(13, 148, 136, 0.08);
+    border-color: rgba(13, 148, 136, 0.25);
 }
 
 .language-dropdown {
     position: absolute;
     top: calc(100% + 0.5rem);
     right: 0;
-    background: rgba(11, 15, 25, 0.98);
-    border-radius: 8px;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+    background: #ffffff;
+    border-radius: 12px;
+    box-shadow: 0 12px 40px rgba(15, 23, 42, 0.12);
     min-width: 150px;
     z-index: 1000;
     overflow: hidden;
-    border: 1px solid rgba(255, 255, 255, 0.1);
+    border: 1px solid var(--color-border);
 }
 
 
@@ -307,18 +305,18 @@
     align-items: center;
     gap: 0.75rem;
     transition: all 0.2s ease;
-    color: #ffffff;
+    color: var(--color-dark);
     font-size: 0.9rem;
 }
 
 
 .language-option:hover {
-    background: rgba(255, 255, 255, 0.1);
+    background: rgba(13, 148, 136, 0.08);
 }
 
 .language-option.active {
-    background: rgba(212, 175, 55, 0.1);
-    color: var(--color-primary);
+    background: rgba(13, 148, 136, 0.12);
+    color: var(--color-primary-dark);
     font-weight: 600;
 }
 
@@ -332,22 +330,22 @@
 }
 
 .mobile-language-btn {
-    background: transparent;
-    border: 2px solid rgba(255, 255, 255, 0.2);
+    background: rgba(248, 250, 252, 0.9);
+    border: 2px solid var(--color-border);
     padding: 0.5rem 0.75rem;
-    border-radius: 8px;
+    border-radius: 10px;
     cursor: pointer;
     font-size: 1.2rem;
     transition: all 0.3s ease;
 }
 
 .mobile-language-btn:hover {
-    background: rgba(255, 255, 255, 0.1);
-    border-color: rgba(255, 255, 255, 0.4);
+    background: rgba(13, 148, 136, 0.08);
+    border-color: rgba(13, 148, 136, 0.3);
 }
 
 .mobile-language-btn.active {
-    background: rgba(212, 175, 55, 0.2);
+    background: rgba(13, 148, 136, 0.15);
     border-color: var(--color-primary);
 }
 
@@ -373,18 +371,18 @@
     }
 
     .navbar.navbar-scrolled .mobile-menu {
-        top: 88px;
-        max-height: calc(100vh - 88px);
+        top: 138px;
+        max-height: calc(100vh - 138px);
     }
 }
 
 @media (max-width: 480px) {
     .navbar-logo img {
-        height: 88px;
+        height: 114px;
     }
 
     .navbar-scrolled .navbar-logo img {
-        height: 74px;
+        height: 94px;
     }
 
     .navbar-container {
@@ -393,12 +391,12 @@
 
     .mobile-menu {
         padding: 1.5rem;
-        top: 86px;
-        max-height: calc(100vh - 86px);
+        top: 152px;
+        max-height: calc(100vh - 152px);
     }
 
     .navbar.navbar-scrolled .mobile-menu {
-        top: 74px;
-        max-height: calc(100vh - 74px);
+        top: 118px;
+        max-height: calc(100vh - 118px);
     }
 }

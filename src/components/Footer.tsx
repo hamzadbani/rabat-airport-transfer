@@ -2,7 +2,7 @@ import { MapPin, Phone, Mail, Clock, Facebook, Instagram, Linkedin } from 'lucid
 import { useLanguage } from '../contexts/LanguageContext';
 import ObfuscatedEmail, { CONTACT_EMAIL_ENCODED, ObfuscatedEmailDisplay } from './ObfuscatedEmail';
 import ShareButtons from './ShareButtons';
-import logo from '../assets/logo.png';
+import { SITE_LOGO_PATH } from '../constants/siteLogo';
 import paypalLogo from '../assets/paypal.png';
 import payoneerLogo from '../assets/payonner.png';
 import './Footer.css';
@@ -67,9 +67,7 @@ const Footer = () => {
                 <div className="footer-main">
                     {/* Company Info */}
                     <div className="footer-column footer-about">
-                        <div className="footer-logo-pill">
-                            <img src={logo} alt="Rabat Transfert Aéroport - Logo - Transport Premium au Maroc" className="footer-logo" width="194" height="98" loading="lazy" />
-                        </div>
+                        <img src={SITE_LOGO_PATH} alt="Taxi Rabat Airport — Rabat Transfert Aéroport" className="footer-logo" width="358" height="102" loading="lazy" />
                         <h3 className="footer-company-name">Rabat Transfert Aéroport</h3>
                         <p className="footer-description">
                             {t('footer.description')}

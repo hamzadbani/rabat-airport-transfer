@@ -2,6 +2,8 @@ import { useEffect, lazy, Suspense } from 'react'
 import Navbar from './components/Navbar'
 import Hero from './components/Hero'
 import SEO from './components/SEO'
+import { PwaInstallPrompt } from './components/PwaInstallPrompt'
+import { MobileReserveBar } from './components/MobileReserveBar'
 import LazyWhenVisible from './components/LazyWhenVisible'
 import './App.css'
 
@@ -61,6 +63,8 @@ function App() {
     <>
       <SEO />
       <div className="app">
+        <PwaInstallPrompt />
+        <MobileReserveBar />
         <Suspense fallback={null}>
           <ScrollProgress />
           <WelcomeAssistant />
