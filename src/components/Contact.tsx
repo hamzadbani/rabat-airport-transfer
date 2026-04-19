@@ -421,7 +421,9 @@ const Contact = () => {
                             <h2 className="contact-map-title">{t('contact.mapTitle')}</h2>
                             <div className="contact-map-embed">
                                 <iframe
-                                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d395808.1303024355!2d-7.254082999999999!3d33.76511265!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4fbf8b6722d78561%3A0x324129eb691d0fa9!2sEM%20Taxi%20Maroc!5e1!3m2!1sen!2sma!4v1770894385745!5m2!1sen!2sma"
+                                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3306.742483102716!2d-6.8416578!3d34.0248205!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xda76daf23faa483%3A0x50bf1692068455ba!2sTaxi%20Rabat%20Airoport!5e0!3m2!1sfr!2sma!4v1776600418988!5m2!1sfr!2sma"
+                                    width={400}
+                                    height={300}
                                     style={{ border: 0, width: '100%', height: '300px', minHeight: '250px' }}
                                     allowFullScreen
                                     loading="lazy"

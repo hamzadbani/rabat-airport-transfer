@@ -1,19 +1,19 @@
-/* Reviews Section */
+/* Reviews — Elfsight Google Reviews embed */
 .reviews {
     padding: 6rem 0;
-    background: linear-gradient(180deg, #f8f8f8 0%, #ffffff 100%);
+    background: linear-gradient(180deg, var(--color-gray-light, #f1f5f9) 0%, #ffffff 100%);
     position: relative;
 }
 
 .reviews-container {
-    max-width: 1400px;
+    max-width: 1200px;
     margin: 0 auto;
     padding: 0 2rem;
 }
 
 .reviews-header {
     text-align: center;
-    margin-bottom: 3rem;
+    margin-bottom: 2.5rem;
 }
 
 .reviews-label {
@@ -46,159 +46,16 @@
     line-height: 1.7;
 }
 
-.reviews-loading {
-    text-align: center;
-    color: var(--color-gray);
-    padding: 2rem;
-}
-
-.reviews-fallback {
-    text-align: center;
-    color: var(--color-gray);
-    margin-bottom: 2rem;
-}
-
-.reviews-grid-wrapper {
-    overflow-x: auto;
-    overflow-y: hidden;
-    margin-bottom: 2.5rem;
-    padding-bottom: 0.5rem;
-    scroll-behavior: smooth;
-    -webkit-overflow-scrolling: touch;
-}
-
-.reviews-grid-wrapper::-webkit-scrollbar {
-    height: 8px;
-}
-
-.reviews-grid-wrapper::-webkit-scrollbar-track {
-    background: rgba(0, 0, 0, 0.06);
-    border-radius: 4px;
-}
-
-.reviews-grid-wrapper::-webkit-scrollbar-thumb {
-    background: var(--color-primary);
-    border-radius: 4px;
-}
-
-.reviews-grid {
-    display: flex;
-    flex-wrap: nowrap;
-    gap: 1.5rem;
-    padding-right: 2rem;
-}
-
-.review-card {
-    flex: 0 0 auto;
-    width: min(320px, calc(100vw - 4rem));
-    min-width: 280px;
-    background: #fff;
-    border-radius: 12px;
-    padding: 1.5rem;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
-    border: 1px solid rgba(0, 0, 0, 0.06);
-    display: flex;
-    flex-direction: column;
-    gap: 0.75rem;
-}
-
-.review-card-author {
-    display: flex;
-    align-items: center;
-    gap: 0.75rem;
-}
-
-.review-card-avatar {
-    width: 44px;
-    height: 44px;
-    border-radius: 50%;
-    object-fit: cover;
-    border: 2px solid rgba(0, 0, 0, 0.08);
-}
-
-.review-card-author-meta {
-    display: flex;
-    flex-direction: column;
-    gap: 0.1rem;
-    color: var(--color-dark);
-    font-size: 0.9rem;
-    font-weight: 600;
-}
-
-.review-card-stars {
-    display: flex;
-    gap: 2px;
-    color: #f59e0b;
-}
-
-.review-card-stars .empty {
-    color: #e5e7eb;
-}
-
-.review-card-text {
-    margin: 0;
-    font-size: 0.95rem;
-    line-height: 1.6;
-    color: var(--color-dark);
-    flex: 1;
-}
-
-.review-card-date {
-    font-size: 0.8rem;
-    font-weight: 500;
-    color: var(--color-gray);
-    opacity: 0.9;
-}
-
-.reviews-cta {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 1rem;
-    margin-bottom: 1rem;
-}
-
-.reviews-btn {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.5rem;
-    padding: 0.9rem 1.75rem;
-    border-radius: 50px;
-    font-size: 1rem;
-    font-weight: 600;
-    text-decoration: none;
-    transition: transform 0.2s ease, box-shadow 0.2s ease;
-}
-
-.reviews-btn-primary {
-    background: linear-gradient(135deg, var(--color-black), var(--color-dark));
-    color: #fff;
-    border: 2px solid rgba(255, 255, 255, 0.15);
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
-}
-
-.reviews-btn-primary:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.25);
-}
-
-.reviews-btn-secondary {
-    background: #fff;
-    color: var(--color-dark);
-    border: 2px solid var(--color-primary);
-    color: var(--color-primary);
-}
-
-.reviews-btn-secondary:hover {
-    background: rgba(212, 175, 55, 0.08);
-    transform: translateY(-2px);
+.reviews-elfsight-wrap {
+    min-height: 200px;
+    margin-bottom: 1.5rem;
 }
 
 .reviews-disclaimer {
     text-align: center;
     font-size: 0.85rem;
     color: var(--color-gray);
-    max-width: 600px;
+    max-width: 640px;
     margin: 0 auto;
     line-height: 1.5;
 }
@@ -212,23 +69,7 @@
         font-size: 2.25rem;
     }
 
-    .review-card {
-        min-width: 260px;
-        width: min(300px, calc(100vw - 3rem));
-    }
-
-    .reviews-grid {
-        padding-right: 1.5rem;
-    }
-
-    .reviews-cta {
-        flex-direction: column;
-        align-items: center;
-    }
-
-    .reviews-btn {
-        width: 100%;
-        max-width: 280px;
-        justify-content: center;
+    .reviews-container {
+        padding: 0 1rem;
     }
 }
