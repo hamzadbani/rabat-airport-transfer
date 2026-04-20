@@ -9,7 +9,6 @@ import './App.css'
 
 // Lazy load non-LCP UI to shrink main bundle
 const ScrollProgress = lazy(() => import('./components/ScrollProgress'))
-const WelcomeAssistant = lazy(() => import('./components/WelcomeAssistant'))
 const WhatsAppQuickPopup = lazy(() => import('./components/WhatsAppQuickPopup'))
 
 // Below-the-fold: load only when section is near viewport to improve "All Scripts Complete" time
@@ -67,7 +66,6 @@ function App() {
         <MobileReserveBar />
         <Suspense fallback={null}>
           <ScrollProgress />
-          <WelcomeAssistant />
           <WhatsAppQuickPopup />
         </Suspense>
         <Navbar />

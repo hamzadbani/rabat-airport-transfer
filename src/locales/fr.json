@@ -34,33 +34,34 @@
     "learnMoreLinks": "Services · Tarifs · À propos · Contact"
   },
   "services": {
-    "label": "TRANSPORT TOURISTIQUE & PREMIUM",
-    "title": "Services de Transport",
-    "titleHighlight": "de Luxe",
-    "subtitle": "Chauffeur privé et transport touristique : transferts aéroport, affaires, événements. Flotte Mercedes & BMW, disponible 24h/24.",
-    "airport": {
-      "title": "Transferts Aéroport",
-      "description": "Service de prise en charge et dépose fiable vers tous les aéroports. Suivi de vol pour une parfaite ponctualité et un voyage sans stress."
+    "ariaLabel": "Nos services de transport et excursions",
+    "label": "Nos services",
+    "title": "Services de transport",
+    "titleHighlight": "de luxe",
+    "readMore": "En savoir plus",
+    "dayTrip": {
+      "title": "Excursion journée",
+      "description": "Profitez d'une excursion depuis Rabat vers Casablanca, Chefchaouen, Meknès ou Volubilis : histoire, culture et paysages, avec guide sur demande et transport privé."
     },
-    "business": {
-      "title": "Professionnel & Entreprise",
-      "description": "Transport professionnel pour dirigeants, réunions et événements corporatifs. Ponctuel, discret et toujours fiable."
+    "tours": {
+      "title": "Circuits & visites",
+      "description": "Circuits inoubliables au Maroc : Sahara et balade en chameau, randonnées dans l'Atlas, visites culturelles. Marrakech, Fès, Chefchaouen et bien plus, avec des chauffeurs locaux expérimentés."
     },
-    "events": {
-      "title": "Événements & Occasions Spéciales",
-      "description": "Rendez vos moments spéciaux inoubliables avec notre service de chauffeur premium pour mariages, célébrations et événements VIP."
+    "transferAirport": {
+      "title": "Transfert aéroport",
+      "description": "Transferts aéroport sans stress : prise en charge et dépose ponctuelles depuis Rabat, Casablanca et Marrakech. Véhicules propres et climatisés, chauffeurs professionnels."
     },
-    "onDemand": {
-      "title": "Service à la Demande",
-      "description": "Service horaire flexible pour visites touristiques, shopping ou destinations multiples. Votre chauffeur personnel à disposition."
+    "transferCities": {
+      "title": "Transfert inter-villes",
+      "description": "Déplacements confortables entre les villes marocaines : Rabat, Casablanca, Marrakech, Fès, Tanger, etc. Chauffeurs professionnels et véhicules climatisés."
     },
-    "privateDriver": "Chauffeur Privé"
+    "privateDriver": "Chauffeur privé"
   },
   "pricing": {
     "label": "NOS TARIFS",
-    "title": "Choisissez Votre",
-    "titleHighlight": "Formule Premium",
-    "subtitle": "Tarifs transparents et compétitifs pour tous nos services de transport premium",
+    "title": "Notre",
+    "titleHighlight": "formule Standard",
+    "subtitle": "Tarifs transparents et compétitifs pour nos transferts et trajets en berline de luxe",
     "standard": {
       "name": "Standard",
       "description": "Parfait pour les transferts aéroport et les trajets en ville",
@@ -111,7 +112,7 @@
       "showLess": "Voir moins",
       "p1": "Rabat Transfert est votre partenaire chauffeur privé et transport premium au Maroc. Depuis 2009, Rabat Transfert Aéroport propose un service de transport de luxe à Casablanca, Marrakech, Rabat et dans tout le Maroc.",
       "p2": "Réservez un chauffeur privé pour vos transferts aéroport, déplacements professionnels, événements et occasions spéciales. Notre flotte Mercedes et BMW assure un transport premium confortable et ponctuel, disponible 24h/24 et 7j/7.",
-      "p3": "Services proposés : transferts aéroport avec suivi de vol, transport professionnel et entreprise, chauffeur pour événements et mariages, service à la demande pour visites touristiques. Tarifs transparents et formules Standard, Affaires et Premium.",
+      "p3": "Services proposés : transferts aéroport avec suivi de vol, transport professionnel et entreprise, chauffeur pour événements et mariages, service à la demande pour visites touristiques. Tarifs transparents pour notre formule Standard.",
       "p4": "Rabat Transfert - Chauffeur Privé & Transport Premium Maroc : une équipe de chauffeurs expérimentés, des véhicules haut de gamme et un engagement qualité pour tous vos déplacements au Maroc. Réservation simple par téléphone ou formulaire en ligne.",
       "p5": "Que vous voyagiez pour affaires ou pour le tourisme, choisir Rabat Transfert c'est opter pour la fiabilité, le confort et le professionnalisme. Contactez-nous pour réserver votre chauffeur privé ou obtenir un devis personnalisé pour votre transport premium au Maroc.",
       "p6": "Réservation par téléphone au 06 74 54 59 39 ou via le formulaire de contact. Rabat Transfert - Chauffeur Privé & Transport Premium Maroc : votre référence pour le transport de luxe à Casablanca, Marrakech, Rabat, Fès et aéroports du Maroc."
@@ -266,14 +267,6 @@
     "developedBy": "Développé par",
     "developerLinkLabel": "Abdelaziz Elhathout",
     "developerLinkAria": "Visiter le site d’Abdelaziz Elhathout, développeur web freelance"
-  },
-  "welcomeAssistant": {
-    "title": "Assistant",
-    "online": "En ligne",
-    "message": "Bonjour ! Bienvenue chez Rabat Transfert Aéroport. Je suis votre assistant virtuel. Nous sommes là pour assurer votre confort et votre sécurité lors de tous vos déplacements. Comment puis-je vous aider aujourd'hui ?",
-    "cta": "Demander un trajet",
-    "close": "Fermer l'assistant",
-    "open": "Ouvrir l'assistant"
   },
   "whatsappQuick": {
     "title": "WhatsApp",

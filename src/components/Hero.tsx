@@ -1,6 +1,6 @@
 import { useEffect, useState, useRef } from 'react';
 import { useLanguage } from '../contexts/LanguageContext';
-import { SITE_LOGO_PATH } from '../constants/siteLogo';
+import { HERO_POSTER_URL } from '../constants/heroPoster';
 import './Hero.css';
 
 const HERO_VIDEO_SRC = '/hero-video.mp4';
@@ -48,7 +48,7 @@ const Hero = () => {
                 muted
                 playsInline
                 preload="none"
-                poster={SITE_LOGO_PATH}
+                poster={HERO_POSTER_URL}
                 width={1920}
                 height={1080}
                 aria-label="Vidéo de présentation Rabat Transfert Aéroport - Transport premium au Maroc"

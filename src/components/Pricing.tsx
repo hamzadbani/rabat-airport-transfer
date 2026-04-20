@@ -9,7 +9,7 @@ const Pricing = () => {
     const pricingPlans = [
         {
             id: 1,
-            slug: 'standard',
+            slug: 'standard' as const,
             name: t('pricing.standard.name'),
             description: t('pricing.standard.description'),
             category: t('pricing.standard.category'),
@@ -24,43 +24,14 @@ const Pricing = () => {
             buttonText: t('pricing.buttonStandard'),
             highlighted: false,
         },
-        {
-            id: 2,
-            slug: 'business',
-            name: t('pricing.business.name'),
-            badge: t('pricing.business.badge'),
-            description: t('pricing.business.description'),
-            category: t('pricing.business.category'),
-            vehicle: t('pricing.business.vehicle'),
-            image: driverProImage,
-            features: [
-                t('pricing.features.allStandard'),
-                t('pricing.features.wifi'),
-                t('pricing.features.privacy'),
-                t('pricing.features.passengers3')
-            ],
-            buttonText: t('pricing.buttonBusiness'),
-            highlighted: true,
-        },
-        {
-            id: 3,
-            slug: 'premium',
-            name: t('pricing.premium.name'),
-            description: t('pricing.premium.description'),
-            category: t('pricing.premium.category'),
-            vehicle: t('pricing.premium.vehicle'),
-            image: driverProImage,
-            features: [
-                t('pricing.features.allBusiness'),
-                t('pricing.features.passengers7')
-            ],
-            buttonText: t('pricing.buttonPremium'),
-            highlighted: false,
-        },
     ];
 
+    const contactServiceBySlug: Record<(typeof pricingPlans)[number]['slug'], string> = {
+        standard: 'Service Taxi',
+    };
+
     return (
-        <section className="pricing" id="tarifs" aria-label="Nos tarifs et formules premium">
+        <section className="pricing" id="tarifs" aria-label={t('pricing.label')}>
             <div className="pricing-container">
                 {/* Section Header */}
                 <header className="pricing-header">
@@ -80,11 +51,6 @@ const Pricing = () => {
                             key={plan.id}
                             className={`pricing-card ${plan.highlighted ? 'pricing-card-highlighted' : ''}`}
                         >
-                            {/* Badge for Popular Plan */}
-                            {plan.badge && (
-                                <div className="pricing-badge">{plan.badge}</div>
-                            )}
-
                             {/* Card Header */}
                             <div className="pricing-car-image-wrapper">
                                 <img
@@ -117,16 +83,11 @@ const Pricing = () => {
 
                             {/* CTA Button */}
                             <a
-                                href={`#contact?service=${encodeURIComponent(plan.name)}`}
+                                href={`#contact?service=${encodeURIComponent(contactServiceBySlug[plan.slug])}`}
                                 className={`pricing-button ${plan.highlighted ? 'pricing-button-highlighted' : ''}`}
                                 onClick={(e) => {
                                     e.preventDefault();
-                                    const serviceMapping: { [key: string]: string } = {
-                                        'Standard': 'Service Taxi',
-                                        'Business': 'Transport Aeroport',
-                                        'Premium': 'Transport Touristique'
-                                    };
-                                    const serviceType = serviceMapping[plan.name] || '';
+                                    const serviceType = contactServiceBySlug[plan.slug] ?? '';
                                     const contactSection = document.getElementById('contact');
                                     if (contactSection) {
                                         contactSection.scrollIntoView({ behavior: 'smooth' });

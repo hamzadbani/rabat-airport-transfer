@@ -9,7 +9,6 @@ A modern, responsive website for Rabat Transfert Aéroport - a premium luxury tr
 - **Modern UI/UX**: Clean, professional interface with smooth animations
 - **SEO Optimized**: Comprehensive SEO implementation with meta tags, structured data, and semantic HTML
 - **Scroll Progress Indicator**: Visual progress bar showing page scroll position
-- **Welcome Assistant**: Interactive virtual assistant for user guidance
 - **Contact Form**: Integrated EmailJS for seamless contact form submissions
 - **AOS Animations**: Smooth scroll animations using AOS (Animate On Scroll)
 - **Premium Sections**:
@@ -104,7 +103,6 @@ taxi-em/
 │   │   ├── Pricing.tsx
 │   │   ├── ScrollProgress.tsx
 │   │   ├── Services.tsx
-│   │   └── WelcomeAssistant.tsx
 │   ├── contexts/       # React contexts
 │   │   ├── LanguageContext.tsx
 │   │   └── ThemeContext.tsx

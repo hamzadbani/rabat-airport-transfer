@@ -21,10 +21,10 @@ const Footer = () => {
     ];
 
     const serviceLinks = [
-        { name: t('services.airport.title'), href: '#service-airport' },
-        { name: t('services.business.title'), href: '#service-business' },
-        { name: t('services.events.title'), href: '#service-events' },
-        { name: t('services.onDemand.title'), href: '#service-ondemand' },
+        { name: t('services.dayTrip.title'), href: '#service-day-trip' },
+        { name: t('services.tours.title'), href: '#service-tours' },
+        { name: t('services.transferAirport.title'), href: '#service-transfer-airport' },
+        { name: t('services.transferCities.title'), href: '#service-transfer-cities' },
         { name: t('services.privateDriver'), href: '#services' },
     ];
 

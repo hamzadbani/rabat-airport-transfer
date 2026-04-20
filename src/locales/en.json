@@ -34,33 +34,34 @@
     "learnMoreLinks": "Services · Pricing · About · Contact"
   },
   "services": {
-    "label": "TOURIST & PREMIUM TRANSPORT",
-    "title": "Luxury Transport",
-    "titleHighlight": "Services",
-    "subtitle": "Private chauffeur and tourist transport: airport transfers, business, events. Mercedes & BMW fleet, 24/7.",
-    "airport": {
-      "title": "Airport Transfers",
-      "description": "Reliable pickup and drop-off service to all airports. Flight tracking for perfect punctuality and stress-free travel."
+    "ariaLabel": "Our transport and tour services",
+    "label": "Our service",
+    "title": "Our awesome",
+    "titleHighlight": "services",
+    "readMore": "Read more",
+    "dayTrip": {
+      "title": "Day trip",
+      "description": "Enjoy a day trip from Rabat to nearby gems like Casablanca, Chefchaouen, Meknes, or Volubilis. Discover history, culture, and scenic beauty with guided tours and private transport."
     },
-    "business": {
-      "title": "Business & Corporate",
-      "description": "Professional transportation for executives, meetings and corporate events. Punctual, discreet and always reliable."
+    "tours": {
+      "title": "Tours",
+      "description": "Discover unforgettable tours in Morocco, from Sahara desert adventures and camel rides to Atlas mountain hikes and cultural city tours. Explore Marrakech, Fes, Chefchaouen, and beyond with local experts."
     },
-    "events": {
-      "title": "Events & Special Occasions",
-      "description": "Make your special moments unforgettable with our premium chauffeur service for weddings, celebrations and VIP events."
+    "transferAirport": {
+      "title": "Airport transfer",
+      "description": "Enjoy stress-free airport transfers in Morocco with our reliable service. We offer punctual pickups and drop-offs from Rabat, Casablanca, and Marrakech airports in clean, comfortable vehicles with professional drivers."
     },
-    "onDemand": {
-      "title": "On-Demand Service",
-      "description": "Flexible hourly service for tourist visits, shopping or multiple destinations. Your personal chauffeur at your disposal."
+    "transferCities": {
+      "title": "Intercity transfer",
+      "description": "Travel comfortably between Moroccan cities with our private transfer services. Safe, reliable rides from Rabat to Casablanca, Marrakech, Fes, Tangier, and more. Professional drivers and air-conditioned vehicles included."
     },
     "privateDriver": "Private Chauffeur"
   },
   "pricing": {
     "label": "OUR PRICING",
-    "title": "Choose Your",
-    "titleHighlight": "Premium Package",
-    "subtitle": "Transparent and competitive rates for all our premium transportation services",
+    "title": "Our",
+    "titleHighlight": "Standard package",
+    "subtitle": "Transparent, competitive rates for airport transfers and city rides in a luxury sedan",
     "standard": {
       "name": "Standard",
       "description": "Perfect for airport transfers and city trips",
@@ -111,7 +112,7 @@
       "showLess": "Show less",
       "p1": "Rabat Transfert is your private chauffeur and premium transport partner in Morocco. Since 2009, Rabat Transfert Aéroport has been offering luxury transport in Casablanca, Marrakech, Rabat and across Morocco.",
       "p2": "Book a private chauffeur for airport transfers, business travel, events and special occasions. Our Mercedes and BMW fleet provides comfortable, punctual premium transport, available 24/7.",
-      "p3": "Services: airport transfers with flight tracking, professional and corporate transport, chauffeur for events and weddings, on-demand service for tourist visits. Transparent pricing and Standard, Business and Premium packages.",
+      "p3": "Services: airport transfers with flight tracking, professional and corporate transport, chauffeur for events and weddings, on-demand service for tourist visits. Transparent Standard pricing.",
       "p4": "Rabat Transfert - Private Chauffeur & Premium Transport Morocco: experienced drivers, high-end vehicles and a commitment to quality for all your travel in Morocco. Easy booking by phone or online form.",
       "p5": "Whether you travel for business or leisure, choosing Rabat Transfert means reliability, comfort and professionalism. Contact us to book your private chauffeur or get a personalised quote for premium transport in Morocco.",
       "p6": "Book by phone on 06 74 54 59 39 or via the contact form. Rabat Transfert - Private Chauffeur & Premium Transport Morocco: your reference for luxury transport in Casablanca, Marrakech, Rabat, Fès and Moroccan airports."
@@ -266,14 +267,6 @@
     "developedBy": "Developed by",
     "developerLinkLabel": "Abdelaziz Elhathout",
     "developerLinkAria": "Visit Abdelaziz Elhathout’s website, freelance web developer"
-  },
-  "welcomeAssistant": {
-    "title": "Assistant",
-    "online": "Online",
-    "message": "Hello! Welcome to Rabat Transfert Aéroport. I am your virtual assistant. We are here to ensure your comfort and safety during all your travels. How can I help you today?",
-    "cta": "Request a ride",
-    "close": "Close assistant",
-    "open": "Open assistant"
   },
   "whatsappQuick": {
     "title": "WhatsApp",
