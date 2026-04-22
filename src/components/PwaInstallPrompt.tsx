@@ -1,5 +1,5 @@
-import { useCallback, useEffect, useRef, useState } from 'react';
-import { useLanguage } from '../contexts/LanguageContext';
+import { useCallback, useEffect, useState } from 'react';
+import { useLanguage } from '../contexts/useLanguage';
 import './PwaInstallPrompt.css';
 
 type BeforeInstallPromptEvent = Event & {
@@ -36,28 +36,21 @@ function isStandaloneDisplay(): boolean {
 export function PwaInstallPrompt() {
     const { t } = useLanguage();
     const [deferred, setDeferred] = useState<BeforeInstallPromptEvent | null>(null);
-    const [chromiumDismissed, setChromiumDismissed] = useState(false);
-    const [iosHint, setIosHint] = useState(false);
-    const chromiumStored = useRef(false);
-
-    useEffect(() => {
+    const [chromiumDismissed, setChromiumDismissed] = useState(() => {
         try {
-            chromiumStored.current = sessionStorage.getItem(CHROMIUM_DISMISSED_KEY) === '1';
+            return sessionStorage.getItem(CHROMIUM_DISMISSED_KEY) === '1';
         } catch {
-            chromiumStored.current = false;
+            return false;
         }
-        if (chromiumStored.current) setChromiumDismissed(true);
-    }, []);
-
-    useEffect(() => {
-        if (!isIosLikeDevice() || isStandaloneDisplay()) return;
+    });
+    const [iosHint, setIosHint] = useState(() => {
+        if (!isIosLikeDevice() || isStandaloneDisplay()) return false;
         try {
-            if (sessionStorage.getItem(IOS_HINT_DISMISSED_KEY) === '1') return;
+            return sessionStorage.getItem(IOS_HINT_DISMISSED_KEY) !== '1';
         } catch {
-            /* ignore */
+            return true;
         }
-        setIosHint(true);
-    }, []);
+    });
 
     useEffect(() => {
         if (import.meta.env.DEV) {

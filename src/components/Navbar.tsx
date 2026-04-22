@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { SITE_LOGO_PATH } from '../constants/siteLogo';
 import { Phone, Menu, X, Globe, ChevronDown } from 'lucide-react';
-import { useLanguage } from '../contexts/LanguageContext';
+import { useLanguage } from '../contexts/useLanguage';
 import './Navbar.css';
 
 const Navbar = () => {

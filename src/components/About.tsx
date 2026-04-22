@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { Award, Clock, ArrowRight, Star, ShieldCheck } from 'lucide-react';
-import { useLanguage } from '../contexts/LanguageContext';
+import { useLanguage } from '../contexts/useLanguage';
 import driverImg from '../assets/client-happy.jpg';
 import './About.css';
 

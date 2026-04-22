@@ -35,7 +35,7 @@ export function compressAssetPlugin(): Plugin {
         const ext = path.extname(fileName).toLowerCase()
         const originalSize = buf.length
         try {
-          let pipeline = sharp(buf)
+          const pipeline = sharp(buf)
             .resize(MAX_WIDTH, null, { withoutEnlargement: true })
 
           if (ext === '.png') {

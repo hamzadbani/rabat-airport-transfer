@@ -1,23 +1,5 @@
-import { createContext, useContext, useState, useEffect, type ReactNode } from 'react';
-import frTranslations from '../locales/fr.json';
-import enTranslations from '../locales/en.json';
-import arTranslations from '../locales/ar.json';
-
-type Language = 'fr' | 'en' | 'ar';
-
-interface LanguageContextType {
-    language: Language;
-    setLanguage: (lang: Language) => void;
-    t: (key: string) => string;
-}
-
-const translations = {
-    fr: frTranslations,
-    en: enTranslations,
-    ar: arTranslations,
-};
-
-const LanguageContext = createContext<LanguageContextType | undefined>(undefined);
+import { useEffect, useState, type ReactNode } from 'react';
+import { LanguageContext, translations, type Language } from './language-context';
 
 function readStoredLanguage(): Language | null {
     try {
@@ -47,10 +29,10 @@ export const LanguageProvider = ({ children }: { children: ReactNode }) => {
 
     const t = (key: string): string => {
         const keys = key.split('.');
-        let value: any = translations[language];
+        let value: unknown = translations[language];
 
         for (const k of keys) {
-            value = value?.[k];
+            value = (value as Record<string, unknown> | undefined)?.[k];
         }
 
         // Keep intentionally empty translations (e.g. "") instead of falling back to key name.
@@ -65,12 +47,4 @@ export const LanguageProvider = ({ children }: { children: ReactNode }) => {
             {children}
         </LanguageContext.Provider>
     );
-};
-
-export const useLanguage = () => {
-    const context = useContext(LanguageContext);
-    if (!context) {
-        throw new Error('useLanguage must be used within a LanguageProvider');
-    }
-    return context;
 };

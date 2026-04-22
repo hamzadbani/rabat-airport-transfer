@@ -1,5 +1,5 @@
 import { useEffect, useState, useRef } from 'react';
-import { useLanguage } from '../contexts/LanguageContext';
+import { useLanguage } from '../contexts/useLanguage';
 import { HERO_POSTER_URL } from '../constants/heroPoster';
 import './Hero.css';
 

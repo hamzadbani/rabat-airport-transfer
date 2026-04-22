@@ -1,6 +1,6 @@
 import { useState, useCallback } from 'react';
 import { Twitter, Facebook, Linkedin, MessageCircle, Mail, Copy } from 'lucide-react';
-import { useLanguage } from '../contexts/LanguageContext';
+import { useLanguage } from '../contexts/useLanguage';
 import './ShareButtons.css';
 
 const SHARE_TEXT = 'Rabat Transfert - Chauffeur Privé & Transport Premium Maroc';

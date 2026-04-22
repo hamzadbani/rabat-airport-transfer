@@ -1,5 +1,5 @@
 import { useEffect } from 'react';
-import { useLanguage } from '../contexts/LanguageContext';
+import { useLanguage } from '../contexts/useLanguage';
 import './Reviews.css';
 
 /* Elfsight Google Reviews | widget id b0161de8-7a2a-4e36-8294-4dcd04d7e43a */

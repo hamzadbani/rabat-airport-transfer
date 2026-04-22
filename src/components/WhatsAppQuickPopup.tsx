@@ -1,6 +1,6 @@
 import { useMemo, useState } from 'react';
 import { MessageCircle, Send, X } from 'lucide-react';
-import { useLanguage } from '../contexts/LanguageContext';
+import { useLanguage } from '../contexts/useLanguage';
 import './WhatsAppQuickPopup.css';
 
 const WHATSAPP_NUMBER = '212674545939';

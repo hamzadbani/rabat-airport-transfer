@@ -1,5 +1,5 @@
 import { Check } from 'lucide-react';
-import { useLanguage } from '../contexts/LanguageContext';
+import { useLanguage } from '../contexts/useLanguage';
 import driverProImage from '../assets/driver-pro.jpg';
 import './Pricing.css';
 

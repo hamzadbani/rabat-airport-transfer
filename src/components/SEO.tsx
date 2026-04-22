@@ -1,5 +1,5 @@
 import { useEffect } from 'react';
-import { useLanguage } from '../contexts/LanguageContext';
+import { useLanguage } from '../contexts/useLanguage';
 import { SITE_LOGO_ABSOLUTE_URL } from '../constants/siteLogo';
 
 const SEO = () => {

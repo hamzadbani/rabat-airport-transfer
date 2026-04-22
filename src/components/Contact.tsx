@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { Phone, Mail, MessageSquare, Send } from 'lucide-react';
-import { useLanguage } from '../contexts/LanguageContext';
+import { useLanguage } from '../contexts/useLanguage';
 import ObfuscatedEmail, { CONTACT_EMAIL_ENCODED, ObfuscatedEmailDisplay } from './ObfuscatedEmail';
 import './Contact.css';
 
@@ -9,11 +9,11 @@ const emptyForm = {
     email: '',
     phone: '',
     serviceType: '',
+    destination: '',
     flightNumber: '',
     dateCourse: '',
     dateArriver: '',
     adultsCount: '1',
-    childrenCount: '',
     baggage: '',
     message: '',
 };
@@ -82,30 +82,29 @@ const Contact = () => {
             .replace('{name}', formData.name)
             .replace('{phone}', formData.phone || 'N/A')
             .replace('{service}', formData.serviceType)
+            .replace('{destination}', formData.destination.trim() || 'N/A')
             .replace('{flightNumber}', formData.flightNumber.trim() || 'N/A')
             .replace('{dateCourse}', formData.dateCourse || 'N/A')
             .replace('{dateArriver}', formData.dateArriver || 'N/A')
             .replace('{email}', formData.email || 'N/A')
             .replace('{adultsCount}', formData.adultsCount.trim() || '1')
-            .replace('{childrenCount}', formData.childrenCount.trim() || '0')
             .replace('{baggage}', formData.baggage.trim() || 'N/A')
             .replace('{message}', formData.message.trim() || 'N/A');
 
         const encodedMessage = encodeURIComponent(message);
         const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${encodedMessage}`;
 
-        const childrenParsed = Math.max(0, Math.min(20, Number(formData.childrenCount.trim()) || 0));
         const adultsParsed = Math.max(1, Math.min(50, Number(formData.adultsCount.trim()) || 1));
         const mailPayload = {
             name: formData.name.trim(),
             email: formData.email.trim(),
             phone: formData.phone.trim(),
             serviceType: formData.serviceType.trim(),
+            destination: formData.destination.trim(),
             flightNumber: formData.flightNumber.trim(),
             dateCourse: formData.dateCourse.trim(),
             dateArriver: formData.dateArriver.trim(),
             adultsCount: adultsParsed,
-            childrenCount: childrenParsed,
             baggage: formData.baggage.trim(),
             message: formData.message.trim(),
         };
@@ -230,7 +229,6 @@ const Contact = () => {
                                     value={formData.email}
                                     onChange={handleChange}
                                     placeholder={t('contact.form.emailPlaceholder')}
-                                    required
                                     disabled={status === 'submitting'}
                                 />
                             </div>
@@ -303,6 +301,19 @@ const Contact = () => {
                             </div>
 
                             <div className="form-group">
+                                <label htmlFor="destination">{t('contact.form.destination')}</label>
+                                <input
+                                    type="text"
+                                    id="destination"
+                                    name="destination"
+                                    value={formData.destination}
+                                    onChange={handleChange}
+                                    placeholder={t('contact.form.destinationPlaceholder')}
+                                    disabled={status === 'submitting'}
+                                />
+                            </div>
+
+                            <div className="form-group">
                                 <label htmlFor="adultsCount">{t('contact.form.adultsCount')}</label>
                                 <input
                                     type="number"
@@ -313,21 +324,6 @@ const Contact = () => {
                                     value={formData.adultsCount}
                                     onChange={handleChange}
                                     placeholder="1"
-                                    disabled={status === 'submitting'}
-                                />
-                            </div>
-
-                            <div className="form-group">
-                                <label htmlFor="childrenCount">{t('contact.form.childrenCount')}</label>
-                                <input
-                                    type="number"
-                                    id="childrenCount"
-                                    name="childrenCount"
-                                    min={0}
-                                    max={20}
-                                    value={formData.childrenCount}
-                                    onChange={handleChange}
-                                    placeholder="0"
                                     disabled={status === 'submitting'}
                                 />
                             </div>

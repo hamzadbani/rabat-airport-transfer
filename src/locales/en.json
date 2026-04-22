@@ -187,7 +187,7 @@
     "form": {
       "name": "Full Name *",
       "namePlaceholder": "John Doe",
-      "email": "Email address *",
+      "email": "Email address",
       "emailPlaceholder": "johndoe@example.com",
       "phone": "Phone Number",
       "phonePlaceholder": "+212 6XX XX XX XX",
@@ -196,7 +196,8 @@
       "dateCourse": "Trip date",
       "dateArriver": "Time (arrival / pickup)",
       "adultsCount": "Number of adults",
-      "childrenCount": "Number of children",
+      "destination": "Destination",
+      "destinationPlaceholder": "e.g. Rabat, Casablanca, Airport...",
       "baggage": "Luggage",
       "baggagePlaceholder": "e.g. 2 suitcases, 1 carry-on",
       "service": "Service Type",
@@ -213,7 +214,7 @@
       "sending": "Sending...",
       "success": "Message sent successfully!",
       "error": "Error sending message. Please try again.",
-      "whatsappMessage": "Hello Rabat Transfert,\nI would like to book:\n*Name*: {name}\n*Phone*: {phone}\n*Email*: {email}\n*Service*: {service}\n*Flight number*: {flightNumber}\n*Trip date*: {dateCourse}\n*Time*: {dateArriver}\n*Adults*: {adultsCount}\n*Children*: {childrenCount}\n*Luggage*: {baggage}\n*Message*: {message}"
+      "whatsappMessage": "Hello Rabat Transfert,\nI would like to book:\n*Name*: {name}\n*Phone*: {phone}\n*Email*: {email}\n*Service*: {service}\n*Destination*: {destination}\n*Flight number*: {flightNumber}\n*Trip date*: {dateCourse}\n*Time*: {dateArriver}\n*Adults*: {adultsCount}\n*Luggage*: {baggage}\n*Message*: {message}"
     },
     "info": {
       "phone": {

@@ -187,7 +187,7 @@
     "form": {
       "name": "Nom complet *",
       "namePlaceholder": "Jean Dupont",
-      "email": "Adresse e-mail *",
+      "email": "Adresse e-mail",
       "emailPlaceholder": "jeandupont@exemple.com",
       "phone": "Numéro de Téléphone",
       "phonePlaceholder": "+212 6XX XX XX XX",
@@ -196,7 +196,8 @@
       "dateCourse": "Date du trajet",
       "dateArriver": "Heure (arrivée / prise en charge)",
       "adultsCount": "Nombre d’adultes",
-      "childrenCount": "Nombre d’enfants",
+      "destination": "Destination",
+      "destinationPlaceholder": "ex: Rabat, Casablanca, Aéroport...",
       "baggage": "Bagages",
       "baggagePlaceholder": "ex: 2 valises, 1 sac cabine",
       "service": "Type de Service",
@@ -213,7 +214,7 @@
       "sending": "Envoi en cours...",
       "success": "Message envoyé avec succès !",
       "error": "Erreur lors de l'envoi. Veuillez réessayer.",
-      "whatsappMessage": "Bonjour Rabat Transfert,\nJe demande une réservation :\n*Nom*: {name}\n*Téléphone*: {phone}\n*Email*: {email}\n*Service*: {service}\n*Numéro de vol*: {flightNumber}\n*Date du trajet*: {dateCourse}\n*Heure*: {dateArriver}\n*Adultes*: {adultsCount}\n*Enfants*: {childrenCount}\n*Bagages*: {baggage}\n*Message*: {message}"
+      "whatsappMessage": "Bonjour Rabat Transfert,\nJe demande une réservation :\n*Nom*: {name}\n*Téléphone*: {phone}\n*Email*: {email}\n*Service*: {service}\n*Destination*: {destination}\n*Numéro de vol*: {flightNumber}\n*Date du trajet*: {dateCourse}\n*Heure*: {dateArriver}\n*Adultes*: {adultsCount}\n*Bagages*: {baggage}\n*Message*: {message}"
     },
     "info": {
       "phone": {

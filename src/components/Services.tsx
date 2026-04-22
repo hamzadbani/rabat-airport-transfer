@@ -1,6 +1,6 @@
 import type { MouseEvent } from 'react';
 import { ArrowRight, Car } from 'lucide-react';
-import { useLanguage } from '../contexts/LanguageContext';
+import { useLanguage } from '../contexts/useLanguage';
 import casablancaImg from '../assets/casablanca.jpg';
 import {
     SERVICES_DAY_TRIP_IMAGE_URL,

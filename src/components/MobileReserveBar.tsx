@@ -1,5 +1,5 @@
 import { CalendarCheck } from 'lucide-react';
-import { useLanguage } from '../contexts/LanguageContext';
+import { useLanguage } from '../contexts/useLanguage';
 import './MobileReserveBar.css';
 
 /** Fixed bottom CTA on small screens — scrolls to #contact (lazy section loads via hash). */

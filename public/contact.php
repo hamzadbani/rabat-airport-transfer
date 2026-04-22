@@ -33,17 +33,23 @@ $name = strip_tags(trim($data['name'] ?? ''));
 $email = filter_var(trim($data['email'] ?? ''), FILTER_SANITIZE_EMAIL);
 $phone = strip_tags(trim($data['phone'] ?? ''));
 $serviceType = strip_tags(trim($data['serviceType'] ?? ''));
+$destination = strip_tags(trim($data['destination'] ?? ''));
 $flightNumber = strip_tags(trim($data['flightNumber'] ?? ''));
 $dateCourse = strip_tags(trim($data['dateCourse'] ?? ''));
 $dateArriver = strip_tags(trim($data['dateArriver'] ?? ''));
 $adultsCount = max(1, min(50, (int) ($data['adultsCount'] ?? 1)));
-$childrenCount = max(0, min(20, (int) ($data['childrenCount'] ?? 0)));
 $baggage = strip_tags(trim($data['baggage'] ?? ''));
 $message = strip_tags(trim($data['message'] ?? ''));
 
-if (empty($name) || empty($email) || empty($serviceType) || !filter_var($email, FILTER_VALIDATE_EMAIL)) {
+if (empty($name) || empty($serviceType)) {
     http_response_code(400);
     echo json_encode(['success' => false, 'message' => 'Veuillez remplir tous les champs obligatoires.']);
+    exit();
+}
+
+if (!empty($email) && !filter_var($email, FILTER_VALIDATE_EMAIL)) {
+    http_response_code(400);
+    echo json_encode(['success' => false, 'message' => 'Adresse email invalide.']);
     exit();
 }
 
@@ -58,12 +64,13 @@ $subject = "Nouvelle réservation - $serviceType - Rabat Transfert Aéroport";
 $subject = "=?UTF-8?B?" . base64_encode($subject) . "?=";
 
 $hn = h($name);
-$he = h($email);
+$he = $email !== '' ? h($email) : 'Non fourni';
 $hp = $phone !== '' ? h($phone) : 'Non fourni';
 $hf = $flightNumber !== '' ? h($flightNumber) : 'Non fourni';
 $hd = $dateCourse !== '' ? h($dateCourse) : 'Non fourni';
 $ht = $dateArriver !== '' ? h($dateArriver) : 'Non fourni';
 $hs = h($serviceType);
+$hDest = $destination !== '' ? h($destination) : 'Non fourni';
 $hba = $baggage !== '' ? h($baggage) : 'Non fourni';
 $hm = $message !== '' ? nl2br(h($message)) : 'Non fourni';
 
@@ -106,6 +113,11 @@ $email_content = "
             </div>
 
             <div class='field'>
+                <span class='label'>Destination</span>
+                <div class='value'>$hDest</div>
+            </div>
+
+            <div class='field'>
                 <span class='label'>Numéro de vol</span>
                 <div class='value'>$hf</div>
             </div>
@@ -131,11 +143,6 @@ $email_content = "
             </div>
 
             <div class='field'>
-                <span class='label'>Enfants</span>
-                <div class='value'>$childrenCount</div>
-            </div>
-
-            <div class='field'>
                 <span class='label'>Bagages</span>
                 <div class='value'>$hba</div>
             </div>
@@ -156,7 +163,8 @@ $email_content = "
 $headers = "MIME-Version: 1.0" . "\r\n";
 $headers .= "Content-type:text/html;charset=UTF-8" . "\r\n";
 $headers .= "From: Rabat Transfert Aéroport Site <$from_email>" . "\r\n";
-$headers .= "Reply-To: $name <$email>" . "\r\n";
+$reply_to = $email !== '' ? "$name <$email>" : $from_email;
+$headers .= "Reply-To: $reply_to" . "\r\n";
 $headers .= "Return-Path: $from_email" . "\r\n";
 $headers .= "X-Mailer: PHP/" . phpversion() . "\r\n";
 

@@ -1,4 +1,4 @@
-import { useLanguage } from '../contexts/LanguageContext';
+import { useLanguage } from '../contexts/useLanguage';
 import ShareButtons from './ShareButtons';
 import './ShareSection.css';
 
