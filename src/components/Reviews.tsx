@@ -2,7 +2,7 @@ import { useEffect } from 'react';
 import { useLanguage } from '../contexts/useLanguage';
 import './Reviews.css';
 
-/* Elfsight Google Reviews | widget id b0161de8-7a2a-4e36-8294-4dcd04d7e43a */
+/* Elfsight Google Reviews | Taxi Rabat Airoport — app 851803ef-af1a-41aa-8c98-2ee07489ede3 */
 const ELFSIGHT_PLATFORM = 'https://elfsightcdn.com/platform.js';
 
 function ensureElfsightScript(): void {
@@ -33,8 +33,9 @@ const Reviews = () => {
                 </header>
 
                 <div className="reviews-elfsight-wrap" data-aos="fade-up">
+                    {/* Elfsight Google Reviews | Taxi Rabat Airoport */}
                     <div
-                        className="elfsight-app-b0161de8-7a2a-4e36-8294-4dcd04d7e43a"
+                        className="elfsight-app-851803ef-af1a-41aa-8c98-2ee07489ede3"
                         data-elfsight-app-lazy
                     />
                 </div>
