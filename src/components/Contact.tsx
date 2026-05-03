@@ -9,16 +9,34 @@ const emptyForm = {
     email: '',
     phone: '',
     serviceType: '',
+    departure: '',
     destination: '',
     flightNumber: '',
-    dateCourse: '',
-    dateArriver: '',
+    /** `YYYY-MM-DDTHH:mm` for `<input type="datetime-local" />` */
+    tripDateTime: '',
     adultsCount: '1',
     baggage: '',
     message: '',
 };
 
-const Contact = () => {
+function splitTripDateTime(value: string): { dateCourse: string; dateArriver: string } {
+    const trimmed = value.trim();
+    if (!trimmed.includes('T')) {
+        return { dateCourse: '', dateArriver: '' };
+    }
+    const [datePart, timePart] = trimmed.split('T');
+    return {
+        dateCourse: datePart ?? '',
+        dateArriver: timePart ? timePart.slice(0, 5) : '',
+    };
+}
+
+type ContactProps = {
+    /** When true (booking URL #contact): section fills the viewport and appears first in page order */
+    priorityLayout?: boolean;
+};
+
+const Contact = ({ priorityLayout = false }: ContactProps) => {
     const { t } = useLanguage();
     const [formData, setFormData] = useState(emptyForm);
     const [status, setStatus] = useState<'idle' | 'submitting' | 'success' | 'error'>('idle');
@@ -76,16 +94,19 @@ const Contact = () => {
 
         setStatus('submitting');
 
+        const { dateCourse, dateArriver } = splitTripDateTime(formData.tripDateTime);
+
         const whatsappNumber = '212674545939';
         let message = t('contact.form.whatsappMessage');
         message = message
             .replace('{name}', formData.name)
             .replace('{phone}', formData.phone || 'N/A')
             .replace('{service}', formData.serviceType)
+            .replace('{departure}', formData.departure.trim() || 'N/A')
             .replace('{destination}', formData.destination.trim() || 'N/A')
             .replace('{flightNumber}', formData.flightNumber.trim() || 'N/A')
-            .replace('{dateCourse}', formData.dateCourse || 'N/A')
-            .replace('{dateArriver}', formData.dateArriver || 'N/A')
+            .replace('{dateCourse}', dateCourse || 'N/A')
+            .replace('{dateArriver}', dateArriver || 'N/A')
             .replace('{email}', formData.email || 'N/A')
             .replace('{adultsCount}', formData.adultsCount.trim() || '1')
             .replace('{baggage}', formData.baggage.trim() || 'N/A')
@@ -100,10 +121,11 @@ const Contact = () => {
             email: formData.email.trim(),
             phone: formData.phone.trim(),
             serviceType: formData.serviceType.trim(),
+            departure: formData.departure.trim(),
             destination: formData.destination.trim(),
             flightNumber: formData.flightNumber.trim(),
-            dateCourse: formData.dateCourse.trim(),
-            dateArriver: formData.dateArriver.trim(),
+            dateCourse,
+            dateArriver,
             adultsCount: adultsParsed,
             baggage: formData.baggage.trim(),
             message: formData.message.trim(),
@@ -182,7 +204,11 @@ const Contact = () => {
     ];
 
     return (
-        <section className="contact" id="contact" aria-label="Contactez-nous pour réserver votre transport premium">
+        <section
+            className={`contact${priorityLayout ? ' contact--full-page' : ''}`}
+            id="contact"
+            aria-label="Contactez-nous pour réserver votre transport premium"
+        >
             <div className="contact-container">
                 <header className="contact-header">
                     <p className="contact-label">{t('contact.label')}</p>
@@ -196,12 +222,12 @@ const Contact = () => {
                     <div className="contact-form-wrapper">
                         <form className="contact-form" onSubmit={handleSubmit}>
                             {status === 'success' && (
-                                <div className="contact-alert alert-success" data-aos="fade-in">
+                                <div className="contact-alert alert-success contact-form__span-full" data-aos="fade-in">
                                     ✅ {t('contact.form.success')}
                                 </div>
                             )}
                             {status === 'error' && (
-                                <div className="contact-alert alert-error" data-aos="fade-in">
+                                <div className="contact-alert alert-error contact-form__span-full" data-aos="fade-in">
                                     ❌ {t('contact.form.error')}
                                 </div>
                             )}
@@ -259,31 +285,19 @@ const Contact = () => {
                                 />
                             </div>
 
-                            <div className="form-group">
-                                <label htmlFor="dateCourse">{t('contact.form.dateCourse')}</label>
+                            <div className="form-group contact-form__span-full">
+                                <label htmlFor="tripDateTime">{t('contact.form.dateTimeGroup')}</label>
                                 <input
-                                    type="date"
-                                    id="dateCourse"
-                                    name="dateCourse"
-                                    value={formData.dateCourse}
+                                    type="datetime-local"
+                                    id="tripDateTime"
+                                    name="tripDateTime"
+                                    value={formData.tripDateTime}
                                     onChange={handleChange}
                                     disabled={status === 'submitting'}
                                 />
                             </div>
 
-                            <div className="form-group">
-                                <label htmlFor="dateArriver">{t('contact.form.dateArriver')}</label>
-                                <input
-                                    type="time"
-                                    id="dateArriver"
-                                    name="dateArriver"
-                                    value={formData.dateArriver}
-                                    onChange={handleChange}
-                                    disabled={status === 'submitting'}
-                                />
-                            </div>
-
-                            <div className="form-group">
+                            <div className="form-group contact-form__span-full">
                                 <label htmlFor="serviceType">{t('contact.form.service')} *</label>
                                 <select
                                     id="serviceType"
@@ -298,6 +312,19 @@ const Contact = () => {
                                     <option value="Service Taxi">{t('contact.form.serviceOptions.taxi')}</option>
                                     <option value="Transport Touristique">{t('contact.form.serviceOptions.tourist')}</option>
                                 </select>
+                            </div>
+
+                            <div className="form-group">
+                                <label htmlFor="departure">{t('contact.form.departure')}</label>
+                                <input
+                                    type="text"
+                                    id="departure"
+                                    name="departure"
+                                    value={formData.departure}
+                                    onChange={handleChange}
+                                    placeholder={t('contact.form.departurePlaceholder')}
+                                    disabled={status === 'submitting'}
+                                />
                             </div>
 
                             <div className="form-group">
@@ -342,7 +369,7 @@ const Contact = () => {
                                 />
                             </div>
 
-                            <div className="form-group">
+                            <div className="form-group contact-form__span-full">
                                 <label htmlFor="message">{t('contact.form.message')}</label>
                                 <textarea
                                     id="message"
@@ -360,7 +387,7 @@ const Contact = () => {
 
                             <button
                                 type="submit"
-                                className={`contact-submit-btn ${status === 'submitting' ? 'loading' : ''}`}
+                                className={`contact-submit-btn contact-form__span-full ${status === 'submitting' ? 'loading' : ''}`}
                                 disabled={status === 'submitting'}
                             >
                                 {status === 'submitting' ? (

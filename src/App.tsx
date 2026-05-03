@@ -1,4 +1,4 @@
-import { useEffect, lazy, Suspense } from 'react'
+import { useEffect, lazy, Suspense, useLayoutEffect, useState } from 'react'
 import Navbar from './components/Navbar'
 import Hero from './components/Hero'
 import SEO from './components/SEO'
@@ -21,6 +21,23 @@ const Contact = lazy(() => import('./components/Contact'))
 const Footer = lazy(() => import('./components/Footer'))
 
 function App() {
+  const [bookingFirst, setBookingFirst] = useState(
+    () => typeof window !== 'undefined' && window.location.hash.startsWith('#contact'),
+  )
+
+  useLayoutEffect(() => {
+    const syncBookingFirst = () => {
+      const next = window.location.hash.startsWith('#contact')
+      setBookingFirst(next)
+      if (next) {
+        window.scrollTo(0, 0)
+      }
+    }
+    syncBookingFirst()
+    window.addEventListener('hashchange', syncBookingFirst)
+    return () => window.removeEventListener('hashchange', syncBookingFirst)
+  }, [])
+
   useEffect(() => {
     document.body.classList.add('js-loaded');
   }, []);
@@ -58,6 +75,16 @@ function App() {
     }
   }, []);
 
+  const midSections = (
+    <>
+      <LazyWhenVisible component={About} minHeight={700} />
+      <LazyWhenVisible component={Reviews} minHeight={500} />
+      <LazyWhenVisible component={ShareSection} minHeight={280} />
+      <LazyWhenVisible component={Services} minHeight={800} />
+      <LazyWhenVisible component={Pricing} minHeight={600} />
+    </>
+  )
+
   return (
     <>
       <SEO />
@@ -69,14 +96,23 @@ function App() {
           <WhatsAppQuickPopup />
         </Suspense>
         <Navbar />
-        <Hero />
-        <LazyWhenVisible component={About} minHeight={700} />
-        <LazyWhenVisible component={Reviews} minHeight={500} />
-        <LazyWhenVisible component={ShareSection} minHeight={280} />
-        <LazyWhenVisible component={Services} minHeight={800} />
-        <LazyWhenVisible component={Pricing} minHeight={600} />
-        <LazyWhenVisible component={Contact} minHeight={700} eagerForHashPrefix="#contact" />
-        <LazyWhenVisible component={Footer} minHeight={400} />
+        {bookingFirst ? (
+          <>
+            <Suspense fallback={null}>
+              <Contact priorityLayout />
+            </Suspense>
+            <Hero />
+            {midSections}
+            <LazyWhenVisible component={Footer} minHeight={400} />
+          </>
+        ) : (
+          <>
+            <Hero />
+            {midSections}
+            <LazyWhenVisible component={Contact} minHeight={700} eagerForHashPrefix="#contact" />
+            <LazyWhenVisible component={Footer} minHeight={400} />
+          </>
+        )}
       </div>
     </>
   )

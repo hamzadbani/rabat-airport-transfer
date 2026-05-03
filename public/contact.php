@@ -33,6 +33,7 @@ $name = strip_tags(trim($data['name'] ?? ''));
 $email = filter_var(trim($data['email'] ?? ''), FILTER_SANITIZE_EMAIL);
 $phone = strip_tags(trim($data['phone'] ?? ''));
 $serviceType = strip_tags(trim($data['serviceType'] ?? ''));
+$departure = strip_tags(trim($data['departure'] ?? ''));
 $destination = strip_tags(trim($data['destination'] ?? ''));
 $flightNumber = strip_tags(trim($data['flightNumber'] ?? ''));
 $dateCourse = strip_tags(trim($data['dateCourse'] ?? ''));
@@ -70,6 +71,7 @@ $hf = $flightNumber !== '' ? h($flightNumber) : 'Non fourni';
 $hd = $dateCourse !== '' ? h($dateCourse) : 'Non fourni';
 $ht = $dateArriver !== '' ? h($dateArriver) : 'Non fourni';
 $hs = h($serviceType);
+$hDepart = $departure !== '' ? h($departure) : 'Non fourni';
 $hDest = $destination !== '' ? h($destination) : 'Non fourni';
 $hba = $baggage !== '' ? h($baggage) : 'Non fourni';
 $hm = $message !== '' ? nl2br(h($message)) : 'Non fourni';
@@ -113,6 +115,11 @@ $email_content = "
             </div>
 
             <div class='field'>
+                <span class='label'>Départ</span>
+                <div class='value'>$hDepart</div>
+            </div>
+
+            <div class='field'>
                 <span class='label'>Destination</span>
                 <div class='value'>$hDest</div>
             </div>
@@ -128,7 +135,7 @@ $email_content = "
             </div>
 
             <div class='field'>
-                <span class='label'>Heure (arrivée / prise en charge)</span>
+                <span class='label'>Heure du trajet</span>
                 <div class='value'>$ht</div>
             </div>
 

@@ -187,17 +187,18 @@
     "form": {
       "name": "الاسم الكامل *",
       "namePlaceholder": "مثال: أحمد العلوي",
-      "email": "البريد الإلكتروني",
+      "email": "البريد الإلكتروني (اختياري)",
       "emailPlaceholder": "name@example.com",
       "phone": "رقم الهاتف",
       "phonePlaceholder": "+212 6XX XX XX XX",
       "flightNumber": "رقم الرحلة",
       "flightNumberPlaceholder": "مثال: AF1234",
-      "dateCourse": "تاريخ الرحلة",
-      "dateArriver": "الوقت (الوصول / الاستلام)",
+      "dateTimeGroup": "تاريخ ووقت الرحلة",
       "adultsCount": "عدد البالغين",
+      "departure": "نقطة الانطلاق",
+      "departurePlaceholder": "مثال: مطار الرباط-سلا، عنوان الفندق…",
       "destination": "الوجهة",
-      "destinationPlaceholder": "مثال: الرباط، الدار البيضاء، المطار...",
+      "destinationPlaceholder": "مثال: وسط الرباط، الدار البيضاء…",
       "baggage": "الأمتعة",
       "baggagePlaceholder": "مثال: حقيبتان + حقيبة يد",
       "service": "نوع الخدمة",
@@ -214,7 +215,7 @@
       "sending": "جاري الإرسال...",
       "success": "تم إرسال الرسالة بنجاح!",
       "error": "خطأ في الإرسال. يرجى المحاولة مرة أخرى.",
-      "whatsappMessage": "مرحباً Rabat Transfert،\nأريد حجزاً:\n*الاسم*: {name}\n*الهاتف*: {phone}\n*البريد*: {email}\n*الخدمة*: {service}\n*الوجهة*: {destination}\n*رقم الرحلة*: {flightNumber}\n*تاريخ الرحلة*: {dateCourse}\n*الوقت*: {dateArriver}\n*البالغون*: {adultsCount}\n*الأمتعة*: {baggage}\n*الرسالة*: {message}"
+      "whatsappMessage": "مرحباً Rabat Transfert،\nأريد حجزاً:\n*الاسم*: {name}\n*الهاتف*: {phone}\n*البريد*: {email}\n*الخدمة*: {service}\n*الانطلاق*: {departure}\n*الوجهة*: {destination}\n*رقم الرحلة*: {flightNumber}\n*تاريخ الرحلة*: {dateCourse}\n*وقت الرحلة*: {dateArriver}\n*البالغون*: {adultsCount}\n*الأمتعة*: {baggage}\n*الرسالة*: {message}"
     },
     "info": {
       "phone": {
