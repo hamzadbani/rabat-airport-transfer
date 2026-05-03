@@ -1,8 +1,8 @@
 import React, { useEffect, useLayoutEffect, useState, useRef, Suspense, type LazyExoticComponent, type ComponentType } from 'react'
 
 type Props = {
-  /** Lazy-loaded component (from React.lazy()) */
-  component: LazyExoticComponent<ComponentType<unknown>>
+  /** Lazy-loaded component (from React.lazy()) — use optional props on the target so `<C />` is valid */
+  component: LazyExoticComponent<ComponentType<Record<string, never>>>
   /** Min height of placeholder to avoid layout shift before section loads */
   minHeight?: string | number
   /** IntersectionObserver rootMargin – load a bit before section enters view */
