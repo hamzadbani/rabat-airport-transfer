@@ -25,13 +25,35 @@
     "iosDismiss": "Got it"
   },
   "hero": {
-    "subtitle": "LUXURY TRANSPORT SERVICE IN MOROCCO — RABAT-SALÉ AIRPORT",
-    "title": "Premium transport & tourist taxi",
-    "titleLine2": "Luxury cars with chauffeur — Rabat-Salé Airport",
+    "subtitle": "Private chauffeur Rabat — quoted fare before pickup",
+    "title": "Rabat Airport Taxi — Rabat-Salé (RBA) Transfer 24/7",
+    "titleLine2": "",
     "cta": "Book Now",
     "ctaPricing": "View pricing",
     "learnMore": "Learn more",
-    "learnMoreLinks": "Services · Pricing · About · Contact"
+    "learnMoreLinks": "Services · Pricing · About · Contact",
+    "booking": {
+      "aria": "Quick booking form",
+      "from": "From",
+      "to": "To",
+      "defaultFrom": "Rabat-Salé Airport (RBA)",
+      "toPlaceholder": "Airport, address, station, port",
+      "pickupDateTime": "Pickup date and time",
+      "return": "Return",
+      "addReturn": "Add return trip",
+      "removeReturn": "Remove return trip",
+      "fullName": "Full name",
+      "fullNamePlaceholder": "First and last name",
+      "phone": "Phone",
+      "phonePlaceholder": "+212 6 00 00 00 00",
+      "optional": "optional",
+      "passengers": "Passengers",
+      "children": "Children",
+      "baggage": "Baggage",
+      "search": "Reserve",
+      "swap": "Swap pickup and destination",
+      "whatsappMessage": "Hello Rabat Transfert,\nI would like to book a transfer:\n*Name*: {fullName}\n*Phone*: {phone}\n*Pickup*: {departure}\n*Destination*: {destination}\n*Date*: {dateCourse}\n*Time*: {dateArriver}\n*Return date*: {returnDate}\n*Return time*: {returnTime}\n*Adults*: {adultsCount}\n*Children*: {childrenCount}\n*Luggage*: {baggage}"
+    }
   },
   "services": {
     "ariaLabel": "Our transport and tour services",
@@ -48,8 +70,8 @@
       "description": "Discover unforgettable tours in Morocco, from Sahara desert adventures and camel rides to Atlas mountain hikes and cultural city tours. Explore Marrakech, Fes, Chefchaouen, and beyond with local experts."
     },
     "transferAirport": {
-      "title": "Airport transfer",
-      "description": "Enjoy stress-free airport transfers in Morocco with our reliable service. We offer punctual pickups and drop-offs from Rabat, Casablanca, and Marrakech airports in clean, comfortable vehicles with professional drivers."
+      "title": "Rabat-Salé airport transfer",
+      "description": "Pickup and drop-off at RBA, Rabat, Casablanca and Marrakech. Flight tracking on request; fare confirmed when you book."
     },
     "transferCities": {
       "title": "Intercity transfer",
@@ -66,7 +88,8 @@
       "name": "Standard",
       "description": "Perfect for airport transfers and city trips",
       "category": "LUXURY SEDAN",
-      "vehicle": ""
+      "vehicle": "",
+      "imageAlt": "Professional private chauffeur driving — Standard package"
     },
     "business": {
       "name": "Business",
@@ -103,8 +126,9 @@
   },
   "about": {
     "label": "ABOUT US",
+    "imageAlt": "Rabat Transfert chauffeur greeting a client at Rabat-Salé Airport",
     "seo": {
-      "brief": "Rabat Transfert offers luxury cars with chauffeur and tourist transport in Casablanca, Marrakech and Rabat since 2009. Private chauffeur, airport transfers, business and events.",
+      "brief": "Since 2009, Rabat Transfert provides Rabat taxi, Rabat-Salé Airport (RBA) transfers and private chauffeur service in Morocco — quoted fares, 24/7.",
       "discoverLinksBefore": "Discover our ",
       "discoverLinksMiddle": " and our ",
       "discoverLinksAfter": ".",
@@ -169,6 +193,7 @@
     "titleHighlight": "Clients Say",
     "subtitle": "See what our customers say on Google. Book with confidence.",
     "loading": "Loading reviews…",
+    "loadError": "Reviews could not be loaded. Please try again later.",
     "noReviews": "Reviews will appear here once the API is set up.",
     "seeOnGoogle": "See reviews on Google",
     "seeOnGoogleA11y": "See all reviews on Google Maps (new window)",
@@ -179,44 +204,19 @@
     "disclaimer": "Google reviews — Rabat Transfert Maroc. Reviews are managed by Google.",
     "ariaLabel": "Google customer reviews — Rabat Transfert"
   },
+  "homeFaq": {
+    "label": "FAQ",
+    "title": "Rabat airport taxi — quick answers",
+    "aiLead": "In short",
+    "linksAria": "Related transfer pages",
+    "linkAirport": "Rabat airport taxi (RBA)",
+    "linkRabat": "Rabat city taxi",
+    "linkCasa": "Rabat ↔ Casablanca taxi",
+    "linkChauffeur": "Private chauffeur Rabat"
+  },
   "contact": {
     "label": "CONTACT US",
-    "title": "Book Your",
-    "titleHighlight": "Premium Transportation",
-    "subtitle": "Fill out the form below and our team will contact you as soon as possible",
-    "form": {
-      "name": "Full Name *",
-      "namePlaceholder": "John Doe",
-      "email": "Email address (optional)",
-      "emailPlaceholder": "johndoe@example.com",
-      "phone": "Phone Number",
-      "phonePlaceholder": "+212 6XX XX XX XX",
-      "flightNumber": "Flight number",
-      "flightNumberPlaceholder": "e.g. AF1234",
-      "dateTimeGroup": "Trip date & time",
-      "adultsCount": "Number of adults",
-      "departure": "Pickup / departure",
-      "departurePlaceholder": "e.g. Rabat-Salé Airport, hotel address…",
-      "destination": "Destination",
-      "destinationPlaceholder": "e.g. Rabat medina, Casablanca…",
-      "baggage": "Luggage",
-      "baggagePlaceholder": "e.g. 2 suitcases, 1 carry-on",
-      "service": "Service Type",
-      "servicePlaceholder": "Select a service",
-      "serviceOptions": {
-        "airport": "Airport Transfer",
-        "taxi": "Taxi Service",
-        "tourist": "Tourist Transport"
-      },
-      "message": "Your message (optional)",
-      "messagePlaceholder": "How can we help you?",
-      "characters": "characters",
-      "send": "Send Message",
-      "sending": "Sending...",
-      "success": "Message sent successfully!",
-      "error": "Error sending message. Please try again.",
-      "whatsappMessage": "Hello Rabat Transfert,\nI would like to book:\n*Name*: {name}\n*Phone*: {phone}\n*Email*: {email}\n*Service*: {service}\n*Pickup / departure*: {departure}\n*Destination*: {destination}\n*Flight number*: {flightNumber}\n*Trip date*: {dateCourse}\n*Trip time*: {dateArriver}\n*Adults*: {adultsCount}\n*Luggage*: {baggage}\n*Message*: {message}"
-    },
+    "title": "Book your Rabat airport transfer",
     "info": {
       "phone": {
         "title": "Phone",
@@ -231,6 +231,7 @@
         "subtitle": "Click to send an email"
       }
     },
+    "paymentMethods": "Accepted payment",
     "mapTitle": "Find us on the map",
     "emailCta": {
       "title": "Contact us by Email",
@@ -267,8 +268,8 @@
     "legal": "Legal Notice",
     "sitemap": "Sitemap",
     "developedBy": "Developed by",
-    "developerLinkLabel": "Abdelaziz Elhathout",
-    "developerLinkAria": "Visit Abdelaziz Elhathout’s website, freelance web developer"
+    "developerLinkLabel": "abdelazizelhathout.com",
+    "developerLinkAria": "Visit abdelazizelhathout.com, freelance web developer"
   },
   "whatsappQuick": {
     "title": "WhatsApp",

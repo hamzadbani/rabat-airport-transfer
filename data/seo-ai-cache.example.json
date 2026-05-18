@@ -1,0 +1,13 @@
+{
+  "pages": {
+    "taxi-rabat-aeroport": {
+      "content": "<h2>Transfert aéroport Rabat-Salé</h2><p>Contenu HTML généré offline (ne pas éditer en production sans rebuild).</p>",
+      "faq_json": [
+        {
+          "question": "Combien coûte un taxi de l'aéroport Rabat au centre ?",
+          "answer": "Le tarif dépend du quartier ; une estimation est confirmée par WhatsApp avant prise en charge."
+        }
+      ]
+    }
+  }
+}

@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import { SITE_LOGO_PATH } from '../constants/siteLogo';
 import { Phone, Menu, X, Globe, ChevronDown } from 'lucide-react';
 import { useLanguage } from '../contexts/useLanguage';
+import { handleContactClick } from '../lib/scroll-to-contact';
 import './Navbar.css';
 
 const Navbar = () => {
@@ -84,7 +85,15 @@ const Navbar = () => {
                 {/* Logo */}
                 <div className="navbar-logo">
                     <a href="#accueil" aria-label="Rabat Transfert Aéroport - Accueil">
-                        <img src={SITE_LOGO_PATH} alt="Taxi Rabat Airport — Rabat Transfert Aéroport" width="380" height="109" />
+                        <img
+                            src={SITE_LOGO_PATH}
+                            alt="Taxi Rabat Airport — Rabat Transfert Aéroport"
+                            width={380}
+                            height={109}
+                            loading="eager"
+                            decoding="async"
+                            fetchPriority="high"
+                        />
                     </a>
                 </div>
 
@@ -99,7 +108,7 @@ const Navbar = () => {
 
                 {/* Right Side Actions */}
                 <div className="navbar-actions">
-                    <a href="#contact" className="btn-contact">{t('navbar.contact')}</a>
+                    <a href="/" className="btn-contact" onClick={handleContactClick}>{t('navbar.contact')}</a>
                     <a href="tel:+212674545939" className="btn-call">
                         <Phone size={18} />
                         <span>{t('navbar.call')}</span>
@@ -161,7 +170,16 @@ const Navbar = () => {
                     ))}
                 </ul>
                 <div className="mobile-menu-actions">
-                    <a href="#contact" className="btn-contact" onClick={() => setIsMobileMenuOpen(false)}>{t('navbar.contact')}</a>
+                    <a
+                        href="/"
+                        className="btn-contact"
+                        onClick={(e) => {
+                            handleContactClick(e);
+                            setIsMobileMenuOpen(false);
+                        }}
+                    >
+                        {t('navbar.contact')}
+                    </a>
                     <a href="tel:+212674545939" className="btn-call">
                         <Phone size={18} />
                         <span>{t('navbar.call')}</span>

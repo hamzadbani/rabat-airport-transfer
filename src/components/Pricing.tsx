@@ -1,6 +1,9 @@
 import { Check } from 'lucide-react';
 import { useLanguage } from '../contexts/useLanguage';
+import { handleContactClick } from '../lib/scroll-to-contact';
 import driverProImage from '../assets/driver-pro.jpg';
+import { assetUrl } from '../lib/asset-url';
+import LazyImage from './LazyImage';
 import './Pricing.css';
 
 const Pricing = () => {
@@ -15,6 +18,7 @@ const Pricing = () => {
             category: t('pricing.standard.category'),
             vehicle: t('pricing.standard.vehicle'),
             image: driverProImage,
+            imageAlt: t('pricing.standard.imageAlt'),
             features: [
                 t('pricing.features.driver'),
                 t('pricing.features.flightTracking'),
@@ -26,90 +30,72 @@ const Pricing = () => {
         },
     ];
 
-    const contactServiceBySlug: Record<(typeof pricingPlans)[number]['slug'], string> = {
-        standard: 'Service Taxi',
-    };
-
     return (
         <section className="pricing" id="tarifs" aria-label={t('pricing.label')}>
             <div className="pricing-container">
-                {/* Section Header */}
                 <header className="pricing-header">
                     <p className="pricing-label">{t('pricing.label')}</p>
                     <h2 className="pricing-title">
                         {t('pricing.title')} <span className="highlight">{t('pricing.titleHighlight')}</span>
                     </h2>
-                    <p className="pricing-subtitle">
-                        {t('pricing.subtitle')}
-                    </p>
+                    <p className="pricing-subtitle">{t('pricing.subtitle')}</p>
                 </header>
 
-                {/* Pricing Cards */}
                 <div className="pricing-grid">
                     {pricingPlans.map((plan) => (
-                        <div
+                        <article
                             key={plan.id}
                             className={`pricing-card ${plan.highlighted ? 'pricing-card-highlighted' : ''}`}
                         >
-                            {/* Card Header */}
-                            <div className="pricing-car-image-wrapper">
-                                <img
-                                    src={plan.image}
-                                    alt={`${plan.name} - image véhicule`}
-                                    className="pricing-car-image"
-                                    loading="lazy"
-                                />
-                            </div>
-                            <div className="pricing-card-header">
-                                <h3 className="pricing-plan-name">{plan.name}</h3>
-                                <p className="pricing-plan-description">{plan.description}</p>
-                            </div>
+                            <div className="pricing-standard-row">
+                                <div className="pricing-col-6 pricing-col-6--media">
+                                    <div className="pricing-standard-photo">
+                                        <LazyImage
+                                            src={assetUrl(plan.image)}
+                                            alt={plan.imageAlt}
+                                            className="pricing-standard-photo-img"
+                                            rootMargin="320px"
+                                        />
+                                    </div>
+                                </div>
 
-                            {/* Vehicle Info */}
-                            <div className="pricing-vehicle">
-                                <p className="pricing-category">{plan.category}</p>
-                                {plan.vehicle ? <p className="pricing-vehicle-name">{plan.vehicle}</p> : null}
+                                <div className="pricing-col-6 pricing-col-6--content">
+                                    <div className="pricing-standard-body">
+                                        <header className="pricing-card-header">
+                                            <h3 className="pricing-plan-name">{plan.name}</h3>
+                                            <p className="pricing-plan-description">{plan.description}</p>
+                                        </header>
+
+                                        <div className="pricing-vehicle">
+                                            <p className="pricing-category">{plan.category}</p>
+                                            {plan.vehicle ? (
+                                                <p className="pricing-vehicle-name">{plan.vehicle}</p>
+                                            ) : null}
+                                        </div>
+
+                                        <ul className="pricing-features">
+                                            {plan.features.map((feature, index) => (
+                                                <li key={index} className="pricing-feature">
+                                                    <Check size={20} className="pricing-check-icon" />
+                                                    <span>{feature}</span>
+                                                </li>
+                                            ))}
+                                        </ul>
+
+                                        <a
+                                            href="/"
+                                            className={`pricing-button ${plan.highlighted ? 'pricing-button-highlighted' : ''}`}
+                                            onClick={handleContactClick}
+                                        >
+                                            {plan.buttonText}
+                                        </a>
+                                    </div>
+                                </div>
                             </div>
-
-                            {/* Features List */}
-                            <ul className="pricing-features">
-                                {plan.features.map((feature, index) => (
-                                    <li key={index} className="pricing-feature">
-                                        <Check size={20} className="pricing-check-icon" />
-                                        <span>{feature}</span>
-                                    </li>
-                                ))}
-                            </ul>
-
-                            {/* CTA Button */}
-                            <a
-                                href={`#contact?service=${encodeURIComponent(contactServiceBySlug[plan.slug])}`}
-                                className={`pricing-button ${plan.highlighted ? 'pricing-button-highlighted' : ''}`}
-                                onClick={(e) => {
-                                    e.preventDefault();
-                                    const serviceType = contactServiceBySlug[plan.slug] ?? '';
-                                    const contactSection = document.getElementById('contact');
-                                    if (contactSection) {
-                                        contactSection.scrollIntoView({ behavior: 'smooth' });
-                                        window.history.pushState(null, '', `#contact?service=${encodeURIComponent(serviceType)}`);
-                                        setTimeout(() => {
-                                            const serviceSelect = document.getElementById('serviceType') as HTMLSelectElement;
-                                            if (serviceSelect) {
-                                                serviceSelect.value = serviceType;
-                                            }
-                                        }, 500);
-                                    } else {
-                                        window.location.hash = `contact?service=${encodeURIComponent(serviceType)}`;
-                                    }
-                                }}
-                            >
-                                {plan.buttonText}
-                            </a>
-                        </div>
+                        </article>
                     ))}
                 </div>
 
-                {/* Custom Quote Section */}
                 <div className="pricing-custom">
                     <div className="pricing-custom-content">
                         <h2 className="pricing-custom-title">{t('pricing.customQuote.title')}</h2>
@@ -117,17 +103,9 @@ const Pricing = () => {
                             {t('pricing.customQuote.description')}
                         </p>
                         <a
-                            href="#contact"
+                            href="/"
                             className="pricing-custom-button"
-                            onClick={(e) => {
-                                e.preventDefault();
-                                const contactSection = document.getElementById('contact');
-                                if (contactSection) {
-                                    contactSection.scrollIntoView({ behavior: 'smooth' });
-                                } else {
-                                    window.location.hash = 'contact';
-                                }
-                            }}
+                            onClick={handleContactClick}
                         >
                             <svg
                                 xmlns="http://www.w3.org/2000/svg"

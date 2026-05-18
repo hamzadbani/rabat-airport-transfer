@@ -1,6 +1,7 @@
 import { useEffect, useState, useRef } from 'react';
 import { useLanguage } from '../contexts/useLanguage';
 import { HERO_POSTER_URL } from '../constants/heroPoster';
+import HeroBookingForm from './HeroBookingForm';
 import './Hero.css';
 
 const HERO_VIDEO_SRC = '/hero-video.mp4';
@@ -51,7 +52,7 @@ const Hero = () => {
                 poster={HERO_POSTER_URL}
                 width={1920}
                 height={1080}
-                aria-label="Vidéo de présentation Rabat Transfert Aéroport - Transport premium au Maroc"
+                aria-label="Vidéo Rabat Transfert — taxi aéroport Rabat-Salé, transfert 24/7"
             >
                 {videoReady && <source src={HERO_VIDEO_SRC} type="video/mp4" />}
                 Votre navigateur ne supporte pas la vidéo.
@@ -64,19 +65,17 @@ const Hero = () => {
             <div className={`hero-content ${isLoaded ? 'hero-content-loaded' : ''}`}>
                 <header className="hero-text">
                     <p className="hero-subtitle">{t('hero.subtitle')}</p>
-                    <h1 className="hero-title">{t('hero.title')}<br className="hero-title-br" />{t('hero.titleLine2')}</h1>
+                    <h1 className="hero-title">
+                        {t('hero.title')}
+                        {t('hero.titleLine2') ? (
+                            <>
+                                <br className="hero-title-br" />
+                                {t('hero.titleLine2')}
+                            </>
+                        ) : null}
+                    </h1>
+                    <HeroBookingForm />
                 </header>
-
-                <div className="hero-right">
-                    <div className="hero-cta">
-                        <a href="#contact" className="btn-reserve" aria-label={`${t('hero.cta')} - Rabat Transfert Aéroport`}>
-                            {t('hero.cta')}
-                        </a>
-                        <a href="#tarifs" className="hero-cta-secondary">
-                            {t('hero.ctaPricing')}
-                        </a>
-                    </div>
-                </div>
             </div>
         </section>
     );

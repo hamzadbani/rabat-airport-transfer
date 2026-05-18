@@ -66,41 +66,68 @@
     line-height: 1.8;
 }
 
-/* Pricing grid — single Standard card, centered */
+/* Pricing grid — Standard card, wide split layout */
 .pricing-grid {
     display: grid;
     grid-template-columns: 1fr;
     gap: 2.5rem;
     margin: 0 auto 6rem;
-    max-width: 440px;
+    max-width: 1100px;
 }
 
 /* Pricing Card */
 .pricing-card {
     background: #ffffff;
     border-radius: 24px;
-    padding: 3.5rem 2.5rem;
+    padding: 0;
     position: relative;
     transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1);
     box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
-    display: flex;
-    flex-direction: column;
-}
-
-.pricing-car-image-wrapper {
-    width: 100%;
-    height: 170px;
-    margin-bottom: 1.25rem;
-    border-radius: 14px;
     overflow: hidden;
-    background: #f5f5f5;
 }
 
-.pricing-car-image {
+/* Standard row — 12-col grid, col-6 photo | col-6 text */
+.pricing-standard-row {
+    display: grid;
+    grid-template-columns: repeat(12, minmax(0, 1fr));
+    align-items: stretch;
+    min-height: 100%;
+}
+
+.pricing-col-6 {
+    grid-column: span 6;
+    min-width: 0;
+}
+
+.pricing-col-6--media {
+    display: flex;
+}
+
+.pricing-col-6--content {
+    display: flex;
+}
+
+.pricing-standard-photo {
+    width: 100%;
+    min-height: 360px;
+    height: 100%;
+    overflow: hidden;
+    background: #e8eaed;
+}
+
+.pricing-standard-photo-img {
     width: 100%;
     height: 100%;
+    min-height: 360px;
     object-fit: cover;
     display: block;
+}
+
+.pricing-standard-body {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    padding: 2.5rem 2.25rem;
 }
 
 .pricing-card:hover {
@@ -144,8 +171,8 @@
 
 /* Card Header */
 .pricing-card-header {
-    margin-bottom: 2rem;
-    padding-bottom: 2rem;
+    margin-bottom: 1.5rem;
+    padding-bottom: 1.5rem;
     border-bottom: 1px solid rgba(0, 0, 0, 0.1);
 }
 
@@ -201,7 +228,7 @@
 /* Features List */
 .pricing-features {
     list-style: none;
-    margin: 0 0 3rem 0;
+    margin: 0 0 2rem 0;
     padding: 0;
     flex-grow: 1;
 }
@@ -349,8 +376,24 @@
     .pricing-grid {
         grid-template-columns: 1fr;
         gap: 4rem;
-        max-width: 500px;
+        max-width: 100%;
         margin: 0 auto 4rem;
+    }
+
+    .pricing-card-split {
+        grid-template-columns: 1fr;
+    }
+
+    .pricing-card-col--media {
+        min-height: 240px;
+    }
+
+    .pricing-car-image-wrapper {
+        min-height: 240px;
+    }
+
+    .pricing-card-col--content {
+        padding: 2rem 1.5rem;
     }
 
     .pricing-card-highlighted {
@@ -369,6 +412,19 @@
     .pricing-custom {
         padding: 3rem 2rem;
     }
+
+    .pricing-col-6 {
+        grid-column: span 12;
+    }
+
+    .pricing-standard-photo,
+    .pricing-standard-photo-img {
+        min-height: 260px;
+    }
+
+    .pricing-standard-body {
+        padding: 2rem 1.5rem;
+    }
 }
 
 @media (max-width: 640px) {
@@ -380,8 +436,13 @@
         font-size: 2.5rem;
     }
 
-    .pricing-card {
-        padding: 2.5rem 1.5rem;
+    .pricing-standard-body {
+        padding: 1.75rem 1.25rem;
+    }
+
+    .pricing-standard-photo,
+    .pricing-standard-photo-img {
+        min-height: 220px;
     }
 
     .pricing-plan-name {

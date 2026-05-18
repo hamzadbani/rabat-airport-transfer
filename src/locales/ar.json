@@ -25,13 +25,35 @@
     "iosDismiss": "حسناً"
   },
   "hero": {
-    "subtitle": "خدمة نقل فاخر في المغرب — مطار الرباط-سلا",
-    "title": "نقل مميز وتاكسي سياحي",
-    "titleLine2": "سيارات فاخرة مع سائق — مطار الرباط-سلا",
+    "subtitle": "سائق خاص الرباط — سعر معلن قبل الانطلاق",
+    "title": "تاكسي مطار الرباط — نقل الرباط-سلا (RBA) 24/7",
+    "titleLine2": "",
     "cta": "احجز الآن",
     "ctaPricing": "عرض الأسعار",
     "learnMore": "اعرف المزيد",
-    "learnMoreLinks": "الخدمات · الأسعار · من نحن · اتصل"
+    "learnMoreLinks": "الخدمات · الأسعار · من نحن · اتصل",
+    "booking": {
+      "aria": "نموذج حجز سريع",
+      "from": "من",
+      "to": "إلى",
+      "defaultFrom": "مطار الرباط-سلا (RBA)",
+      "toPlaceholder": "مطار، عنوان، محطة، ميناء",
+      "pickupDateTime": "تاريخ ووقت الالتقاط",
+      "return": "العودة",
+      "addReturn": "إضافة رحلة عودة",
+      "removeReturn": "إزالة رحلة العودة",
+      "fullName": "الاسم الكامل",
+      "fullNamePlaceholder": "الاسم واللقب",
+      "phone": "الهاتف",
+      "phonePlaceholder": "+212 6 00 00 00 00",
+      "optional": "اختياري",
+      "passengers": "الركاب",
+      "children": "الأطفال",
+      "baggage": "الأمتعة",
+      "search": "احجز",
+      "swap": "تبديل المغادرة والوجهة",
+      "whatsappMessage": "مرحباً Rabat Transfert،\nأود حجز نقل:\n*الاسم*: {fullName}\n*الهاتف*: {phone}\n*المغادرة*: {departure}\n*الوجهة*: {destination}\n*التاريخ*: {dateCourse}\n*الوقت*: {dateArriver}\n*تاريخ العودة*: {returnDate}\n*وقت العودة*: {returnTime}\n*البالغون*: {adultsCount}\n*الأطفال*: {childrenCount}\n*الأمتعة*: {baggage}"
+    }
   },
   "services": {
     "ariaLabel": "خدمات النقل والجولات",
@@ -48,8 +70,8 @@
       "description": "جولات لا تُنسى في المغرب: مغامرات الصحراء وركوب الجمال، مسارات جبال الأطلس، وجولات ثقافية في المدن. اكتشف مراكش وفاس وشفشاون وغيرها مع خبراء محليين."
     },
     "transferAirport": {
-      "title": "نقل المطار",
-      "description": "نقل مطار مريح وموثوق في المغرب: استقبال وتوصيل في الموعد من مطارات الرباط والدار البيضاء ومراكش، بمركبات نظيفة ومكيفة وسائقون محترفون."
+      "title": "نقل مطار الرباط-سلا",
+      "description": "استقبال وتوصيل من RBA والرباط والدار البيضاء ومراكش. تتبع الرحلة عند الطلب؛ السعر يُؤكَّد عند الحجز."
     },
     "transferCities": {
       "title": "نقل بين المدن",
@@ -66,7 +88,8 @@
       "name": "قياسي",
       "description": "مثالي لنقل المطار والرحلات داخل المدينة",
       "category": "سيارة فاخرة",
-      "vehicle": ""
+      "vehicle": "",
+      "imageAlt": "سائق خاص محترف على متن سيارة فاخرة — الباقة القياسية"
     },
     "business": {
       "name": "الأعمال",
@@ -103,6 +126,7 @@
   },
   "about": {
     "label": "من نحن",
+    "imageAlt": "سائق Rabat Transfert يستقبل عميلة في مطار الرباط-سلا",
     "seo": {
       "brief": "Rabat Transfert تقدم سيارات فاخرة مع سائق ونقل سياحي في الدار البيضاء ومراكش والرباط منذ 2009. سائق خاص، نقل المطار، الأعمال والفعاليات — مرسيدس وبي إم دبليو، 24/7.",
       "discoverLinksBefore": "اكتشف ",
@@ -169,6 +193,7 @@
     "titleHighlight": "عملاؤنا",
     "subtitle": "اطّلع على آراء عملائنا على Google. احجز بثقة.",
     "loading": "جاري تحميل الآراء…",
+    "loadError": "تعذر تحميل الآراء. يرجى المحاولة لاحقاً.",
     "noReviews": "ستظهر الآراء هنا بعد إعداد واجهة API.",
     "seeOnGoogle": "عرض الآراء على Google",
     "seeOnGoogleA11y": "عرض كل الآراء على خرائط Google (نافذة جديدة)",
@@ -179,44 +204,19 @@
     "disclaimer": "آراء Google — Rabat Transfert Maroc. الآراء تُدار بواسطة Google.",
     "ariaLabel": "آراء عملاء Google — Rabat Transfert"
   },
+  "homeFaq": {
+    "label": "أسئلة شائعة",
+    "title": "تاكسي مطار الرباط — إجابات سريعة",
+    "aiLead": "باختصار",
+    "linksAria": "صفحات النقل ذات الصلة",
+    "linkAirport": "تاكسي مطار الرباط (RBA)",
+    "linkRabat": "تاكسي الرباط",
+    "linkCasa": "تاكسي الرباط ↔ الدار البيضاء",
+    "linkChauffeur": "سائق خاص الرباط"
+  },
   "contact": {
     "label": "اتصل بنا",
-    "title": "احجز",
-    "titleHighlight": "نقلك المميز",
-    "subtitle": "املأ النموذج أدناه وسيتصل بك فريقنا في أقرب وقت ممكن",
-    "form": {
-      "name": "الاسم الكامل *",
-      "namePlaceholder": "مثال: أحمد العلوي",
-      "email": "البريد الإلكتروني (اختياري)",
-      "emailPlaceholder": "name@example.com",
-      "phone": "رقم الهاتف",
-      "phonePlaceholder": "+212 6XX XX XX XX",
-      "flightNumber": "رقم الرحلة",
-      "flightNumberPlaceholder": "مثال: AF1234",
-      "dateTimeGroup": "تاريخ ووقت الرحلة",
-      "adultsCount": "عدد البالغين",
-      "departure": "نقطة الانطلاق",
-      "departurePlaceholder": "مثال: مطار الرباط-سلا، عنوان الفندق…",
-      "destination": "الوجهة",
-      "destinationPlaceholder": "مثال: وسط الرباط، الدار البيضاء…",
-      "baggage": "الأمتعة",
-      "baggagePlaceholder": "مثال: حقيبتان + حقيبة يد",
-      "service": "نوع الخدمة",
-      "servicePlaceholder": "اختر خدمة",
-      "serviceOptions": {
-        "airport": "نقل المطار",
-        "taxi": "خدمة التاكسي",
-        "tourist": "النقل السياحي"
-      },
-      "message": "رسالتك (اختياري)",
-      "messagePlaceholder": "كيف يمكننا مساعدتك؟",
-      "characters": "حرف",
-      "send": "إرسال الرسالة",
-      "sending": "جاري الإرسال...",
-      "success": "تم إرسال الرسالة بنجاح!",
-      "error": "خطأ في الإرسال. يرجى المحاولة مرة أخرى.",
-      "whatsappMessage": "مرحباً Rabat Transfert،\nأريد حجزاً:\n*الاسم*: {name}\n*الهاتف*: {phone}\n*البريد*: {email}\n*الخدمة*: {service}\n*الانطلاق*: {departure}\n*الوجهة*: {destination}\n*رقم الرحلة*: {flightNumber}\n*تاريخ الرحلة*: {dateCourse}\n*وقت الرحلة*: {dateArriver}\n*البالغون*: {adultsCount}\n*الأمتعة*: {baggage}\n*الرسالة*: {message}"
-    },
+    "title": "احجز نقل مطار الرباط",
     "info": {
       "phone": {
         "title": "الهاتف",
@@ -231,6 +231,7 @@
         "subtitle": "انقر لإرسال بريد إلكتروني"
       }
     },
+    "paymentMethods": "طرق الدفع المقبولة",
     "mapTitle": "اعثر علينا على الخريطة",
     "emailCta": {
       "title": "اتصل بنا عبر البريد الإلكتروني",
@@ -267,8 +268,8 @@
     "legal": "إشعار قانوني",
     "sitemap": "خريطة الموقع",
     "developedBy": "طور بواسطة",
-    "developerLinkLabel": "عبد العزيز الحاتوت",
-    "developerLinkAria": "زيارة موقع عبد العزيز الحاتوت، مطوّر ويب مستقل"
+    "developerLinkLabel": "abdelazizelhathout.com",
+    "developerLinkAria": "زيارة abdelazizelhathout.com، مطوّر ويب مستقل"
   },
   "whatsappQuick": {
     "title": "واتساب",

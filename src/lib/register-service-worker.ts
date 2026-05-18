@@ -13,7 +13,16 @@ function isSecureContext(): boolean {
 export function registerServiceWorker(): void {
     if (typeof window === 'undefined' || !('serviceWorker' in navigator)) return;
     if (!isSecureContext()) return;
-    if (!import.meta.env.PROD && import.meta.env.VITE_PWA_SW_DEV !== '1') return;
+    const isProd =
+        (typeof import.meta !== 'undefined' &&
+            (import.meta as ImportMeta & { env?: { PROD?: boolean; VITE_PWA_SW_DEV?: string } }).env
+                ?.PROD) ||
+        process.env.NODE_ENV === 'production';
+    const swDev =
+        (typeof import.meta !== 'undefined' &&
+            (import.meta as ImportMeta & { env?: { VITE_PWA_SW_DEV?: string } }).env
+                ?.VITE_PWA_SW_DEV) === '1';
+    if (!isProd && !swDev) return;
 
     const run = () => {
         navigator.serviceWorker

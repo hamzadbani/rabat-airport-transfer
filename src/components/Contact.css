@@ -63,7 +63,7 @@
 /* Section Header */
 .contact-header {
     text-align: center;
-    margin-bottom: 5rem;
+    margin-bottom: 3rem;
 }
 
 .contact-label {
@@ -109,6 +109,26 @@
     min-width: 0;
     max-width: 100%;
     overflow: hidden;
+}
+
+.contact-payment-methods {
+    margin-top: 2.5rem;
+    padding-top: 2rem;
+    border-top: 1px solid rgba(0, 0, 0, 0.08);
+}
+
+.contact-content--info-only {
+    grid-template-columns: 1fr;
+    max-width: 960px;
+    margin: 0 auto;
+    width: 100%;
+}
+
+.contact-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 1.25rem;
+    width: 100%;
 }
 
 /* Contact Form */
@@ -300,15 +320,6 @@
     }
 }
 
-.contact-info-wrapper {
-    display: flex;
-    flex-direction: column;
-    gap: 1.5rem;
-    min-width: 0;
-    max-width: 100%;
-    overflow: hidden;
-}
-
 .contact-info-card {
     background: #ffffff;
     border: 1px solid #f0f0f0;
@@ -382,34 +393,45 @@
     margin: 0;
 }
 
-/* Google Maps embed */
-.contact-map-wrapper {
-    margin-top: 1.5rem;
+.contact-info-icon--whatsapp {
+    background: rgba(37, 211, 102, 0.12);
+    color: #128c7e;
 }
 
-.contact-map-title {
-    font-size: 0.95rem;
-    font-weight: 700;
-    color: var(--color-gray);
-    margin-bottom: 1rem;
-    text-transform: uppercase;
-    letter-spacing: 1px;
+.contact-info-card--maps {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 1rem;
+    padding: 1.25rem;
+    cursor: default;
+}
+
+.contact-info-card--maps:hover {
+    transform: none;
+}
+
+.contact-info-card__maps-header {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.contact-info-card__maps-header .contact-info-title {
+    margin-bottom: 0;
 }
 
 .contact-map-embed {
     position: relative;
     width: 100%;
-    border-radius: 20px;
+    border-radius: 12px;
     overflow: hidden;
     border: 1px solid #f0f0f0;
-    box-shadow: 0 10px 30px rgba(10, 25, 47, 0.04);
 }
 
 .contact-map-embed iframe {
     display: block;
     width: 100%;
-    height: 300px;
-    min-height: 250px;
+    height: 220px;
     border: 0;
 }
 
@@ -540,6 +562,14 @@
 @media (max-width: 640px) {
     .contact-form {
         grid-template-columns: 1fr;
+    }
+
+    .contact-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .contact-info-card {
+        padding: 1.5rem;
     }
 }
 

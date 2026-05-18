@@ -29,19 +29,25 @@ const SEO = () => {
         // SEO content (title 50-60 chars, description 120-160 chars; keywords in title/meta/headings)
         const seoContent = {
             fr: {
-                title: 'Rabat Transfert | Transport premium & taxi touristique | Maroc',
-                description: 'Chauffeur privé et transport de luxe au Maroc. Transferts aéroport Rabat, Casablanca, Marrakech. Transport touristique. Réservez 24/7.',
-                keywords: 'transport de luxe maroc, services de transport de luxe au maroc, voitures de luxe avec chauffeur, chauffeur privé maroc, transport touristique maroc, transfert aéroport casablanca, taxi aéroport maroc, navette aéroport, Mercedes chauffeur maroc, réservation chauffeur privé, VIP transport maroc, Casablanca Marrakech Rabat',
+                title: 'Taxi Rabat Aéroport | Transfert RBA 24/7 — Prix Fixe',
+                description:
+                    'Taxi Rabat aéroport Rabat-Salé (RBA), chauffeur privé et transfert 24/7. Prix annoncé avant départ — Rabat, Salé, Casablanca. Réservation WhatsApp.',
+                keywords:
+                    'taxi rabat aéroport, transfert aeroport rabat, taxi rabat, chauffeur privé rabat, rabat airport transfer, transport aeroport rabat, taxi aeroport rabat prix fixe',
             },
             en: {
-                title: 'Rabat Transfert | Premium transport & tourist taxi | Morocco',
-                description: 'Private chauffeur and luxury transport in Morocco. Airport transfers Rabat, Casablanca, Marrakech. Tourist and business trips. Book 24/7.',
-                keywords: 'luxury transport morocco, luxury chauffeur service morocco, private chauffeur morocco, tourist transport morocco, airport transfer casablanca, taxi airport morocco, Mercedes chauffeur morocco, VIP transport morocco, Casablanca Marrakech Rabat',
+                title: 'Rabat Airport Taxi | RBA Transfer 24/7 — Fixed Quote',
+                description:
+                    'Rabat-Salé Airport (RBA) taxi & private transfer 24/7. Quoted fare before pickup — Rabat, Salé, Casablanca. Book on WhatsApp.',
+                keywords:
+                    'rabat airport taxi, rabat airport transfer, rabat taxi, private chauffeur rabat, RBA transfer, rabat airport transportation',
             },
             ar: {
-                title: 'Rabat Transfert | نقل مميز وتاكسي سياحي | المغرب',
-                description: 'سائق خاص وسيارات فاخرة في المغرب. نقل مميز، نقل مطار الرباط-سلا والدار البيضاء ومراكش. نقل سياحي واحترافي. حجز 24/7.',
-                keywords: 'نقل فاخر المغرب, خدمات نقل فاخر المغرب, سيارات فاخرة مع سائق, سائق خاص المغرب, نقل سياحي المغرب, نقل مطار الدار البيضاء, تاكسي مطار المغرب, مرسيدس سائق المغرب, الدار البيضاء مراكش الرباط',
+                title: 'تاكسي مطار الرباط | نقل RBA 24/7 — سعر ثابت',
+                description:
+                    'تاكسي مطار الرباط-سلا (RBA) وسائق خاص 24/7. سعر معلن قبل الانطلاق — الرباط، سلا، الدار البيضاء. احجز عبر واتساب.',
+                keywords:
+                    'تاكسي مطار الرباط, نقل مطار الرباط سلا, تاكسي الرباط, سائق خاص الرباط, نقل مطار الرباط',
             },
         };
 
@@ -81,7 +87,7 @@ const SEO = () => {
             ? 'Luxury transport service in Morocco since 2009. Private chauffeur, Mercedes & BMW. Airport transfers, tourist transport. Casablanca, Marrakech, Rabat. 24/7.'
             : language === 'ar'
                 ? 'خدمة نقل فاخر في المغرب منذ 2009. سائق خاص، مرسيدس وبي إم دبليو. نقل المطار، النقل السياحي. الدار البيضاء، مراكش، الرباط. 24/7.'
-                : 'Services de transport de luxe au Maroc depuis 2009. Chauffeur privé, Mercedes & BMW. Transferts aéroport, transport touristique. Casablanca, Marrakech, Rabat. 24/7.',
+                : 'Taxi aéroport Rabat-Salé et chauffeur privé à Rabat depuis 2009. Transfert 24/7, tarif annoncé. Rabat, Salé, Casablanca, Marrakech.',
         url: 'https://taxirabatairoport.com/',
         telephone: '+212674545939',
         email: 'Taxi.toursrabat@gmail.com',

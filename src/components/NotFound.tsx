@@ -18,13 +18,13 @@ const NotFound = () => {
           <Link to="/#services" className="not-found-btn not-found-btn-secondary">
             {t('notFound.services')}
           </Link>
-          <Link to="/#contact" className="not-found-btn not-found-btn-secondary">
+          <Link to="/" className="not-found-btn not-found-btn-secondary">
             {t('notFound.contact')}
           </Link>
         </nav>
         <p className="not-found-help">
           {t('notFound.helpBefore')}
-          <Link to="/#contact" className="not-found-help-link">{t('notFound.reportLink')}</Link>
+          <Link to="/" className="not-found-help-link">{t('notFound.reportLink')}</Link>
           {t('notFound.helpAfter')}
         </p>
       </div>

@@ -1,12 +1,13 @@
-import type { MouseEvent } from 'react';
 import { ArrowRight, Car } from 'lucide-react';
 import { useLanguage } from '../contexts/useLanguage';
-import casablancaImg from '../assets/casablanca.jpg';
+import { handleContactClick } from '../lib/scroll-to-contact';
 import {
     SERVICES_DAY_TRIP_IMAGE_URL,
     SERVICES_TOURS_IMAGE_URL,
     SERVICES_TRANSFER_AIRPORT_IMAGE_URL,
+    SERVICES_TRANSFER_CITIES_IMAGE_URL,
 } from '../constants/servicesMedia';
+import LazyImage from './LazyImage';
 import './Services.css';
 
 type ServiceSlug = 'day-trip' | 'tours' | 'transfer-airport' | 'transfer-cities';
@@ -42,20 +43,9 @@ const Services = () => {
             slug: 'transfer-cities',
             titleKey: 'services.transferCities.title',
             descriptionKey: 'services.transferCities.description',
-            image: casablancaImg,
+            image: SERVICES_TRANSFER_CITIES_IMAGE_URL,
         },
     ];
-
-    const scrollToContact = (e: MouseEvent<HTMLAnchorElement>) => {
-        e.preventDefault();
-        const el = document.getElementById('contact');
-        if (el) {
-            el.scrollIntoView({ behavior: 'smooth' });
-            window.history.pushState(null, '', '#contact');
-        } else {
-            window.location.hash = 'contact';
-        }
-    };
 
     return (
         <section className="services-section" id="services" aria-label={t('services.ariaLabel')}>
@@ -78,11 +68,11 @@ const Services = () => {
                             className="services-card"
                         >
                             <div className="services-card__image-wrap">
-                                <img
+                                <LazyImage
                                     src={service.image}
                                     alt={t(service.titleKey)}
                                     className="services-card__image"
-                                    loading="lazy"
+                                    rootMargin="320px"
                                 />
                             </div>
                             <div className="services-card__body">
@@ -92,7 +82,7 @@ const Services = () => {
                                 </div>
                                 <h3 className="services-card__name">{t(service.titleKey)}</h3>
                                 <p className="services-card__desc">{t(service.descriptionKey)}</p>
-                                <a href="#contact" className="services-card__link" onClick={scrollToContact}>
+                                <a href="/" className="services-card__link" onClick={handleContactClick}>
                                     {t('services.readMore')}
                                     <ArrowRight className="services-card__link-icon" size={18} aria-hidden />
                                 </a>

@@ -9,3 +9,7 @@ export const SERVICES_TOURS_IMAGE_URL =
 /** Services grid — card 3 (aéroport). Source: Google user content CDN */
 export const SERVICES_TRANSFER_AIRPORT_IMAGE_URL =
     'https://lh3.googleusercontent.com/gps-cs-s/APNQkAGMyAr_QR676LvD9FyKDOQw31g39O1sU4ZsJarCcSoAKxPS_teoXVDvjhLVCwVotVw9WnD2qxII60LULKYlLwdLGOyyIOE3nZdSQER8PfUWjUB0WJwHccYzrWIWcTEwuCzqtt-AeOvN3DOw=s1360-w1360-h1020-rw';
+
+/** Services grid — card 4 (inter-villes). Source: moroccovtc.com */
+export const SERVICES_TRANSFER_CITIES_IMAGE_URL =
+    'https://moroccovtc.com/assets/morocco-vtc-hero.jpg';

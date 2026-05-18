@@ -1,7 +1,10 @@
 import { useState } from 'react';
 import { Award, Clock, ArrowRight, Star, ShieldCheck } from 'lucide-react';
 import { useLanguage } from '../contexts/useLanguage';
+import { handleContactClick } from '../lib/scroll-to-contact';
 import driverImg from '../assets/client-happy.jpg';
+import { assetUrl } from '../lib/asset-url';
+import LazyImage from './LazyImage';
 import './About.css';
 
 const About = () => {
@@ -30,7 +33,11 @@ const About = () => {
             {/* Split Editorial Layout */}
             <div className="about-editorial container">
                 <div className="about-editorial-image">
-                    <img src={driverImg} alt="Chauffeur professionnel Rabat" loading="lazy" />
+                    <LazyImage
+                        src={assetUrl(driverImg)}
+                        alt={t('about.imageAlt')}
+                        rootMargin="280px"
+                    />
                     <div className="about-editorial-experience">
                         <span className="number">15</span>
                         <span className="text">Années<br />d'expérience</span>
@@ -64,7 +71,7 @@ const About = () => {
                         "{t('about.excellence.quote')}"
                     </blockquote>
 
-                    <a href="#contact" className="about-btn-modern">
+                    <a href="/" className="about-btn-modern" onClick={handleContactClick}>
                         {t('navbar.reserve')} <ArrowRight size={18} />
                     </a>
                 </div>
@@ -82,30 +89,32 @@ const About = () => {
                 </div>
             </div>
 
-            {/* Asymmetrical Why Choose Us */}
+            {/* Why Choose Us — compact cards */}
             <div className="about-why-modern container">
                 <div className="why-header-modern">
                     <h2>
-                        {t('about.whyChoose.title')} <br />
+                        {t('about.whyChoose.title')}{' '}
                         <span className="text-orange">{t('about.whyChoose.titleHighlight')}?</span>
                     </h2>
                 </div>
 
                 <div className="why-cards-modern">
                     <div className="why-card-modern">
-                        <div className="why-icon-modern"><ShieldCheck size={32} /></div>
+                        <div className="why-icon-modern"><ShieldCheck size={18} strokeWidth={2.25} /></div>
                         <h3>{t('about.whyChoose.security.title')}</h3>
                         <p>{t('about.whyChoose.security.description')}</p>
                     </div>
 
-                    <div className="why-card-modern mt-large">
-                        <div className="why-icon-modern"><Award size={32} /></div>
+                    <div className="why-card-modern">
+                        <div className="why-icon-modern">
+                            <Award size={18} strokeWidth={2.25} aria-hidden />
+                        </div>
                         <h3>{t('about.whyChoose.quality.title')}</h3>
                         <p>{t('about.whyChoose.quality.description')}</p>
                     </div>
 
                     <div className="why-card-modern">
-                        <div className="why-icon-modern"><Clock size={32} /></div>
+                        <div className="why-icon-modern"><Clock size={18} strokeWidth={2.25} aria-hidden /></div>
                         <h3>{t('about.whyChoose.reference.title')}</h3>
                         <p>{t('about.whyChoose.reference.description')}</p>
                     </div>
@@ -133,8 +142,17 @@ const About = () => {
                         <p>{t('about.seo.p5')}</p>
                         <p>{t('about.seo.p6')}</p>
                         <p>
-                            Visitez la section <a href="#services">{t('navbar.services')}</a> ou découvrez nos{' '}
-                            <a href="#tarifs">{t('navbar.pricing')}</a>.
+                            <a href="/taxi-rabat-aeroport/">Taxi Rabat aéroport (RBA)</a>
+                            {' · '}
+                            <a href="/taxi-rabat/">Taxi Rabat</a>
+                            {' · '}
+                            <a href="/rabat-casablanca-taxi/">Rabat ↔ Casablanca</a>
+                            {' · '}
+                            <a href="/chauffeur-prive-rabat/">Chauffeur privé Rabat</a>
+                            {' — '}
+                            <a href="#services">{t('navbar.services')}</a>
+                            {' · '}
+                            <a href="#tarifs">{t('navbar.pricing')}</a>
                         </p>
                     </div>
                 )}

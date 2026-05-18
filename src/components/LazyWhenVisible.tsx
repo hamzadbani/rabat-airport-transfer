@@ -7,10 +7,7 @@ type Props = {
   minHeight?: string | number
   /** IntersectionObserver rootMargin – load a bit before section enters view */
   rootMargin?: string
-  /**
-   * If set, mount the section when `window.location.hash` starts with this value
-   * (e.g. '#contact') so `<a href="#contact">` works before the user scrolls there.
-   */
+  /** @deprecated Hash-based eager loading removed; kept for API compatibility. */
   eagerForHashPrefix?: string
 }
 

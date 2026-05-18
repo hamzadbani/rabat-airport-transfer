@@ -1,10 +1,10 @@
 import { MapPin, Phone, Mail, Clock, Facebook, Instagram, Linkedin } from 'lucide-react';
 import { useLanguage } from '../contexts/useLanguage';
+import { handleContactClick } from '../lib/scroll-to-contact';
 import ObfuscatedEmail, { CONTACT_EMAIL_ENCODED, ObfuscatedEmailDisplay } from './ObfuscatedEmail';
 import ShareButtons from './ShareButtons';
 import { SITE_LOGO_PATH } from '../constants/siteLogo';
-import paypalLogo from '../assets/paypal.png';
-import payoneerLogo from '../assets/payonner.png';
+import LazyImage from './LazyImage';
 import './Footer.css';
 
 const Footer = () => {
@@ -17,7 +17,7 @@ const Footer = () => {
         { name: t('navbar.reviews'), href: '#avis' },
         { name: t('navbar.services'), href: '#services' },
         { name: t('navbar.pricing'), href: '#tarifs' },
-        { name: t('navbar.contact'), href: '#contact' },
+        { name: t('navbar.contact'), href: '/' },
     ];
 
     const serviceLinks = [
@@ -67,7 +67,14 @@ const Footer = () => {
                 <div className="footer-main">
                     {/* Company Info */}
                     <div className="footer-column footer-about">
-                        <img src={SITE_LOGO_PATH} alt="Taxi Rabat Airport — Rabat Transfert Aéroport" className="footer-logo" width="358" height="102" loading="lazy" />
+                        <LazyImage
+                            src={SITE_LOGO_PATH}
+                            alt="Taxi Rabat Airport — Rabat Transfert Aéroport"
+                            className="footer-logo"
+                            width={358}
+                            height={102}
+                            rootMargin="400px"
+                        />
                         <h3 className="footer-company-name">Rabat Transfert Aéroport</h3>
                         <p className="footer-description">
                             {t('footer.description')}
@@ -97,7 +104,12 @@ const Footer = () => {
                         <ul className="footer-links">
                             {quickLinks.map((link) => (
                                 <li key={link.name}>
-                                    <a href={link.href}>{link.name}</a>
+                                    <a
+                                        href={link.href}
+                                        onClick={link.href === '/' ? handleContactClick : undefined}
+                                    >
+                                        {link.name}
+                                    </a>
                                 </li>
                             ))}
                         </ul>
@@ -152,38 +164,6 @@ const Footer = () => {
                 <div className="footer-share">
                     <h4 className="footer-share-title">{t('footer.share')}</h4>
                     <ShareButtons className="footer-share-buttons" />
-                </div>
-
-                {/* Payment Methods */}
-                <div className="footer-payment">
-                    <h4 className="footer-payment-title">{t('footer.paymentMethods')}</h4>
-                    <div className="footer-payment-methods">
-                        <div className="footer-payment-item" title="Visa">
-                            <div className="payment-icon payment-visa">
-                                <span>VISA</span>
-                            </div>
-                            <span>Visa</span>
-                        </div>
-                        <div className="footer-payment-item" title="Mastercard">
-                            <div className="payment-icon payment-mastercard">
-                                <div className="mc-circle mc-circle-left"></div>
-                                <div className="mc-circle mc-circle-right"></div>
-                            </div>
-                            <span>Mastercard</span>
-                        </div>
-                        <div className="footer-payment-item" title="PayPal">
-                            <div className="payment-icon no-bg">
-                                <img src={paypalLogo} alt="Paiement sécurisé PayPal - Rabat Transfert Aéroport" className="payment-img" width="80" height="32" loading="lazy" />
-                            </div>
-                            <span>PayPal</span>
-                        </div>
-                        <div className="footer-payment-item" title="Payoneer">
-                            <div className="payment-icon no-bg">
-                                <img src={payoneerLogo} alt="Paiement Payoneer - Rabat Transfert Aéroport" className="payment-img" width="80" height="32" loading="lazy" />
-                            </div>
-                            <span>Payoneer</span>
-                        </div>
-                    </div>
                 </div>
 
                 {/* Footer Bottom */}

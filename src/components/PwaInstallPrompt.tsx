@@ -53,7 +53,7 @@ export function PwaInstallPrompt() {
     });
 
     useEffect(() => {
-        if (import.meta.env.DEV) {
+        if (process.env.NODE_ENV === 'development') {
             return;
         }
         const onBip = (e: Event) => {
