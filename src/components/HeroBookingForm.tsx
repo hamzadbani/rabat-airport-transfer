@@ -1,24 +1,20 @@
-import { useEffect, useState } from 'react';
+import { useState, type ReactNode } from 'react';
 import {
     ArrowLeftRight,
     ArrowRight,
     Baby,
     Calendar,
     Check,
+    ChevronDown,
     Clock,
     Luggage,
-    Phone,
+    MapPin,
+    Plane,
     Plus,
-    Search,
-    User,
     Users,
     X,
 } from 'lucide-react';
 import type { LucideIcon } from 'lucide-react';
-import {
-    getDefaultDeparture,
-    isDefaultDepartureValue,
-} from '../constants/booking-defaults';
 import { useLanguage } from '../contexts/useLanguage';
 import {
     defaultTripDateTime,
@@ -26,6 +22,8 @@ import {
     splitDatetimeLocal,
 } from '../lib/booking-draft';
 import './HeroBookingForm.css';
+
+const FORM_ID = 'hero-booking';
 
 function BookingField({
     label,
@@ -35,7 +33,7 @@ function BookingField({
 }: {
     label: string;
     optionalLabel?: string;
-    children: React.ReactNode;
+    children: ReactNode;
     className?: string;
 }) {
     return (
@@ -59,6 +57,7 @@ function NumberStepper({
     onChange,
     min,
     max,
+    optionalLabel,
 }: {
     id: string;
     label: string;
@@ -67,11 +66,12 @@ function NumberStepper({
     onChange: (next: number) => void;
     min: number;
     max: number;
+    optionalLabel?: string;
 }) {
     const clamp = (n: number) => Math.max(min, Math.min(max, n));
 
     return (
-        <BookingField label={label} className="hero-booking__field--stepper">
+        <BookingField label={label} optionalLabel={optionalLabel} className="hero-booking__field--stepper">
             <div className="hero-booking__stepper" role="group" aria-label={label}>
                 <span className="hero-booking__stepper-icon" aria-hidden>
                     <Icon size={18} />
@@ -118,21 +118,16 @@ function NumberStepper({
 }
 
 const HeroBookingForm = () => {
-    const { language, t } = useLanguage();
-    const [departure, setDeparture] = useState(() => getDefaultDeparture(language));
-
-    useEffect(() => {
-        const nextDefault = getDefaultDeparture(language);
-        setDeparture((current) =>
-            current.trim() === '' || isDefaultDepartureValue(current) ? nextDefault : current,
-        );
-    }, [language]);
+    const { t } = useLanguage();
+    const [departure, setDeparture] = useState('');
     const [destination, setDestination] = useState('');
-    const [tripDateTime, setTripDateTime] = useState(defaultTripDateTime);
+    const [tripDateTime, setTripDateTime] = useState(() => defaultTripDateTime());
     const [returnDateTime, setReturnDateTime] = useState('');
-    const [showReturn, setShowReturn] = useState(false);
+    const [tripMode, setTripMode] = useState<'one_way' | 'round_trip'>('one_way');
+    const [optionalOpen, setOptionalOpen] = useState(false);
     const [fullName, setFullName] = useState('');
     const [phone, setPhone] = useState('');
+    const [flightNumber, setFlightNumber] = useState('');
     const [adultsCount, setAdultsCount] = useState(1);
     const [childrenCount, setChildrenCount] = useState(0);
     const [baggageCount, setBaggageCount] = useState(0);
@@ -141,6 +136,8 @@ const HeroBookingForm = () => {
     const { date: tripDate, time: tripTime } = splitDatetimeLocal(tripDateTime);
     const { date: returnDate, time: returnTime } = splitDatetimeLocal(returnDateTime);
     const fromValid = departure.trim().length > 2;
+    const toValid = destination.trim().length > 2;
+    const showReturn = tripMode === 'round_trip';
 
     const swapLocations = () => {
         setDeparture(destination);
@@ -150,13 +147,15 @@ const HeroBookingForm = () => {
     const handleSearch = (e: React.FormEvent) => {
         e.preventDefault();
         const { date: dateCourse, time: dateArriver } = splitDatetimeLocal(tripDateTime);
-        const ret = showReturn && returnDateTime ? splitDatetimeLocal(returnDateTime) : { date: '', time: '' };
+        const ret =
+            showReturn && returnDateTime ? splitDatetimeLocal(returnDateTime) : { date: '', time: '' };
         let message = t('hero.booking.whatsappMessage');
         message = message
             .replace('{fullName}', fullName.trim() || '—')
             .replace('{phone}', phone.trim() || '—')
             .replace('{departure}', departure.trim() || 'N/A')
             .replace('{destination}', destination.trim() || 'N/A')
+            .replace('{flightNumber}', flightNumber.trim() || '—')
             .replace('{dateCourse}', dateCourse || 'N/A')
             .replace('{dateArriver}', dateArriver || 'N/A')
             .replace('{returnDate}', ret.date || 'N/A')
@@ -169,20 +168,27 @@ const HeroBookingForm = () => {
     };
 
     return (
-        <form className="hero-booking" onSubmit={handleSearch} aria-label={t('hero.booking.aria')}>
+        <form
+            id={FORM_ID}
+            className={`hero-booking${optionalOpen ? ' hero-booking--expanded' : ''}`}
+            onSubmit={handleSearch}
+            aria-label={t('hero.booking.aria')}
+        >
             <div className="hero-booking__row hero-booking__row--locations">
                 <BookingField label={t('hero.booking.from')}>
-                    <div className="hero-booking__input hero-booking__input--location">
-                        <Search size={18} className="hero-booking__icon" aria-hidden />
+                    <div className="hero-booking__input">
+                        <MapPin size={18} className="hero-booking__icon" aria-hidden />
                         <input
+                            id={`${FORM_ID}-departure`}
                             type="text"
                             name="departure"
                             value={departure}
                             onChange={(e) => setDeparture(e.target.value)}
-                            autoComplete="off"
+                            placeholder={t('hero.booking.fromPlaceholder')}
+                            autoComplete="street-address"
                             required
                         />
-                        {fromValid && <Check size={18} className="hero-booking__valid" aria-hidden />}
+                        {fromValid ? <Check size={18} className="hero-booking__valid" aria-hidden /> : null}
                     </div>
                 </BookingField>
 
@@ -196,64 +202,30 @@ const HeroBookingForm = () => {
                 </button>
 
                 <BookingField label={t('hero.booking.to')}>
-                    <div className="hero-booking__input hero-booking__input--location">
-                        <Search size={18} className="hero-booking__icon" aria-hidden />
+                    <div className="hero-booking__input">
+                        <MapPin size={18} className="hero-booking__icon" aria-hidden />
                         <input
+                            id={`${FORM_ID}-destination`}
                             type="text"
                             name="destination"
                             value={destination}
                             onChange={(e) => setDestination(e.target.value)}
                             placeholder={t('hero.booking.toPlaceholder')}
-                            autoComplete="off"
+                            autoComplete="street-address"
                             required
                         />
-                    </div>
-                </BookingField>
-            </div>
-
-            <div className="hero-booking__row hero-booking__row--contact">
-                <BookingField
-                    label={t('hero.booking.fullName')}
-                    optionalLabel={optionalLabel}
-                >
-                    <div className="hero-booking__input">
-                        <User size={18} className="hero-booking__icon" aria-hidden />
-                        <input
-                            type="text"
-                            name="fullName"
-                            value={fullName}
-                            onChange={(e) => setFullName(e.target.value)}
-                            placeholder={t('hero.booking.fullNamePlaceholder')}
-                            autoComplete="name"
-                        />
-                    </div>
-                </BookingField>
-
-                <BookingField label={t('hero.booking.phone')} optionalLabel={optionalLabel}>
-                    <div className="hero-booking__input">
-                        <Phone size={18} className="hero-booking__icon" aria-hidden />
-                        <input
-                            type="tel"
-                            name="phone"
-                            value={phone}
-                            onChange={(e) => setPhone(e.target.value)}
-                            placeholder={t('hero.booking.phonePlaceholder')}
-                            autoComplete="tel"
-                            inputMode="tel"
-                        />
+                        {toValid ? <Check size={18} className="hero-booking__valid" aria-hidden /> : null}
                     </div>
                 </BookingField>
             </div>
 
             <div className="hero-booking__row hero-booking__row--details">
-                <BookingField
-                    label={t('hero.booking.pickupDateTime')}
-                    className="hero-booking__field--datetime"
-                >
+                <BookingField label={t('hero.booking.pickupDateTime')} className="hero-booking__field--datetime">
                     <div className="hero-booking__datetime">
-                        <label className="hero-booking__datetime-part">
+                        <label className="hero-booking__datetime-part" htmlFor={`${FORM_ID}-dep-d`}>
                             <Calendar size={16} aria-hidden />
                             <input
+                                id={`${FORM_ID}-dep-d`}
                                 type="date"
                                 value={tripDate}
                                 onChange={(e) =>
@@ -263,9 +235,10 @@ const HeroBookingForm = () => {
                             />
                         </label>
                         <span className="hero-booking__datetime-divider" aria-hidden />
-                        <label className="hero-booking__datetime-part">
+                        <label className="hero-booking__datetime-part" htmlFor={`${FORM_ID}-dep-t`}>
                             <Clock size={16} aria-hidden />
                             <input
+                                id={`${FORM_ID}-dep-t`}
                                 type="time"
                                 value={tripTime}
                                 onChange={(e) =>
@@ -283,7 +256,7 @@ const HeroBookingForm = () => {
                             type="button"
                             className="hero-booking__return-add"
                             onClick={() => {
-                                setShowReturn(true);
+                                setTripMode('round_trip');
                                 if (!returnDateTime) setReturnDateTime(defaultTripDateTime());
                             }}
                             aria-label={t('hero.booking.addReturn')}
@@ -292,9 +265,10 @@ const HeroBookingForm = () => {
                         </button>
                     ) : (
                         <div className="hero-booking__return-panel">
-                            <label className="hero-booking__datetime-part hero-booking__datetime-part--compact">
+                            <label className="hero-booking__datetime-part" htmlFor={`${FORM_ID}-ret-d`}>
                                 <Calendar size={14} aria-hidden />
                                 <input
+                                    id={`${FORM_ID}-ret-d`}
                                     type="date"
                                     value={returnDate}
                                     onChange={(e) =>
@@ -304,9 +278,10 @@ const HeroBookingForm = () => {
                                     }
                                 />
                             </label>
-                            <label className="hero-booking__datetime-part hero-booking__datetime-part--compact">
+                            <label className="hero-booking__datetime-part" htmlFor={`${FORM_ID}-ret-t`}>
                                 <Clock size={14} aria-hidden />
                                 <input
+                                    id={`${FORM_ID}-ret-t`}
                                     type="time"
                                     value={returnTime}
                                     onChange={(e) =>
@@ -318,7 +293,7 @@ const HeroBookingForm = () => {
                                 type="button"
                                 className="hero-booking__return-remove"
                                 onClick={() => {
-                                    setShowReturn(false);
+                                    setTripMode('one_way');
                                     setReturnDateTime('');
                                 }}
                                 aria-label={t('hero.booking.removeReturn')}
@@ -330,34 +305,107 @@ const HeroBookingForm = () => {
                 </BookingField>
             </div>
 
-            <div className="hero-booking__row hero-booking__row--counts">
-                <NumberStepper
-                    id="passengers"
-                    label={t('hero.booking.passengers')}
-                    icon={Users}
-                    value={adultsCount}
-                    onChange={setAdultsCount}
-                    min={1}
-                    max={50}
-                />
-                <NumberStepper
-                    id="children"
-                    label={t('hero.booking.children')}
-                    icon={Baby}
-                    value={childrenCount}
-                    onChange={setChildrenCount}
-                    min={0}
-                    max={20}
-                />
-                <NumberStepper
-                    id="baggage"
-                    label={t('hero.booking.baggage')}
-                    icon={Luggage}
-                    value={baggageCount}
-                    onChange={setBaggageCount}
-                    min={0}
-                    max={20}
-                />
+            <div className="hero-booking__optional">
+                <button
+                    type="button"
+                    className="hero-booking__optional-toggle"
+                    onClick={() => setOptionalOpen((open) => !open)}
+                    aria-expanded={optionalOpen}
+                    aria-controls="hero-booking-optional-panel"
+                >
+                    <span>
+                        {optionalOpen ? t('hero.booking.hideOptional') : t('hero.booking.showOptional')}
+                    </span>
+                    <ChevronDown size={18} className="hero-booking__optional-toggle-icon" aria-hidden />
+                </button>
+                {!optionalOpen ? <p className="hero-booking__optional-hint">{t('hero.booking.optionalHint')}</p> : null}
+            </div>
+
+            <div
+                id="hero-booking-optional-panel"
+                className="hero-booking__optional-panel"
+                hidden={!optionalOpen}
+            >
+                <div className="hero-booking__row hero-booking__row--flight">
+                    <BookingField label={t('hero.booking.flightNumber')} optionalLabel={optionalLabel}>
+                        <div className="hero-booking__input">
+                            <Plane size={18} className="hero-booking__icon" aria-hidden />
+                            <input
+                                id={`${FORM_ID}-flight`}
+                                type="text"
+                                name="flightNumber"
+                                value={flightNumber}
+                                onChange={(e) => setFlightNumber(e.target.value.toUpperCase())}
+                                placeholder={t('hero.booking.flightNumberPlaceholder')}
+                                autoComplete="off"
+                                inputMode="text"
+                                maxLength={12}
+                            />
+                        </div>
+                    </BookingField>
+                </div>
+
+                <div className="hero-booking__row hero-booking__row--counts">
+                    <NumberStepper
+                        id={`${FORM_ID}-passengers`}
+                        label={t('hero.booking.passengers')}
+                        icon={Users}
+                        value={adultsCount}
+                        onChange={setAdultsCount}
+                        min={1}
+                        max={50}
+                    />
+                    <NumberStepper
+                        id={`${FORM_ID}-children`}
+                        label={t('hero.booking.children')}
+                        icon={Baby}
+                        value={childrenCount}
+                        onChange={setChildrenCount}
+                        min={0}
+                        max={20}
+                    />
+                    <NumberStepper
+                        id={`${FORM_ID}-baggage`}
+                        label={t('hero.booking.baggage')}
+                        icon={Luggage}
+                        value={baggageCount}
+                        onChange={setBaggageCount}
+                        min={0}
+                        max={20}
+                        optionalLabel={optionalLabel}
+                    />
+                </div>
+            </div>
+
+            <div className="hero-booking__row hero-booking__row--contact">
+                <BookingField label={t('hero.booking.fullName')}>
+                    <div className="hero-booking__input">
+                        <input
+                            id={`${FORM_ID}-name`}
+                            type="text"
+                            name="fullName"
+                            value={fullName}
+                            onChange={(e) => setFullName(e.target.value)}
+                            placeholder={t('hero.booking.fullNamePlaceholder')}
+                            autoComplete="name"
+                        />
+                    </div>
+                </BookingField>
+
+                <BookingField label={t('hero.booking.phone')}>
+                    <div className="hero-booking__input">
+                        <input
+                            id={`${FORM_ID}-phone`}
+                            type="tel"
+                            name="phone"
+                            value={phone}
+                            onChange={(e) => setPhone(e.target.value)}
+                            placeholder={t('hero.booking.phonePlaceholder')}
+                            autoComplete="tel"
+                            inputMode="tel"
+                        />
+                    </div>
+                </BookingField>
             </div>
 
             <div className="hero-booking__row hero-booking__row--submit">
