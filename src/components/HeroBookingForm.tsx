@@ -17,6 +17,14 @@ import {
 import type { LucideIcon } from 'lucide-react';
 import { useLanguage } from '../contexts/useLanguage';
 import {
+    BAGGAGE_TYPE_IDS,
+    defaultBaggageLines,
+    formatBaggageLinesSummary,
+    newBaggageLineId,
+    type BaggageLine,
+    type BaggageTypeId,
+} from '../lib/baggage-types';
+import {
     defaultTripDateTime,
     mergeDatetimeLocal,
     splitDatetimeLocal,
@@ -58,6 +66,7 @@ function NumberStepper({
     min,
     max,
     optionalLabel,
+    className = '',
 }: {
     id: string;
     label: string;
@@ -67,11 +76,16 @@ function NumberStepper({
     min: number;
     max: number;
     optionalLabel?: string;
+    className?: string;
 }) {
     const clamp = (n: number) => Math.max(min, Math.min(max, n));
 
     return (
-        <BookingField label={label} optionalLabel={optionalLabel} className="hero-booking__field--stepper">
+        <BookingField
+            label={label}
+            optionalLabel={optionalLabel}
+            className={`hero-booking__field--stepper ${className}`.trim()}
+        >
             <div className="hero-booking__stepper" role="group" aria-label={label}>
                 <span className="hero-booking__stepper-icon" aria-hidden>
                     <Icon size={18} />
@@ -127,11 +141,39 @@ const HeroBookingForm = () => {
     const [optionalOpen, setOptionalOpen] = useState(false);
     const [fullName, setFullName] = useState('');
     const [phone, setPhone] = useState('');
+    const [email, setEmail] = useState('');
     const [flightNumber, setFlightNumber] = useState('');
     const [adultsCount, setAdultsCount] = useState(1);
     const [childrenCount, setChildrenCount] = useState(0);
-    const [baggageCount, setBaggageCount] = useState(0);
+    const [baggageLines, setBaggageLines] = useState<BaggageLine[]>(defaultBaggageLines);
     const optionalLabel = t('hero.booking.optional');
+
+    const baggageLabel = (typeId: BaggageTypeId) => t(`hero.booking.baggageTypes.${typeId}`);
+
+    const updateBaggageLine = (
+        id: string,
+        patch: Partial<Pick<BaggageLine, 'typeId' | 'count' | 'otherDetail'>>,
+    ) => {
+        setBaggageLines((prev) => prev.map((line) => (line.id === id ? { ...line, ...patch } : line)));
+    };
+
+    const onBaggageTypeChange = (id: string, typeId: BaggageTypeId) => {
+        setBaggageLines((prev) =>
+            prev.map((line) =>
+                line.id === id
+                    ? { ...line, typeId, otherDetail: typeId === 'other' ? line.otherDetail ?? '' : '' }
+                    : line,
+            ),
+        );
+    };
+
+    const addBaggageLine = () => {
+        setBaggageLines((prev) => [...prev, { id: newBaggageLineId(), typeId: 'checked', count: 1 }]);
+    };
+
+    const removeBaggageLine = (id: string) => {
+        setBaggageLines((prev) => (prev.length <= 1 ? prev : prev.filter((line) => line.id !== id)));
+    };
 
     const { date: tripDate, time: tripTime } = splitDatetimeLocal(tripDateTime);
     const { date: returnDate, time: returnTime } = splitDatetimeLocal(returnDateTime);
@@ -153,6 +195,7 @@ const HeroBookingForm = () => {
         message = message
             .replace('{fullName}', fullName.trim() || '—')
             .replace('{phone}', phone.trim() || '—')
+            .replace('{email}', email.trim() || '—')
             .replace('{departure}', departure.trim() || 'N/A')
             .replace('{destination}', destination.trim() || 'N/A')
             .replace('{flightNumber}', flightNumber.trim() || '—')
@@ -162,7 +205,7 @@ const HeroBookingForm = () => {
             .replace('{returnTime}', ret.time || 'N/A')
             .replace('{adultsCount}', String(adultsCount))
             .replace('{childrenCount}', String(childrenCount))
-            .replace('{baggage}', String(baggageCount));
+            .replace('{baggage}', formatBaggageLinesSummary(baggageLines, baggageLabel));
         const whatsappUrl = `https://wa.me/212674545939?text=${encodeURIComponent(message)}`;
         window.open(whatsappUrl, '_blank', 'noopener,noreferrer');
     };
@@ -174,6 +217,52 @@ const HeroBookingForm = () => {
             onSubmit={handleSearch}
             aria-label={t('hero.booking.aria')}
         >
+            <div className="hero-booking__row hero-booking__row--contact">
+                <BookingField label={t('hero.booking.fullName')}>
+                    <div className="hero-booking__input">
+                        <input
+                            id={`${FORM_ID}-name`}
+                            type="text"
+                            name="fullName"
+                            value={fullName}
+                            onChange={(e) => setFullName(e.target.value)}
+                            placeholder={t('hero.booking.fullNamePlaceholder')}
+                            autoComplete="name"
+                        />
+                    </div>
+                </BookingField>
+
+                <BookingField label={t('hero.booking.phone')}>
+                    <div className="hero-booking__input">
+                        <input
+                            id={`${FORM_ID}-phone`}
+                            type="tel"
+                            name="phone"
+                            value={phone}
+                            onChange={(e) => setPhone(e.target.value)}
+                            placeholder={t('hero.booking.phonePlaceholder')}
+                            autoComplete="tel"
+                            inputMode="tel"
+                        />
+                    </div>
+                </BookingField>
+
+                <BookingField label={t('hero.booking.email')} optionalLabel={optionalLabel}>
+                    <div className="hero-booking__input">
+                        <input
+                            id={`${FORM_ID}-email`}
+                            type="email"
+                            name="email"
+                            value={email}
+                            onChange={(e) => setEmail(e.target.value)}
+                            placeholder={t('hero.booking.emailPlaceholder')}
+                            autoComplete="email"
+                            inputMode="email"
+                        />
+                    </div>
+                </BookingField>
+            </div>
+
             <div className="hero-booking__row hero-booking__row--locations">
                 <BookingField label={t('hero.booking.from')}>
                     <div className="hero-booking__input">
@@ -364,48 +453,96 @@ const HeroBookingForm = () => {
                         min={0}
                         max={20}
                     />
-                    <NumberStepper
-                        id={`${FORM_ID}-baggage`}
-                        label={t('hero.booking.baggage')}
-                        icon={Luggage}
-                        value={baggageCount}
-                        onChange={setBaggageCount}
-                        min={0}
-                        max={20}
-                        optionalLabel={optionalLabel}
-                    />
                 </div>
-            </div>
 
-            <div className="hero-booking__row hero-booking__row--contact">
-                <BookingField label={t('hero.booking.fullName')}>
-                    <div className="hero-booking__input">
-                        <input
-                            id={`${FORM_ID}-name`}
-                            type="text"
-                            name="fullName"
-                            value={fullName}
-                            onChange={(e) => setFullName(e.target.value)}
-                            placeholder={t('hero.booking.fullNamePlaceholder')}
-                            autoComplete="name"
-                        />
+                <div className="hero-booking__baggage">
+                    <span className="hero-booking__label">
+                        {t('hero.booking.baggage')}
+                        <span className="hero-booking__label-optional"> ({optionalLabel})</span>
+                    </span>
+                    <div className="hero-booking__baggage-lines">
+                        {baggageLines.map((line, index) => (
+                            <div key={line.id} className="hero-booking__baggage-line">
+                                <div className="hero-booking__baggage-line-main">
+                                    <BookingField
+                                        label={index === 0 ? t('hero.booking.baggageType') : '\u00a0'}
+                                        className="hero-booking__field--bag-type"
+                                    >
+                                        <div className="hero-booking__input hero-booking__input--select">
+                                            <Luggage size={18} className="hero-booking__icon" aria-hidden />
+                                            <select
+                                                id={`${FORM_ID}-bag-type-${line.id}`}
+                                                value={line.typeId}
+                                                onChange={(e) =>
+                                                    onBaggageTypeChange(
+                                                        line.id,
+                                                        e.target.value as BaggageTypeId,
+                                                    )
+                                                }
+                                                aria-label={t('hero.booking.baggageType')}
+                                            >
+                                                {BAGGAGE_TYPE_IDS.map((typeId) => (
+                                                    <option key={typeId} value={typeId}>
+                                                        {baggageLabel(typeId)}
+                                                    </option>
+                                                ))}
+                                            </select>
+                                        </div>
+                                    </BookingField>
+                                    <NumberStepper
+                                        id={`${FORM_ID}-bag-qty-${line.id}`}
+                                        label={index === 0 ? t('hero.booking.baggageQuantity') : '\u00a0'}
+                                        icon={Luggage}
+                                        value={line.count}
+                                        onChange={(n) => updateBaggageLine(line.id, { count: n })}
+                                        min={0}
+                                        max={20}
+                                        className="hero-booking__field--bag-qty"
+                                    />
+                                    {baggageLines.length > 1 ? (
+                                        <button
+                                            type="button"
+                                            className="hero-booking__baggage-remove"
+                                            onClick={() => removeBaggageLine(line.id)}
+                                            aria-label={t('hero.booking.baggageRemove')}
+                                        >
+                                            <X size={18} aria-hidden />
+                                        </button>
+                                    ) : null}
+                                </div>
+                                {line.typeId === 'other' ? (
+                                    <BookingField
+                                        label={t('hero.booking.baggageOtherSpecify')}
+                                        className="hero-booking__field--bag-other"
+                                    >
+                                        <div className="hero-booking__input">
+                                            <input
+                                                id={`${FORM_ID}-bag-other-${line.id}`}
+                                                type="text"
+                                                value={line.otherDetail ?? ''}
+                                                onChange={(e) =>
+                                                    updateBaggageLine(line.id, {
+                                                        otherDetail: e.target.value.slice(0, 80),
+                                                    })
+                                                }
+                                                placeholder={t('hero.booking.baggageOtherPlaceholder')}
+                                                autoComplete="off"
+                                            />
+                                        </div>
+                                    </BookingField>
+                                ) : null}
+                            </div>
+                        ))}
                     </div>
-                </BookingField>
-
-                <BookingField label={t('hero.booking.phone')}>
-                    <div className="hero-booking__input">
-                        <input
-                            id={`${FORM_ID}-phone`}
-                            type="tel"
-                            name="phone"
-                            value={phone}
-                            onChange={(e) => setPhone(e.target.value)}
-                            placeholder={t('hero.booking.phonePlaceholder')}
-                            autoComplete="tel"
-                            inputMode="tel"
-                        />
-                    </div>
-                </BookingField>
+                    <button
+                        type="button"
+                        className="hero-booking__baggage-add"
+                        onClick={addBaggageLine}
+                    >
+                        <Plus size={16} aria-hidden />
+                        <span>{t('hero.booking.baggageAdd')}</span>
+                    </button>
+                </div>
             </div>
 
             <div className="hero-booking__row hero-booking__row--submit">

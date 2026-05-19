@@ -8,6 +8,7 @@ export type BookingDraft = {
     returnDateTime?: string;
     fullName?: string;
     phone?: string;
+    email?: string;
     flightNumber?: string;
     adultsCount: string;
     childrenCount?: string;

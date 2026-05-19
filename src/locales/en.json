@@ -46,6 +46,8 @@
       "fullNamePlaceholder": "",
       "phone": "Phone number",
       "phonePlaceholder": "+212 6 00 00 00 00",
+      "email": "Email",
+      "emailPlaceholder": "you@example.com",
       "flightNumber": "Flight number",
       "flightNumberPlaceholder": "e.g. AF1234",
       "optional": "optional",
@@ -55,9 +57,21 @@
       "passengers": "Passengers",
       "children": "Children",
       "baggage": "Luggage",
+      "baggageTypes": {
+        "cabin": "Cabin bag",
+        "checked": "Checked bag",
+        "large": "Oversized",
+        "other": "Other (specify)"
+      },
+      "baggageType": "Type",
+      "baggageOtherSpecify": "Specify",
+      "baggageOtherPlaceholder": "e.g. stroller, bike, box…",
+      "baggageQuantity": "Quantity",
+      "baggageAdd": "Add luggage",
+      "baggageRemove": "Remove",
       "search": "Confirm booking",
       "swap": "Swap pickup and destination",
-      "whatsappMessage": "Hello Rabat Transfert,\nI would like to book a transfer:\n*Name*: {fullName}\n*Phone*: {phone}\n*Pickup*: {departure}\n*Destination*: {destination}\n*Flight*: {flightNumber}\n*Date*: {dateCourse}\n*Time*: {dateArriver}\n*Return date*: {returnDate}\n*Return time*: {returnTime}\n*Adults*: {adultsCount}\n*Children*: {childrenCount}\n*Luggage*: {baggage}"
+      "whatsappMessage": "Hello Rabat Transfert,\nI would like to book a transfer:\n*Name*: {fullName}\n*Phone*: {phone}\n*Email*: {email}\n*Pickup*: {departure}\n*Destination*: {destination}\n*Flight*: {flightNumber}\n*Date*: {dateCourse}\n*Time*: {dateArriver}\n*Return date*: {returnDate}\n*Return time*: {returnTime}\n*Adults*: {adultsCount}\n*Children*: {childrenCount}\n*Luggage*: {baggage}"
     }
   },
   "services": {

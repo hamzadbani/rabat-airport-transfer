@@ -46,6 +46,8 @@
       "fullNamePlaceholder": "",
       "phone": "Numéro de Téléphone",
       "phonePlaceholder": "+212 6 00 00 00 00",
+      "email": "E-mail",
+      "emailPlaceholder": "exemple@email.com",
       "flightNumber": "Numéro de Vol",
       "flightNumberPlaceholder": "ex: AF1234",
       "optional": "facultatif",
@@ -55,9 +57,21 @@
       "passengers": "Passagers",
       "children": "Enfants",
       "baggage": "Bagages",
+      "baggageTypes": {
+        "cabin": "Cabine",
+        "checked": "Soute",
+        "large": "Volumineux",
+        "other": "Autre (à préciser)"
+      },
+      "baggageType": "Type",
+      "baggageOtherSpecify": "Précisez",
+      "baggageOtherPlaceholder": "ex. poussette, vélo, carton…",
+      "baggageQuantity": "Nombre",
+      "baggageAdd": "Ajouter un bagage",
+      "baggageRemove": "Retirer",
       "search": "Confirmer la réservation",
       "swap": "Inverser départ et arrivée",
-      "whatsappMessage": "Bonjour Rabat Transfert,\nJe souhaite réserver un transfert :\n*Nom* : {fullName}\n*Téléphone* : {phone}\n*Départ* : {departure}\n*Destination* : {destination}\n*N° vol* : {flightNumber}\n*Date* : {dateCourse}\n*Heure* : {dateArriver}\n*Date retour* : {returnDate}\n*Heure retour* : {returnTime}\n*Adultes* : {adultsCount}\n*Enfants* : {childrenCount}\n*Bagages* : {baggage}"
+      "whatsappMessage": "Bonjour Rabat Transfert,\nJe souhaite réserver un transfert :\n*Nom* : {fullName}\n*Téléphone* : {phone}\n*E-mail* : {email}\n*Départ* : {departure}\n*Destination* : {destination}\n*N° vol* : {flightNumber}\n*Date* : {dateCourse}\n*Heure* : {dateArriver}\n*Date retour* : {returnDate}\n*Heure retour* : {returnTime}\n*Adultes* : {adultsCount}\n*Enfants* : {childrenCount}\n*Bagages* : {baggage}"
     }
   },
   "services": {

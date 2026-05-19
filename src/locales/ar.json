@@ -46,6 +46,8 @@
       "fullNamePlaceholder": "",
       "phone": "رقم الهاتف",
       "phonePlaceholder": "+212 6 00 00 00 00",
+      "email": "البريد الإلكتروني",
+      "emailPlaceholder": "example@email.com",
       "flightNumber": "رقم الرحلة",
       "flightNumberPlaceholder": "مثال AF1234",
       "optional": "اختياري",
@@ -55,9 +57,21 @@
       "passengers": "الركاب",
       "children": "الأطفال",
       "baggage": "الأمتعة",
+      "baggageTypes": {
+        "cabin": "حقيبة يد",
+        "checked": "مسجّلة",
+        "large": "كبيرة",
+        "other": "أخرى (حدّد)"
+      },
+      "baggageType": "النوع",
+      "baggageOtherSpecify": "حدّد النوع",
+      "baggageOtherPlaceholder": "مثال: عربة أطفال، دراجة…",
+      "baggageQuantity": "العدد",
+      "baggageAdd": "إضافة حقيبة",
+      "baggageRemove": "حذف",
       "search": "تأكيد الحجز",
       "swap": "تبديل المغادرة والوجهة",
-      "whatsappMessage": "مرحباً Rabat Transfert،\nأود حجز نقل:\n*الاسم*: {fullName}\n*الهاتف*: {phone}\n*المغادرة*: {departure}\n*الوجهة*: {destination}\n*رقم الرحلة*: {flightNumber}\n*التاريخ*: {dateCourse}\n*الوقت*: {dateArriver}\n*تاريخ العودة*: {returnDate}\n*وقت العودة*: {returnTime}\n*البالغون*: {adultsCount}\n*الأطفال*: {childrenCount}\n*الأمتعة*: {baggage}"
+      "whatsappMessage": "مرحباً Rabat Transfert،\nأود حجز نقل:\n*الاسم*: {fullName}\n*الهاتف*: {phone}\n*البريد*: {email}\n*المغادرة*: {departure}\n*الوجهة*: {destination}\n*رقم الرحلة*: {flightNumber}\n*التاريخ*: {dateCourse}\n*الوقت*: {dateArriver}\n*تاريخ العودة*: {returnDate}\n*وقت العودة*: {returnTime}\n*البالغون*: {adultsCount}\n*الأطفال*: {childrenCount}\n*الأمتعة*: {baggage}"
     }
   },
   "services": {
