@@ -35,6 +35,8 @@ jobs:
           local-dir: ./backend/
           state-name: hostinger-laravel-ftp
           log-level: minimal
+          # Removes leftover Next.js files (_next/, index.html, etc.) while keeping server-only paths below.
+          dangerous-clean-slate: true
           exclude: |
             **/.git*
             **/.env
