@@ -58,17 +58,16 @@ jobs:
           script: |
             DEPLOY_DIR="${{ secrets.HOSTINGER_SSH_DIR }}"
             if [ -z "$DEPLOY_DIR" ]; then
-              echo "HOSTINGER_SSH_DIR secret is required for SSH (absolute path on server)."
-              echo "Example: /home/u429028847/domains/taxirabatairport.com/public_html"
-              exit 1
+              DEPLOY_DIR="$HOME/public_html"
             fi
             if [ ! -d "$DEPLOY_DIR" ]; then
               echo "Deploy directory not found: $DEPLOY_DIR"
               echo "Home contents:"
               ls -la "$HOME" || true
-              ls -la "$HOME/domains" 2>/dev/null || true
+              ls -la "$HOME/public_html" 2>/dev/null || true
               exit 1
             fi
+            echo "Using deploy directory: $DEPLOY_DIR"
             cd "$DEPLOY_DIR"
             if command -v composer >/dev/null 2>&1; then
               composer install --no-dev --optimize-autoloader --no-interaction
