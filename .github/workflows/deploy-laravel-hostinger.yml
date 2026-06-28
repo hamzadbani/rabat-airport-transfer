@@ -5,6 +5,12 @@ on:
     branches:
       - main
   workflow_dispatch:
+    inputs:
+      clean_legacy_nextjs:
+        description: Force removal of legacy Next.js files (_next/, index.html) before deploy
+        required: false
+        type: boolean
+        default: false
 
 jobs:
   deploy:
@@ -24,6 +30,55 @@ jobs:
           npm ci
           npm run build
 
+      - name: Detect first FTP deploy
+        id: deploy-state
+        env:
+          FTP_HOST: ${{ secrets.HOSTINGER_HOST }}
+          FTP_USER: ${{ secrets.HOSTINGER_USERNAME }}
+          FTP_PASS: ${{ secrets.HOSTINGER_PASSWORD }}
+          FTP_PORT: ${{ secrets.HOSTINGER_PORT }}
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y lftp
+
+          if [ "${{ github.event.inputs.clean_legacy_nextjs }}" = "true" ]; then
+            echo "clean_legacy=true" >> "$GITHUB_OUTPUT"
+            echo "Legacy cleanup forced via workflow input."
+            exit 0
+          fi
+
+          if lftp -u "$FTP_USER","$FTP_PASS" -p "$FTP_PORT" "$FTP_HOST" <<'LFTP'
+          set ftp:ssl-allow true
+          set ssl:verify-certificate no
+          cd /public_html
+          ls hostinger-laravel-ftp
+          bye
+          LFTP
+          then
+            echo "clean_legacy=false" >> "$GITHUB_OUTPUT"
+            echo "Existing FTP deploy state found — incremental deploy only."
+          else
+            echo "clean_legacy=true" >> "$GITHUB_OUTPUT"
+            echo "First FTP deploy — legacy Next.js cleanup will run."
+          fi
+
+      - name: Remove legacy Next.js files (first deploy only)
+        if: steps.deploy-state.outputs.clean_legacy == 'true'
+        env:
+          FTP_HOST: ${{ secrets.HOSTINGER_HOST }}
+          FTP_USER: ${{ secrets.HOSTINGER_USERNAME }}
+          FTP_PASS: ${{ secrets.HOSTINGER_PASSWORD }}
+          FTP_PORT: ${{ secrets.HOSTINGER_PORT }}
+        run: |
+          lftp -u "$FTP_USER","$FTP_PASS" -p "$FTP_PORT" "$FTP_HOST" <<'LFTP'
+          set ftp:ssl-allow true
+          set ssl:verify-certificate no
+          cd /public_html
+          rm -rf _next
+          rm -f index.html 404.html
+          bye
+          LFTP
+
       - name: Deploy Laravel app to public_html (FTP)
         uses: SamKirkland/FTP-Deploy-Action@v4.3.5
         with:
@@ -35,8 +90,6 @@ jobs:
           local-dir: ./backend/
           state-name: hostinger-laravel-ftp
           log-level: minimal
-          # Removes leftover Next.js files (_next/, index.html, etc.) while keeping server-only paths below.
-          dangerous-clean-slate: true
           exclude: |
             **/.git*
             **/.env
