@@ -6,6 +6,7 @@ use App\Models\Driver;
 use App\Models\Organization;
 use App\Models\Reservation;
 use App\Support\ReservationFilters;
+use App\Support\ReservationNotifier;
 use Illuminate\Contracts\View\View;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Livewire\Component;
@@ -181,7 +182,8 @@ class ReservationsManager extends Component
             session()->flash('success', __('dashboard.reservations.updated'));
         } else {
             $this->authorize('create', Reservation::class);
-            Reservation::create($payload);
+            $reservation = Reservation::create($payload);
+            ReservationNotifier::notifyCreated($reservation);
             session()->flash('success', __('dashboard.reservations.created'));
         }
 

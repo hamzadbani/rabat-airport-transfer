@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Organization;
 use App\Models\Reservation;
+use App\Support\ReservationNotifier;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 
@@ -24,7 +25,7 @@ class BookingController extends Controller
 
         $datetime = $validated['date'].' '.$validated['time'].':00';
 
-        Reservation::create([
+        $reservation = Reservation::create([
             'client_name' => $validated['client_name'],
             'phone' => $validated['phone'],
             'pickup_location' => $validated['pickup_location'],
@@ -37,6 +38,8 @@ class BookingController extends Controller
             'source' => 'website',
             'organization_id' => Organization::default()->id,
         ]);
+
+        ReservationNotifier::notifyCreated($reservation);
 
         $message = implode("\n", [
             'Bonjour Taxi Rabat Airport,',

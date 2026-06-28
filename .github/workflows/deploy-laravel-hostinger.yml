@@ -2,7 +2,8 @@ name: Deploy Laravel to Hostinger
 
 on:
   push:
-    branches: ["main"]
+    branches:
+      - main
   workflow_dispatch:
 
 jobs:
@@ -20,19 +21,21 @@ jobs:
       - uses: shivammathur/setup-php@v2
         with:
           php-version: "8.3"
-          extensions: mbstring, pdo_mysql, zip
+          extensions: mbstring, pdo_mysql, zip, intl
           tools: composer:v2
 
       - name: Install & build Laravel
         working-directory: backend
         run: |
           composer install --no-dev --optimize-autoloader --no-interaction
-          cp .env.example .env
-          php artisan key:generate --force
+          printf 'APP_KEY=base64:AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=\nAPP_ENV=production\n' > .env
           npm ci
           npm run build
+          php artisan package:discover --ansi
+          php artisan view:cache
+          rm -f .env
 
-      - name: Deploy public + Laravel app (FTP)
+      - name: Deploy Laravel app (FTP)
         uses: SamKirkland/FTP-Deploy-Action@v4.3.5
         with:
           server: ${{ secrets.HOSTINGER_HOST }}
@@ -43,8 +46,11 @@ jobs:
           local-dir: ./backend/
           exclude: |
             **/.git*
+            **/.env
+            **/.env.*
             **/node_modules/**
             **/tests/**
             **/.env.example
-            **/storage/logs/**
+            **/storage/**
+            **/bootstrap/cache/**
             **/database/database.sqlite

@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use App\Models\Reservation;
+use App\Support\ReservationNotifier;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 
@@ -24,6 +25,7 @@ class ReservationController extends Controller
         $validated = $this->validatePayload($request);
         $reservation = Reservation::create($validated);
         $reservation->load(['driver', 'organization']);
+        ReservationNotifier::notifyCreated($reservation);
 
         return response()->json($this->format($reservation), 201);
     }
