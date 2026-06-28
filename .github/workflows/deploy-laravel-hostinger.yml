@@ -49,24 +49,43 @@ jobs:
 
       - name: Install Composer dependencies on server (SSH)
         uses: appleboy/ssh-action@v1.2.0
+        env:
+          SSH_DEPLOY_DIR: ${{ secrets.HOSTINGER_SSH_DIR }}
         with:
           host: ${{ secrets.HOSTINGER_SSH_HOST }}
           username: ${{ secrets.HOSTINGER_SSH_USERNAME }}
           password: ${{ secrets.HOSTINGER_SSH_PASSWORD || secrets.HOSTINGER_PASSWORD }}
           port: ${{ secrets.HOSTINGER_SSH_PORT || 65002 }}
+          envs: SSH_DEPLOY_DIR
           script_stop: true
           script: |
-            DEPLOY_DIR="${{ secrets.HOSTINGER_SSH_DIR }}"
-            if [ -z "$DEPLOY_DIR" ]; then
-              DEPLOY_DIR="$HOME/public_html"
-            fi
-            if [ ! -d "$DEPLOY_DIR" ]; then
-              echo "Deploy directory not found: $DEPLOY_DIR"
-              echo "Home contents:"
+            set -e
+            resolve_deploy_dir() {
+              candidate="$1"
+              if [ -n "$candidate" ] && [ -d "$candidate" ]; then
+                printf '%s' "$candidate"
+                return 0
+              fi
+              if [ -n "$candidate" ]; then
+                relative="${candidate#/}"
+                if [ -d "$HOME/$relative" ]; then
+                  printf '%s' "$HOME/$relative"
+                  return 0
+                fi
+              fi
+              if [ -d "$HOME/public_html" ]; then
+                printf '%s' "$HOME/public_html"
+                return 0
+              fi
+              return 1
+            }
+            DEPLOY_DIR="$(resolve_deploy_dir "$SSH_DEPLOY_DIR")" || {
+              echo "Could not resolve deploy directory."
+              echo "SSH_DEPLOY_DIR=${SSH_DEPLOY_DIR:-<empty>}"
+              echo "HOME=${HOME:-<empty>}"
               ls -la "$HOME" || true
-              ls -la "$HOME/public_html" 2>/dev/null || true
               exit 1
-            fi
+            }
             echo "Using deploy directory: $DEPLOY_DIR"
             cd "$DEPLOY_DIR"
             if command -v composer >/dev/null 2>&1; then
