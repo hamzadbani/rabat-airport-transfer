@@ -24,14 +24,14 @@ jobs:
           npm ci
           npm run build
 
-      - name: Deploy Laravel app (FTP, without vendor)
+      - name: Deploy Laravel app to public_html (FTP)
         uses: SamKirkland/FTP-Deploy-Action@v4.3.5
         with:
           server: ${{ secrets.HOSTINGER_HOST }}
           username: ${{ secrets.HOSTINGER_USERNAME }}
           password: ${{ secrets.HOSTINGER_PASSWORD }}
           port: ${{ secrets.HOSTINGER_PORT }}
-          server-dir: ${{ secrets.HOSTINGER_SERVER_DIR }}
+          server-dir: /public_html/
           local-dir: ./backend/
           state-name: hostinger-laravel-ftp
           log-level: minimal
@@ -46,71 +46,3 @@ jobs:
             **/storage/**
             **/bootstrap/cache/**
             **/database/database.sqlite
-
-      - name: Install Composer dependencies on server (SSH)
-        uses: appleboy/ssh-action@v1.2.0
-        env:
-          SSH_DEPLOY_DIR: ${{ secrets.HOSTINGER_SSH_DIR }}
-          FTP_SERVER_DIR: ${{ secrets.HOSTINGER_SERVER_DIR }}
-        with:
-          host: ${{ secrets.HOSTINGER_SSH_HOST }}
-          username: ${{ secrets.HOSTINGER_SSH_USERNAME }}
-          password: ${{ secrets.HOSTINGER_SSH_PASSWORD || secrets.HOSTINGER_PASSWORD }}
-          port: ${{ secrets.HOSTINGER_SSH_PORT || 65002 }}
-          envs: SSH_DEPLOY_DIR,FTP_SERVER_DIR
-          script_stop: true
-          script: |
-            set -e
-            normalize_dir() {
-              raw="$1"
-              [ -z "$raw" ] && return 1
-              if [ -d "$raw" ]; then
-                printf '%s' "$raw"
-                return 0
-              fi
-              rel="${raw#/}"
-              if [ -d "$HOME/$rel" ]; then
-                printf '%s' "$HOME/$rel"
-                return 0
-              fi
-              return 1
-            }
-            find_laravel_root() {
-              for raw in \
-                "$SSH_DEPLOY_DIR" \
-                "$FTP_SERVER_DIR" \
-                "$HOME/public_html" \
-                "$HOME/public_html/public_html" \
-                "$HOME/domains/taxirabatairport.com/public_html"
-              do
-                dir="$(normalize_dir "$raw" 2>/dev/null || true)"
-                [ -z "$dir" ] && continue
-                if [ -f "$dir/composer.json" ]; then
-                  printf '%s' "$dir"
-                  return 0
-                fi
-              done
-              return 1
-            }
-            DEPLOY_DIR="$(find_laravel_root)" || {
-              echo "composer.json not found after FTP deploy."
-              echo "FTP_SERVER_DIR=${FTP_SERVER_DIR:-<empty>}"
-              echo "SSH_DEPLOY_DIR=${SSH_DEPLOY_DIR:-<empty>}"
-              echo "HOME=${HOME:-<empty>}"
-              echo "--- $HOME/public_html ---"
-              ls -la "$HOME/public_html" 2>/dev/null || true
-              echo "--- $HOME/public_html/public_html ---"
-              ls -la "$HOME/public_html/public_html" 2>/dev/null || true
-              exit 1
-            }
-            echo "Using Laravel root: $DEPLOY_DIR"
-            cd "$DEPLOY_DIR"
-            if command -v composer >/dev/null 2>&1; then
-              composer install --no-dev --optimize-autoloader --no-interaction
-            else
-              php ~/composer.phar install --no-dev --optimize-autoloader --no-interaction
-            fi
-            php artisan package:discover --ansi
-            php artisan config:cache
-            php artisan route:cache
-            php artisan view:cache
