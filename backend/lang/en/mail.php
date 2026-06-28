@@ -1,0 +1,37 @@
+<?php
+
+return [
+    'new_reservation' => [
+        'subject' => 'New reservation — :client (:time)',
+        'heading' => 'New reservation',
+        'intro' => 'A new booking has just been recorded.',
+        'client' => 'Client',
+        'phone' => 'Phone',
+        'pickup' => 'Pickup',
+        'dropoff' => 'Drop-off',
+        'datetime' => 'Date / time',
+        'flight' => 'Flight no.',
+        'passengers' => 'Passengers',
+        'source' => 'Source',
+        'organization' => 'Organization',
+        'driver' => 'Driver',
+        'notes' => 'Notes',
+        'open_dashboard' => 'Open dashboard',
+    ],
+    'reservation_reminder' => [
+        'subject' => 'Reservation reminder — :client (:time)',
+        'heading' => 'Reservation reminder',
+        'intro' => 'A trip is scheduled in about :minutes minutes.',
+        'client' => 'Client',
+        'phone' => 'Phone',
+        'pickup' => 'Pickup',
+        'dropoff' => 'Drop-off',
+        'datetime' => 'Date / time',
+        'flight' => 'Flight no.',
+        'passengers' => 'Passengers',
+        'driver' => 'Driver',
+        'notes' => 'Notes',
+        'open_dashboard' => 'Open dashboard',
+        'footer' => 'This reminder is sent automatically based on Profile → Reminders settings.',
+    ],
+];

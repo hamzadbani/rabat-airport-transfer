@@ -1,0 +1,37 @@
+<?php
+
+return [
+    'new_reservation' => [
+        'subject' => 'Nouvelle réservation — :client (:time)',
+        'heading' => 'Nouvelle réservation',
+        'intro' => 'Une nouvelle demande de réservation vient d\'être enregistrée.',
+        'client' => 'Client',
+        'phone' => 'Téléphone',
+        'pickup' => 'Départ',
+        'dropoff' => 'Arrivée',
+        'datetime' => 'Date / heure',
+        'flight' => 'N° vol',
+        'passengers' => 'Passagers',
+        'source' => 'Source',
+        'organization' => 'Société',
+        'driver' => 'Chauffeur',
+        'notes' => 'Notes',
+        'open_dashboard' => 'Voir dans le dashboard',
+    ],
+    'reservation_reminder' => [
+        'subject' => 'Rappel réservation — :client (:time)',
+        'heading' => 'Rappel de réservation',
+        'intro' => 'Une course est prévue dans environ :minutes minutes.',
+        'client' => 'Client',
+        'phone' => 'Téléphone',
+        'pickup' => 'Départ',
+        'dropoff' => 'Arrivée',
+        'datetime' => 'Date / heure',
+        'flight' => 'N° vol',
+        'passengers' => 'Passagers',
+        'driver' => 'Chauffeur',
+        'notes' => 'Notes',
+        'open_dashboard' => 'Voir dans le dashboard',
+        'footer' => 'Ce rappel est envoyé automatiquement selon le délai configuré dans Profil → Rappels.',
+    ],
+];

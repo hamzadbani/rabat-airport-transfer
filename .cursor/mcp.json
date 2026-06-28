@@ -1,0 +1,8 @@
+{
+  "mcpServers": {
+    "google-search-console": {
+      "command": "uvx",
+      "args": ["mcp-google-search-console"]
+    }
+  }
+}
