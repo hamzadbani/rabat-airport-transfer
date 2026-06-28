@@ -50,13 +50,26 @@ jobs:
       - name: Install Composer dependencies on server (SSH)
         uses: appleboy/ssh-action@v1.2.0
         with:
-          host: ${{ secrets.HOSTINGER_SSH_HOST || secrets.HOSTINGER_HOST }}
+          host: ${{ secrets.HOSTINGER_SSH_HOST }}
           username: ${{ secrets.HOSTINGER_SSH_USERNAME }}
-          password: ${{ secrets.HOSTINGER_PASSWORD }}
+          password: ${{ secrets.HOSTINGER_SSH_PASSWORD || secrets.HOSTINGER_PASSWORD }}
           port: ${{ secrets.HOSTINGER_SSH_PORT || 65002 }}
           script_stop: true
           script: |
-            cd "${{ secrets.HOSTINGER_SERVER_DIR }}"
+            DEPLOY_DIR="${{ secrets.HOSTINGER_SSH_DIR }}"
+            if [ -z "$DEPLOY_DIR" ]; then
+              echo "HOSTINGER_SSH_DIR secret is required for SSH (absolute path on server)."
+              echo "Example: /home/u429028847/domains/taxirabatairport.com/public_html"
+              exit 1
+            fi
+            if [ ! -d "$DEPLOY_DIR" ]; then
+              echo "Deploy directory not found: $DEPLOY_DIR"
+              echo "Home contents:"
+              ls -la "$HOME" || true
+              ls -la "$HOME/domains" 2>/dev/null || true
+              exit 1
+            fi
+            cd "$DEPLOY_DIR"
             if command -v composer >/dev/null 2>&1; then
               composer install --no-dev --optimize-autoloader --no-interaction
             else
