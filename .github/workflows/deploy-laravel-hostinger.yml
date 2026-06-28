@@ -18,24 +18,13 @@ jobs:
           cache: npm
           cache-dependency-path: backend/package-lock.json
 
-      - uses: shivammathur/setup-php@v2
-        with:
-          php-version: "8.3"
-          extensions: mbstring, pdo_mysql, zip, intl
-          tools: composer:v2
-
-      - name: Install & build Laravel
+      - name: Build frontend assets
         working-directory: backend
         run: |
-          composer install --no-dev --optimize-autoloader --no-interaction
-          printf 'APP_KEY=base64:AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=\nAPP_ENV=production\n' > .env
           npm ci
           npm run build
-          php artisan package:discover --ansi
-          php artisan view:cache
-          rm -f .env
 
-      - name: Deploy Laravel app (FTP)
+      - name: Deploy Laravel app (FTP, without vendor)
         uses: SamKirkland/FTP-Deploy-Action@v4.3.5
         with:
           server: ${{ secrets.HOSTINGER_HOST }}
@@ -44,13 +33,36 @@ jobs:
           port: ${{ secrets.HOSTINGER_PORT }}
           server-dir: ${{ secrets.HOSTINGER_SERVER_DIR }}
           local-dir: ./backend/
+          state-name: hostinger-laravel-ftp
+          log-level: minimal
           exclude: |
             **/.git*
             **/.env
             **/.env.*
+            **/vendor/**
             **/node_modules/**
             **/tests/**
             **/.env.example
             **/storage/**
             **/bootstrap/cache/**
             **/database/database.sqlite
+
+      - name: Install Composer dependencies on server (SSH)
+        uses: appleboy/ssh-action@v1.2.0
+        with:
+          host: ${{ secrets.HOSTINGER_SSH_HOST || secrets.HOSTINGER_HOST }}
+          username: ${{ secrets.HOSTINGER_USERNAME }}
+          password: ${{ secrets.HOSTINGER_PASSWORD }}
+          port: ${{ secrets.HOSTINGER_SSH_PORT || 65002 }}
+          script_stop: true
+          script: |
+            cd "${{ secrets.HOSTINGER_SERVER_DIR }}"
+            if command -v composer >/dev/null 2>&1; then
+              composer install --no-dev --optimize-autoloader --no-interaction
+            else
+              php ~/composer.phar install --no-dev --optimize-autoloader --no-interaction
+            fi
+            php artisan package:discover --ansi
+            php artisan config:cache
+            php artisan route:cache
+            php artisan view:cache
