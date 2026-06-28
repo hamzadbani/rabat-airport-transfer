@@ -1,6 +1,8 @@
 # SEO Guidelines & Best Practices
 ## Rabat Transfert Aéroport - SEO Implementation Reference
 
+> **Note:** The live site is Laravel Blade (`backend/`). Some paths below refer to the removed React/Next frontend — use `backend/resources/views/` and `backend/data/*.json` instead.
+
 This document serves as a comprehensive guide for maintaining and improving SEO performance for the Rabat Transfert Aéroport website. Follow these guidelines when making any changes to ensure optimal search engine visibility.
 
 ---

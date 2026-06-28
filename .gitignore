@@ -28,3 +28,13 @@ dist-ssr
 # Docker
 docker-compose.override.yml
 php/vendor/
+backend/vendor/
+backend/.env
+backend/database/database.sqlite
+backend/storage/logs/*
+!backend/storage/logs/.gitkeep
+
+# GSC MCP OAuth (never commit)
+**/oauth_credentials.json
+**/token.json
+credentials/

@@ -1,41 +1,28 @@
-# SEO + GEO + SGE Architecture
+# SEO + GEO Architecture (Laravel Blade)
 
-Production SEO system for **https://taxirabatairoport.com/** (Next.js App Router, static export).
+Production SEO for **https://taxirabatairoport.com/** — Laravel Blade + JSON content.
 
 ## Folder layout
 
 | Path | Role |
 |------|------|
-| `lib/seo/` | Slug catalog, registry, copy, routing, route facts |
-| `lib/schema/` | JSON-LD generators (LocalBusiness, FAQ, Offer, …) |
-| `lib/geo/` | Entity map + `generateGeoOptimizedContent()` |
-| `lib/metadata/` | Central `generateMetadata()` / `generateSeoPageMetadata()` |
-| `lib/sitemap/` | `buildFullSitemap()` for `app/sitemap.ts` |
-| `components/geo/` | AIAnswerBlock, FAQSection, TrustSignals, … |
-| `components/seo/` | SeoLandingPage, SeoShell, StickyBookingCta |
-| `app/[slug]/` | 56+ programmatic FR landing pages (SSG) |
-| `app/blog/` | Article hub + FAQ/Article schema |
-| `data/seo-ai-cache.json` | Optional offline AI HTML (see `.example`) |
+| `backend/data/seo-pages.json` | 56+ programmatic FR landing pages (copy, related links) |
+| `backend/data/blog-posts.json` | Blog articles |
+| `backend/app/Support/SeoData.php` | Loads JSON, exposes slugs for routes + sitemap |
+| `backend/resources/views/seo/` | SEO page Blade templates |
+| `backend/resources/views/blog/` | Blog hub + article templates |
+| `backend/routes/web.php` | Home, hubs, blog, sitemap, SEO catch-all |
+| `backend/app/Http/Controllers/SitemapController.php` | `/sitemap.xml` |
 
 ## Add a new SEO page
 
-1. Add slug to `lib/seo/slug-catalog.ts`
-2. Optional: `dimensions` in `lib/seo/page-specs.ts`
-3. Copy template in `lib/seo/programmatic-fr.ts` or hand override in `lib/seo/messages/fr.ts`
-4. `npm run build` — page, sitemap, and metadata are generated automatically
-
-## AI / SGE content
-
-- Never generate HTML on HTTP requests.
-- Run offline prompts (`lib/seo/ai-prompt-template.ts`), store in `data/seo-ai-cache.json`, rebuild.
-- On-page: `AIAnswerBlock`, People Also Ask (`FAQSection variant="paa"`), `SpeakableContent`.
+1. Add an entry to `backend/data/seo-pages.json` (`id`, `copy`, `related`)
+2. Ensure the slug matches the page `id` (used in `/{slug}` route)
+3. Clear config/cache if cached in production
+4. Sitemap updates automatically from `SeoData::slugs()`
 
 ## Deploy
 
-- `output: "export"` → `out/`
-- CI uploads `out/` to Hostinger (see `.github/workflows/deploy-hostinger.yml`)
-- Set `NEXT_PUBLIC_SITE_URL=https://taxirabatairoport.com` in CI
-
-## Target queries (Search Console)
-
-Optimized for: `taxi rabat`, `rabat taxi`, `transport aeroport rabat`, `taxi rabat prix`, `taxi in rabat`.
+- CI builds Laravel assets and deploys `backend/` (see `.github/workflows/deploy-laravel-hostinger.yml`)
+- Web root on Hostinger: `backend/public/`
+- Set `APP_URL=https://taxirabatairoport.com` in production `.env`
