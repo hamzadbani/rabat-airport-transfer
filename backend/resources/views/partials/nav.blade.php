@@ -1,6 +1,9 @@
 @php
     $wa = 'https://wa.me/'.config('site.whatsapp').'?text='.rawurlencode(__('site.booking.wa_intro'));
     $section = fn (string $id) => request()->routeIs('home') ? "#{$id}" : route('home')."#{$id}";
+    $isAdmin = auth()->check() && auth()->user()?->role === 'admin';
+    $authHref = $isAdmin ? route('dashboard.index') : '/login';
+    $authLabel = $isAdmin ? __('site.nav.dashboard') : __('site.nav.login');
     $navLinks = [
         ['label' => __('site.nav.home'), 'href' => $section('accueil')],
         ['label' => __('site.nav.about'), 'href' => $section('apropos')],
@@ -34,7 +37,7 @@
             @endforeach
         </nav>
 
-        <div class="hidden shrink-0 items-center gap-2 lg:flex">
+        <div class="relative z-20 hidden shrink-0 items-center gap-2 lg:flex">
             <select id="locale-select"
                 class="rounded-lg border border-slate-200 bg-white px-2.5 py-2 text-sm font-semibold text-slate-700 outline-none ring-brand focus:ring-2"
                 aria-label="Select language"
@@ -49,9 +52,9 @@
                 class="rounded-lg border border-slate-200 px-3 py-2 text-sm font-semibold text-slate-800 transition hover:border-brand">
                 {{ __('site.nav.contact') }}
             </a>
-            <a href="{{ route('filament.admin.auth.login') }}"
+            <a href="{{ $authHref }}"
                 class="rounded-lg border border-slate-200 px-3 py-2 text-sm font-semibold text-slate-800 transition hover:border-brand-secondary hover:text-brand-secondary">
-                {{ __('site.nav.login') }}
+                {{ $authLabel }}
             </a>
             <a href="tel:{{ config('site.phone_tel') }}"
                 class="inline-flex items-center rounded-lg bg-brand px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-brand-dark">
@@ -74,7 +77,8 @@
         x-cloak
         x-transition
         @click.outside="open = false"
-        class="hidden border-t border-slate-200 bg-white lg:hidden">
+        class="border-t border-slate-200 bg-white lg:hidden"
+    >
         <nav class="mx-auto max-w-[1400px] px-3 py-4 sm:px-6" aria-label="{{ __('site.nav.mobile') }}">
             <ul class="space-y-1">
                 @foreach ($navLinks as $link)
@@ -101,8 +105,8 @@
             <div class="mt-4 flex flex-col gap-2">
                 <a href="{{ $section('contact') }}" @click="open = false"
                     class="rounded-lg border border-slate-200 px-4 py-2.5 text-center text-sm font-semibold">{{ __('site.nav.contact') }}</a>
-                <a href="{{ route('filament.admin.auth.login') }}" @click="open = false"
-                    class="rounded-lg border border-slate-200 px-4 py-2.5 text-center text-sm font-semibold">{{ __('site.nav.login') }}</a>
+                <a href="{{ $authHref }}"
+                    class="rounded-lg border border-slate-200 px-4 py-2.5 text-center text-sm font-semibold">{{ $authLabel }}</a>
                 <a href="tel:{{ config('site.phone_tel') }}" @click="open = false"
                     class="rounded-lg bg-brand px-4 py-2.5 text-center text-sm font-semibold text-white">{{ __('site.nav.call') }}</a>
                 <a href="{{ $wa }}" target="_blank" rel="noopener" @click="open = false"

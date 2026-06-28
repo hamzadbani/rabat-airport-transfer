@@ -13,9 +13,7 @@ class SetPublicLocale
 
     public function handle(Request $request, Closure $next): Response
     {
-        if ($request->is('admin', 'admin/*', 'api', 'api/*')) {
-            app()->setLocale('fr');
-
+        if ($request->is('admin', 'admin/*', 'api', 'api/*', 'dashboard', 'dashboard/*', 'login')) {
             return $next($request);
         }
 

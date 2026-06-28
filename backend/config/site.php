@@ -3,6 +3,7 @@
 return [
     'name' => 'Taxi Rabat Airport',
     'tagline' => 'Transfert aéroport Rabat-Salé (RBA) 24/7',
+    'default_organization_name' => 'Taxi Rabat Airport',
     'phone_display' => '+212 674 54 59 39',
     'phone_tel' => '+212674545939',
     'whatsapp' => '212674545939',
@@ -19,6 +20,7 @@ return [
         'lng' => -6.7515,
     ],
     'maps_embed' => 'https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d13674.757896430126!2d-6.841658!3d34.02482100000001!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xda76daf23faa483%3A0x50bf1692068455ba!2sTaxi%20Rabat%20Airoport!5e1!3m2!1sfr!2sma!4v1782597789722!5m2!1sfr!2sma',
+    'logo' => '/assets/new-logo-taxi-rabat-removebg-preview.png',
     'developer' => [
         'name' => 'Abdelaziz El Hathout',
         'url' => 'https://abdelazizelhathout.com/',

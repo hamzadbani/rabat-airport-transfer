@@ -9,6 +9,7 @@ return [
         'pricing' => 'الأسعار',
         'contact' => 'اتصل بنا',
         'login' => 'تسجيل الدخول',
+        'dashboard' => 'لوحة التحكم',
         'call' => 'اتصال',
         'whatsapp' => 'واتساب',
         'open_menu' => 'فتح القائمة',

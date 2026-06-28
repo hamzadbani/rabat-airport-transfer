@@ -2,6 +2,8 @@
 
 @source '../../vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php';
 @source '../../vendor/filament/**/*.blade.php';
+@source '../../vendor/livewire/livewire/dist/*.js';
+@source '../../vendor/livewire/livewire/dist/*.css';
 @source '../../storage/framework/views/*.php';
 @source '../views/**/*.blade.php';
 
@@ -128,3 +130,979 @@ body {
         height: 96px;
     }
 }
+
+/* Admin dashboard */
+html.dashboard-theme-light,
+html:not(.dashboard-theme-dark) {
+    --dash-bg: #eef2f7;
+    --dash-surface: #ffffff;
+    --dash-surface-muted: #f8fafc;
+    --dash-surface-soft: #fbfcfe;
+    --dash-border: #e8edf3;
+    --dash-border-strong: #e2e8f0;
+    --dash-text: #0f172a;
+    --dash-text-secondary: #334155;
+    --dash-text-muted: #64748b;
+    --dash-text-faint: #94a3b8;
+    --dash-header-bg: rgba(244, 246, 249, 0.95);
+    --dash-input-bg: #ffffff;
+    --dash-shadow: rgba(15, 23, 42, 0.04);
+    --dash-switcher-active: #0f172a;
+    --dash-switcher-idle: #64748b;
+    --dash-chart-bg: #fbfcfe;
+    --dash-invoice-preview-bg: linear-gradient(180deg, #e8edf3 0%, #dfe6ef 100%);
+}
+
+html.dashboard-theme-dark {
+    --dash-bg: #0b1220;
+    --dash-surface: #111827;
+    --dash-surface-muted: #1a2332;
+    --dash-surface-soft: #151f2e;
+    --dash-border: #243044;
+    --dash-border-strong: #334155;
+    --dash-text: #f1f5f9;
+    --dash-text-secondary: #cbd5e1;
+    --dash-text-muted: #94a3b8;
+    --dash-text-faint: #64748b;
+    --dash-header-bg: rgba(17, 24, 39, 0.95);
+    --dash-input-bg: #0f172a;
+    --dash-shadow: rgba(0, 0, 0, 0.28);
+    --dash-switcher-active: #f8fafc;
+    --dash-switcher-idle: #94a3b8;
+    --dash-chart-bg: #151f2e;
+    --dash-invoice-preview-bg: linear-gradient(180deg, #1a2332 0%, #111827 100%);
+    color-scheme: dark;
+}
+
+.dashboard-shell {
+    background: var(--dash-bg);
+    color: var(--dash-text);
+}
+
+.dashboard-sidebar {
+    background: linear-gradient(180deg, #0b1220 0%, #111827 100%);
+    border-right: 1px solid rgba(255, 255, 255, 0.06);
+    box-shadow: 12px 0 32px rgba(15, 23, 42, 0.12);
+}
+
+@media (max-width: 1023px) {
+    .dashboard-sidebar {
+        translate: -100% 0;
+        visibility: hidden;
+        pointer-events: none;
+        transition: translate 200ms cubic-bezier(0.4, 0, 0.2, 1), visibility 0s linear 200ms;
+    }
+
+    html.dashboard-sidebar-open .dashboard-sidebar {
+        translate: 0 0;
+        visibility: visible;
+        pointer-events: auto;
+        transition: translate 200ms cubic-bezier(0.4, 0, 0.2, 1), visibility 0s linear 0s;
+    }
+
+    .dashboard-sidebar-overlay {
+        display: none;
+    }
+
+    html.dashboard-sidebar-open .dashboard-sidebar-overlay {
+        display: block;
+    }
+}
+
+@media (min-width: 1024px) {
+    .dashboard-sidebar {
+        translate: 0 0;
+        pointer-events: auto;
+    }
+
+    .dashboard-sidebar-overlay {
+        display: none !important;
+    }
+}
+
+.dashboard-nav-link {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    border-radius: 0.75rem;
+    padding: 0.7rem 0.85rem;
+    font-size: 0.875rem;
+    font-weight: 500;
+    color: #cbd5e1;
+    transition: background-color 0.15s ease, color 0.15s ease;
+}
+
+.dashboard-nav-link:hover {
+    background: rgba(255, 255, 255, 0.06);
+    color: #fff;
+}
+
+.dashboard-nav-link-active {
+    background: rgba(37, 99, 235, 0.22);
+    color: #fff;
+    box-shadow: inset 0 0 0 1px rgba(96, 165, 250, 0.25);
+}
+
+.dashboard-header {
+    border-bottom: 1px solid color-mix(in srgb, var(--dash-border-strong) 80%, transparent);
+    background: var(--dash-header-bg);
+    box-shadow: 0 1px 0 var(--dash-shadow);
+}
+
+.dashboard-header__title {
+    color: var(--dash-text);
+}
+
+.dashboard-header__subtitle,
+.dashboard-header__label {
+    color: var(--dash-text-muted);
+}
+
+.dashboard-header__meta {
+    color: var(--dash-text-secondary);
+}
+
+.dashboard-header__meta-sep {
+    color: var(--dash-text-faint);
+}
+
+.dashboard-switcher {
+    display: inline-flex;
+    border-radius: 9999px;
+    border: 1px solid var(--dash-border-strong);
+    background: var(--dash-surface);
+    padding: 0.125rem;
+    font-size: 0.75rem;
+    font-weight: 600;
+    box-shadow: 0 1px 2px var(--dash-shadow);
+}
+
+.dashboard-switcher__btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    border: 0;
+    border-radius: 9999px;
+    background: transparent;
+    padding: 0.375rem 0.75rem;
+    color: var(--dash-switcher-idle);
+    text-decoration: none;
+    cursor: pointer;
+    transition: background-color 0.15s ease, color 0.15s ease;
+}
+
+.dashboard-switcher__btn:hover {
+    color: var(--dash-text);
+}
+
+.dashboard-switcher__btn--active {
+    background: var(--dash-switcher-active);
+    color: var(--dash-surface);
+}
+
+html.dashboard-theme-dark .dashboard-switcher__btn--active {
+    color: #0f172a;
+}
+
+.dashboard-header__tools {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.dashboard-pill {
+    border-radius: 9999px;
+    border: 1px solid var(--dash-border-strong);
+    background: var(--dash-surface);
+    padding: 0.35rem 0.8rem;
+    font-size: 0.75rem;
+    font-weight: 500;
+    color: var(--dash-text-muted);
+    transition: all 0.15s ease;
+}
+
+.dashboard-pill:hover {
+    border-color: var(--dash-text-faint);
+    color: var(--dash-text-secondary);
+}
+
+.dashboard-pill-active {
+    border-color: #0f172a;
+    background: #0f172a;
+    color: #fff;
+}
+
+.dashboard-pill-status {
+    border-color: #16a34a;
+    background: #16a34a;
+    color: #fff;
+}
+
+.dashboard-btn-primary {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    border-radius: 0.75rem;
+    background: #16a34a;
+    padding: 0.6rem 1rem;
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: #fff;
+    box-shadow: 0 8px 20px rgba(22, 163, 74, 0.25);
+    transition: background-color 0.15s ease;
+}
+
+.dashboard-btn-primary:hover {
+    background: #15803d;
+}
+
+.dashboard-input-date {
+    border-radius: 0.65rem;
+    border: 1px solid var(--dash-border-strong);
+    background: var(--dash-input-bg);
+    padding: 0.45rem 0.7rem;
+    font-size: 0.8125rem;
+    color: var(--dash-text-secondary);
+}
+
+.dashboard-input-date:focus {
+    outline: 2px solid rgba(22, 163, 74, 0.2);
+    border-color: #16a34a;
+}
+
+.dashboard-icon-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 2.75rem;
+    min-width: 2.75rem;
+    border-radius: 0.65rem;
+    border: 1px solid var(--dash-border-strong);
+    background: var(--dash-surface);
+    padding: 0.5rem;
+    color: var(--dash-text-muted);
+    cursor: pointer;
+    touch-action: manipulation;
+    -webkit-tap-highlight-color: transparent;
+}
+
+.dashboard-panel {
+    border-radius: 1rem;
+    border: 1px solid var(--dash-border);
+    background: var(--dash-surface);
+    padding: 1.25rem;
+    box-shadow: 0 10px 30px var(--dash-shadow);
+}
+
+.config-devis-card__intro {
+    margin-bottom: 1.25rem;
+    color: var(--dash-text-secondary);
+    font-size: 0.875rem;
+    line-height: 1.55;
+}
+
+.config-devis-card__intro p + p {
+    margin-top: 0.65rem;
+}
+
+.config-devis-table-wrap {
+    overflow-x: auto;
+}
+
+.config-devis-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.config-devis-table th,
+.config-devis-table td {
+    padding: 0.55rem 0.65rem;
+    text-align: left;
+    vertical-align: top;
+}
+
+.config-devis-table th {
+    font-size: 0.68rem;
+    font-weight: 700;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    color: var(--dash-text-muted);
+    border-bottom: 1px solid var(--dash-border);
+}
+
+.config-devis-table td {
+    border-bottom: 1px solid var(--dash-border);
+}
+
+.config-devis-table__actions {
+    width: 2.5rem;
+}
+
+.config-devis-input {
+    width: 100%;
+    min-width: 5.5rem;
+    border-radius: 0.55rem;
+    border: 1px solid var(--dash-border-strong);
+    background: var(--dash-input-bg);
+    padding: 0.5rem 0.65rem;
+    font-size: 0.875rem;
+    color: var(--dash-text);
+}
+
+.config-devis-input:focus {
+    outline: 2px solid rgba(29, 78, 216, 0.15);
+    border-color: #1d4ed8;
+}
+
+.config-devis-input:disabled {
+    background: var(--dash-surface-muted);
+    color: var(--dash-text-muted);
+}
+
+.config-devis-error {
+    margin-top: 0.25rem;
+    font-size: 0.75rem;
+    color: #dc2626;
+}
+
+.config-devis-error--block {
+    margin-top: 0.75rem;
+}
+
+.config-devis-actions {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.75rem;
+    margin-top: 1.25rem;
+}
+
+.config-devis-add {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.45rem;
+    border-radius: 0.65rem;
+    border: 1px solid #1d4ed8;
+    background: transparent;
+    padding: 0.55rem 0.9rem;
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: #1d4ed8;
+    cursor: pointer;
+}
+
+.config-devis-add:hover {
+    background: rgba(29, 78, 216, 0.06);
+}
+
+.config-devis-save {
+    display: inline-flex;
+    align-items: center;
+    border-radius: 0.65rem;
+    border: none;
+    background: #0f172a;
+    padding: 0.6rem 1.1rem;
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: #fff;
+    cursor: pointer;
+}
+
+.config-devis-save:hover {
+    background: #1e293b;
+}
+
+.config-devis-remove {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 1.75rem;
+    height: 1.75rem;
+    border: none;
+    border-radius: 999px;
+    background: transparent;
+    color: var(--dash-text-muted);
+    font-size: 1.1rem;
+    line-height: 1;
+    cursor: pointer;
+}
+
+.config-devis-remove:hover {
+    background: rgba(220, 38, 38, 0.08);
+    color: #dc2626;
+}
+
+.dashboard-chart-card {
+    border-radius: 0.9rem;
+    border: 1px solid var(--dash-border);
+    background: var(--dash-chart-bg);
+    padding: 1rem;
+}
+
+.dashboard-flash {
+    margin-bottom: 1rem;
+    border-radius: 0.75rem;
+    padding: 0.75rem 1rem;
+    font-size: 0.875rem;
+}
+
+.dashboard-flash-success {
+    border: 1px solid #bbf7d0;
+    background: #f0fdf4;
+    color: #166534;
+}
+
+.dashboard-flash-error {
+    border: 1px solid #fecaca;
+    background: #fef2f2;
+    color: #b91c1c;
+}
+
+.dashboard-calendar .fc {
+    --fc-border-color: #e8edf3;
+    --fc-today-bg-color: rgba(22, 163, 74, 0.06);
+    --fc-button-bg-color: #fff;
+    --fc-button-border-color: #dbe3ee;
+    --fc-button-text-color: #334155;
+    --fc-button-hover-bg-color: #f8fafc;
+    --fc-button-hover-border-color: #cbd5e1;
+    --fc-button-active-bg-color: #0f172a;
+    --fc-button-active-border-color: #0f172a;
+    --fc-button-active-text-color: #fff;
+}
+
+.dashboard-calendar .fc-toolbar-title {
+    font-size: 1rem !important;
+    font-weight: 600;
+}
+
+.dashboard-calendar .fc-col-header-cell-cushion,
+.dashboard-calendar .fc-timegrid-slot-label-cushion {
+    font-size: 0.75rem;
+    color: #64748b;
+}
+
+.dashboard-table-wrap {
+    overflow: hidden;
+    border-radius: 1rem;
+    border: 1px solid var(--dash-border);
+    background: var(--dash-surface);
+    box-shadow: 0 10px 30px var(--dash-shadow);
+}
+
+/* Invoice / quote workspace */
+.invoice-workspace {
+    margin: 0 -0.25rem;
+}
+
+.invoice-toolbar {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    margin-bottom: 1rem;
+    border-radius: 1rem;
+    border: 1px solid var(--dash-border);
+    background: var(--dash-surface);
+    padding: 0.85rem 1rem;
+    box-shadow: 0 10px 30px var(--dash-shadow);
+}
+
+.invoice-toolbar__actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.65rem;
+}
+
+.invoice-type-toggle {
+    display: inline-flex;
+    border-radius: 9999px;
+    border: 1px solid var(--dash-border-strong);
+    background: var(--dash-surface-muted);
+    padding: 0.2rem;
+}
+
+.invoice-type-toggle__btn {
+    border: 0;
+    border-radius: 9999px;
+    background: transparent;
+    padding: 0.45rem 1rem;
+    font-size: 0.8125rem;
+    font-weight: 600;
+    color: var(--dash-text-muted);
+    cursor: pointer;
+    transition: background-color 0.15s ease, color 0.15s ease, box-shadow 0.15s ease;
+}
+
+.invoice-type-toggle__btn--active {
+    background: var(--dash-surface);
+    color: #1d4ed8;
+    box-shadow: 0 1px 3px var(--dash-shadow);
+}
+
+.invoice-btn-primary,
+.invoice-btn-secondary {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 0.65rem;
+    padding: 0.55rem 1rem;
+    font-size: 0.8125rem;
+    font-weight: 600;
+    text-decoration: none;
+    cursor: pointer;
+    transition: background-color 0.15s ease, border-color 0.15s ease, color 0.15s ease;
+}
+
+.invoice-btn-primary {
+    border: 1px solid #1d4ed8;
+    background: #2563eb;
+    color: #fff;
+}
+
+.invoice-btn-primary:hover {
+    background: #1d4ed8;
+}
+
+.invoice-btn-secondary {
+    border: 1px solid var(--dash-border-strong);
+    background: var(--dash-surface);
+    color: var(--dash-text-muted);
+}
+
+.invoice-btn-secondary:hover {
+    background: var(--dash-surface-muted);
+    border-color: var(--dash-text-faint);
+}
+
+.invoice-layout {
+    display: grid;
+    gap: 1rem;
+    align-items: start;
+}
+
+@media (min-width: 1100px) {
+    .invoice-layout {
+        grid-template-columns: minmax(300px, 380px) minmax(0, 1fr);
+    }
+}
+
+.invoice-form-panel {
+    max-height: calc(100vh - 17rem);
+    overflow: auto;
+    border-radius: 1rem;
+    border: 1px solid var(--dash-border);
+    background: var(--dash-surface);
+    box-shadow: 0 10px 30px var(--dash-shadow);
+}
+
+.invoice-form {
+    padding: 1rem;
+}
+
+.invoice-form__section + .invoice-form__section {
+    margin-top: 1.25rem;
+    padding-top: 1.25rem;
+    border-top: 1px solid var(--dash-border);
+}
+
+.invoice-form__heading {
+    margin-bottom: 0.85rem;
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--dash-text-muted);
+}
+
+.invoice-form__field label {
+    display: block;
+    margin-bottom: 0.35rem;
+    font-size: 0.8125rem;
+    font-weight: 500;
+    color: var(--dash-text-secondary);
+}
+
+.invoice-form__input {
+    width: 100%;
+    border-radius: 0.65rem;
+    border: 1px solid var(--dash-border-strong);
+    background: var(--dash-input-bg);
+    padding: 0.55rem 0.7rem;
+    font-size: 0.8125rem;
+    color: var(--dash-text);
+}
+
+.invoice-form__input--readonly {
+    background: var(--dash-surface-muted);
+    color: var(--dash-text-muted);
+}
+
+.invoice-form__grid {
+    display: grid;
+    gap: 0.75rem;
+}
+
+.invoice-form__grid--3 {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+@media (max-width: 640px) {
+    .invoice-form__grid--3 {
+        grid-template-columns: 1fr;
+    }
+}
+
+.invoice-form__errors {
+    margin-top: 1rem;
+    border-radius: 0.75rem;
+    background: #fef2f2;
+    padding: 0.75rem 1rem;
+    font-size: 0.8125rem;
+    color: #b91c1c;
+}
+
+.invoice-form__hint {
+    margin-top: 0.65rem;
+    font-size: 0.75rem;
+    color: var(--dash-text-muted);
+}
+
+.invoice-form__field + .invoice-form__field {
+    margin-top: 0.75rem;
+}
+
+.invoice-form__input:focus {
+    outline: 2px solid rgba(37, 99, 235, 0.18);
+    border-color: #3b82f6;
+}
+
+.invoice-preview-panel {
+    min-height: calc(100vh - 17rem);
+    border-radius: 1rem;
+    background: var(--dash-invoice-preview-bg);
+    padding: 1.25rem;
+    overflow: auto;
+}
+
+.invoice-doc {
+    max-width: 920px;
+    margin: 0 auto;
+    background: #fff;
+    padding: 2rem 2.25rem;
+    box-shadow: 0 18px 50px rgba(15, 23, 42, 0.12);
+    color: #111827;
+    font-size: 0.8125rem;
+    line-height: 1.45;
+}
+
+.invoice-doc__header {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 1.5rem;
+    margin-bottom: 1.75rem;
+}
+
+.invoice-doc__brand {
+    display: flex;
+    align-items: center;
+    gap: 0.85rem;
+    min-width: 0;
+}
+
+.invoice-doc__logo {
+    height: 3.25rem;
+    width: auto;
+    max-width: 4.5rem;
+    object-fit: contain;
+}
+
+.invoice-doc__company-name {
+    font-size: 0.95rem;
+    font-weight: 700;
+    color: #0f172a;
+}
+
+.invoice-doc__company-line {
+    margin-top: 0.15rem;
+    color: #475569;
+}
+
+.invoice-doc__title {
+    margin: 0;
+    font-family: 'Libre Baskerville', Georgia, serif;
+    font-size: clamp(2rem, 4vw, 2.75rem);
+    font-weight: 700;
+    line-height: 1;
+    color: #1d4ed8;
+    text-transform: uppercase;
+}
+
+.invoice-doc__blocks {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+}
+
+@media (max-width: 900px) {
+    .invoice-doc__blocks {
+        grid-template-columns: 1fr;
+    }
+}
+
+.invoice-doc__block h3 {
+    margin: 0 0 0.5rem;
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: #64748b;
+}
+
+.invoice-doc__block p {
+    margin: 0.15rem 0;
+}
+
+.invoice-doc__strong {
+    font-weight: 700;
+    color: #0f172a;
+}
+
+.invoice-doc__meta {
+    margin: 0;
+}
+
+.invoice-doc__meta div {
+    display: flex;
+    justify-content: space-between;
+    gap: 0.75rem;
+    padding: 0.2rem 0;
+}
+
+.invoice-doc__meta dt {
+    color: #64748b;
+    font-weight: 500;
+}
+
+.invoice-doc__meta dd {
+    margin: 0;
+    font-weight: 600;
+    color: #0f172a;
+    text-align: right;
+}
+
+.invoice-doc__table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 0.5rem;
+}
+
+.invoice-doc__table th,
+.invoice-doc__table td {
+    border: 1px solid #d7dee8;
+    padding: 0.55rem 0.65rem;
+    text-align: left;
+    vertical-align: top;
+}
+
+.invoice-doc__table th {
+    background: #f8fafc;
+    font-size: 0.68rem;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    color: #475569;
+}
+
+.invoice-doc__table td:last-child,
+.invoice-doc__table th:last-child,
+.invoice-doc__table td:nth-child(3),
+.invoice-doc__table th:nth-child(3),
+.invoice-doc__table td:nth-child(4),
+.invoice-doc__table th:nth-child(4),
+.invoice-doc__table td:nth-child(5),
+.invoice-doc__table th:nth-child(5) {
+    text-align: right;
+    white-space: nowrap;
+}
+
+.invoice-doc__totals {
+    margin-top: 1rem;
+    margin-left: auto;
+    width: min(100%, 320px);
+}
+
+.invoice-doc__totals-currency {
+    display: flex;
+    flex-direction: column;
+    gap: 0.35rem;
+    margin-bottom: 0.75rem;
+    padding-bottom: 0.75rem;
+    border-bottom: 1px solid #e2e8f0;
+}
+
+.invoice-doc__totals-currency label {
+    font-size: 0.72rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    color: #64748b;
+}
+
+.invoice-doc__currency-select {
+    width: 100%;
+    border-radius: 0.55rem;
+    border: 1px solid #d7dee8;
+    background: #fff;
+    padding: 0.45rem 0.6rem;
+    font-size: 0.8125rem;
+    color: #0f172a;
+}
+
+.invoice-doc__totals-note {
+    margin: 0.65rem 0 0;
+    font-size: 0.68rem;
+    line-height: 1.4;
+    color: #64748b;
+}
+
+.invoice-doc__totals > div:not(.invoice-doc__totals-currency) {
+    display: flex;
+    justify-content: space-between;
+    gap: 1rem;
+    padding: 0.3rem 0;
+}
+
+.invoice-doc__grand {
+    margin-top: 0.35rem;
+    padding-top: 0.55rem !important;
+    border-top: 2px solid #0f172a;
+    font-size: 0.95rem;
+    font-weight: 700;
+}
+
+.invoice-doc__footer {
+    position: relative;
+    margin-top: 2rem;
+    padding-top: 1.25rem;
+    border-top: 1px solid #e2e8f0;
+}
+
+.invoice-doc__note {
+    margin: 0 0 1rem;
+    color: #475569;
+}
+
+.invoice-doc__legal p {
+    margin: 0.2rem 0;
+    color: #334155;
+}
+
+.invoice-doc__stamp {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    display: flex;
+    width: 11rem;
+    flex-direction: column;
+    gap: 0.15rem;
+    border: 2px solid #1d4ed8;
+    padding: 0.65rem 0.75rem;
+    text-align: center;
+    font-size: 0.62rem;
+    line-height: 1.35;
+    color: #1e3a8a;
+}
+
+.invoice-doc__stamp strong {
+    font-size: 0.72rem;
+    text-transform: uppercase;
+}
+
+@media (max-width: 700px) {
+    .invoice-doc {
+        padding: 1.25rem;
+    }
+
+    .invoice-doc__stamp {
+        position: static;
+        margin-top: 1rem;
+        width: 100%;
+    }
+}
+
+/* Dark theme: Tailwind utility overrides inside dashboard */
+html.dashboard-theme-dark .dashboard-shell .bg-white {
+    background-color: var(--dash-surface) !important;
+}
+
+html.dashboard-theme-dark .dashboard-shell .bg-slate-50 {
+    background-color: var(--dash-surface-muted) !important;
+}
+
+html.dashboard-theme-dark .dashboard-shell .bg-slate-100,
+html.dashboard-theme-dark .dashboard-shell .hover\:bg-slate-100:hover {
+    background-color: color-mix(in srgb, var(--dash-surface-muted) 85%, white) !important;
+}
+
+html.dashboard-theme-dark .dashboard-shell .bg-slate-200 {
+    background-color: var(--dash-border-strong) !important;
+}
+
+html.dashboard-theme-dark .dashboard-shell .text-slate-900,
+html.dashboard-theme-dark .dashboard-shell .text-slate-800,
+html.dashboard-theme-dark .dashboard-shell .text-slate-700 {
+    color: var(--dash-text) !important;
+}
+
+html.dashboard-theme-dark .dashboard-shell .text-slate-600,
+html.dashboard-theme-dark .dashboard-shell .text-slate-500,
+html.dashboard-theme-dark .dashboard-shell .text-slate-400 {
+    color: var(--dash-text-muted) !important;
+}
+
+html.dashboard-theme-dark .dashboard-shell .border-slate-100,
+html.dashboard-theme-dark .dashboard-shell .border-slate-200,
+html.dashboard-theme-dark .dashboard-shell .border-slate-300,
+html.dashboard-theme-dark .dashboard-shell .border-b,
+html.dashboard-theme-dark .dashboard-shell .border-t,
+html.dashboard-theme-dark .dashboard-shell .border {
+    border-color: var(--dash-border) !important;
+}
+
+html.dashboard-theme-dark .dashboard-shell .hover\:bg-slate-50:hover {
+    background-color: var(--dash-surface-muted) !important;
+}
+
+html.dashboard-theme-dark .dashboard-shell input:not([type='checkbox']):not([type='radio']),
+html.dashboard-theme-dark .dashboard-shell select,
+html.dashboard-theme-dark .dashboard-shell textarea {
+    background-color: var(--dash-input-bg);
+    border-color: var(--dash-border-strong);
+    color: var(--dash-text);
+}
+
+html.dashboard-theme-dark .dashboard-shell .dashboard-calendar .fc {
+    --fc-border-color: var(--dash-border);
+    --fc-today-bg-color: rgba(22, 163, 74, 0.12);
+    --fc-button-bg-color: var(--dash-surface);
+    --fc-button-border-color: var(--dash-border-strong);
+    --fc-button-text-color: var(--dash-text-secondary);
+    --fc-button-hover-bg-color: var(--dash-surface-muted);
+    --fc-button-hover-border-color: var(--dash-text-faint);
+    --fc-button-active-bg-color: #f8fafc;
+    --fc-button-active-border-color: #f8fafc;
+    --fc-button-active-text-color: #0f172a;
+    --fc-page-bg-color: var(--dash-surface);
+    --fc-neutral-bg-color: var(--dash-surface-muted);
+}
+
+html.dashboard-theme-dark .dashboard-shell .dashboard-divider {
+    background: var(--dash-border-strong);
+}
+

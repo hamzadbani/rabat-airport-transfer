@@ -4,7 +4,10 @@ namespace Database\Seeders;
 
 use App\Models\DispatchSetting;
 use App\Models\Driver;
+use App\Models\Invoice;
 use App\Models\Organization;
+use App\Models\PricingZone;
+use App\Models\QuoteConfig;
 use App\Models\Reservation;
 use App\Models\TaxiRoutePrice;
 use App\Models\TaxiZone;
@@ -25,10 +28,52 @@ class DemoDataSeeder extends Seeder
             'role' => 'admin',
         ]);
 
-        DispatchSetting::create([
-            'id' => 1,
-            'reservation_reminder_minutes' => 60,
-        ]);
+        DispatchSetting::query()->updateOrCreate(
+            ['id' => 1],
+            [
+                'reservation_reminder_minutes' => 60,
+                'eur_to_mad' => 10.8500,
+                'usd_to_mad' => 9.9500,
+            ],
+        );
+
+        $standardQuote = QuoteConfig::query()->updateOrCreate(
+            ['name' => 'Transfert aéroport standard'],
+            [
+                'description' => 'Service de transport touristique',
+                'unit_price' => 350,
+                'currency' => 'MAD',
+                'vat_rate' => 10,
+                'eur_to_mad' => 10.8500,
+                'usd_to_mad' => 9.9500,
+                'is_active' => true,
+                'is_default' => true,
+            ],
+        );
+
+        QuoteConfig::query()->updateOrCreate(
+            ['name' => 'Devis partenaire EUR'],
+            [
+                'description' => 'Transfert partenaire — facturation en euros',
+                'unit_price' => 45,
+                'currency' => 'EUR',
+                'vat_rate' => 10,
+                'eur_to_mad' => 10.8500,
+                'usd_to_mad' => 9.9500,
+                'is_active' => true,
+                'is_default' => false,
+            ],
+        );
+
+        $standardQuote->setAsDefault();
+
+        Organization::query()->updateOrCreate(
+            ['name' => config('site.default_organization_name', config('site.name'))],
+            [
+                'notes' => 'Organisation interne par défaut',
+                'phone' => config('site.phone_display'),
+            ],
+        );
 
         $drivers = collect([
             ['name' => 'Hassan Amrani', 'phone' => '+212 6 10 20 30 40', 'vehicle' => 'Mercedes E-Class · 48-A-901', 'rating' => 4.92, 'notes' => 'Aéroport RBA · matin'],
@@ -141,10 +186,53 @@ class DemoDataSeeder extends Seeder
             ]);
         }
 
+        PricingZone::create([
+            'name' => 'Aéroport Rabat–Salé (RBA)',
+            'city' => 'Salé',
+            'region' => 'Rabat-Salé-Kénitra',
+            'is_airport' => true,
+            'radius_km' => 5,
+            'day_price' => 120,
+            'night_price' => 140,
+            'currency' => 'MAD',
+            'is_active' => true,
+            'lat' => 34.0515,
+            'lng' => -6.7515,
+        ]);
+
+        PricingZone::create([
+            'name' => 'Rabat centre',
+            'city' => 'Rabat',
+            'region' => 'Rabat-Salé-Kénitra',
+            'is_airport' => false,
+            'radius_km' => 8,
+            'day_price' => 80,
+            'night_price' => 95,
+            'currency' => 'MAD',
+            'is_active' => true,
+            'lat' => 34.0209,
+            'lng' => -6.8416,
+        ]);
+
+        PricingZone::create([
+            'name' => 'Salé',
+            'city' => 'Salé',
+            'region' => 'Rabat-Salé-Kénitra',
+            'is_airport' => false,
+            'radius_km' => 6,
+            'day_price' => 70,
+            'night_price' => 85,
+            'currency' => 'MAD',
+            'is_active' => true,
+            'lat' => 34.0331,
+            'lng' => -6.7981,
+        ]);
+
+        $hotelOrg = Organization::query()->where('name', 'Hôtel La Tour Hassan')->first();
         $hassan = $drivers[0];
         $karim = $drivers[1];
 
-        Reservation::create([
+        $sophie = Reservation::create([
             'client_name' => 'Sophie Martin',
             'phone' => '+33 6 12 34 56 78',
             'pickup_location' => 'Aéroport Rabat-Salé (RBA) — Arrivées',
@@ -154,10 +242,15 @@ class DemoDataSeeder extends Seeder
             'end_at' => now()->addDay()->setTime(15, 15),
             'status' => 'confirmed',
             'price' => 120,
+            'currency' => 'MAD',
             'passengers' => 2,
             'baggage' => '2 valises',
+            'notes' => 'Client VIP — accueil avec pancarte',
             'driver_name' => $hassan->name,
             'driver_id' => $hassan->id,
+            'organization_id' => $hotelOrg?->id,
+            'trip_mode' => 'one_way',
+            'source' => 'website',
             'type' => 'site web',
         ]);
 
@@ -171,8 +264,11 @@ class DemoDataSeeder extends Seeder
             'end_at' => now()->addDays(2)->setTime(6, 45),
             'status' => 'planned',
             'price' => 120,
+            'currency' => 'MAD',
             'passengers' => 1,
             'driver_name' => 'Non assigné',
+            'trip_mode' => 'one_way',
+            'source' => 'phone',
             'type' => 'site web',
         ]);
 
@@ -185,11 +281,14 @@ class DemoDataSeeder extends Seeder
             'end_at' => now()->addDays(3)->setTime(9, 30),
             'status' => 'planned',
             'price' => 750,
+            'currency' => 'MAD',
             'passengers' => 3,
             'children_count' => 1,
             'baggage' => '3 valises + poussette',
             'driver_name' => $karim->name,
             'driver_id' => $karim->id,
+            'trip_mode' => 'round_trip',
+            'source' => 'google_ads',
             'type' => 'byAdmin',
         ]);
 
@@ -202,8 +301,12 @@ class DemoDataSeeder extends Seeder
             'end_at' => now()->subDay()->setTime(17, 45),
             'status' => 'cancelled',
             'price' => 150,
+            'currency' => 'MAD',
             'passengers' => 2,
             'driver_name' => 'Non assigné',
+            'is_archived' => true,
+            'trip_mode' => 'one_way',
+            'source' => 'whatsapp',
             'type' => 'site web',
         ]);
 
@@ -217,10 +320,35 @@ class DemoDataSeeder extends Seeder
             'end_at' => now()->addDays(5)->setTime(23, 0),
             'status' => 'confirmed',
             'price' => 140,
+            'currency' => 'MAD',
             'passengers' => 1,
             'driver_name' => $hassan->name,
             'driver_id' => $hassan->id,
+            'trip_mode' => 'one_way',
+            'source' => 'website',
             'type' => 'site web',
+        ]);
+
+        Invoice::create([
+            'type' => 'invoice',
+            'document_number' => 'FAC-'.now()->format('Ymd-Hi'),
+            'reservation_id' => $sophie->id,
+            'client_name' => $sophie->client_name,
+            'client_email' => 'sophie.martin@example.com',
+            'client_phone' => $sophie->client_phone,
+            'client_address' => '12 rue de Rivoli, Paris',
+            'trip_date' => $sophie->trip_date,
+            'trip_time' => $sophie->trip_time,
+            'pickup' => $sophie->pickup_address,
+            'dropoff' => $sophie->dropoff_address,
+            'passengers' => $sophie->passengers,
+            'baggage' => $sophie->baggage,
+            'description' => 'Transfert aéroport Rabat-Salé → Hôtel La Tour Hassan',
+            'quantity' => 1,
+            'unit_price' => 120,
+            'vat_rate' => 20,
+            'currency' => 'MAD',
+            'issued_at' => now(),
         ]);
     }
 }

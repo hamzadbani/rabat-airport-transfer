@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Organization;
 use App\Models\Reservation;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
@@ -33,6 +34,8 @@ class BookingController extends Controller
             'passengers' => $validated['passengers'] ?? 1,
             'status' => 'planned',
             'type' => 'site web',
+            'source' => 'website',
+            'organization_id' => Organization::default()->id,
         ]);
 
         $message = implode("\n", [

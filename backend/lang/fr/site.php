@@ -9,6 +9,7 @@ return [
         'pricing' => 'Tarifs',
         'contact' => 'Contact',
         'login' => 'Connexion',
+        'dashboard' => 'Tableau de bord',
         'call' => 'Appeler',
         'whatsapp' => 'WhatsApp',
         'open_menu' => 'Ouvrir le menu',

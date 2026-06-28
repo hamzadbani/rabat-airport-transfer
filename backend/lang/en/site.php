@@ -9,6 +9,7 @@ return [
         'pricing' => 'Pricing',
         'contact' => 'Contact',
         'login' => 'Login',
+        'dashboard' => 'Dashboard',
         'call' => 'Call',
         'whatsapp' => 'WhatsApp',
         'open_menu' => 'Open menu',

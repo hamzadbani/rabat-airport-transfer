@@ -14,9 +14,15 @@ return Application::configure(basePath: dirname(__DIR__))
         health: '/up',
     )
     ->withMiddleware(function (Middleware $middleware): void {
+        $middleware->redirectUsersTo(fn () => route('dashboard.index'));
         $middleware->statefulApi();
         $middleware->web(append: [
             \App\Http\Middleware\SetPublicLocale::class,
+        ]);
+        $middleware->alias([
+            'admin' => \App\Http\Middleware\EnsureAdminUser::class,
+            'dashboard.locale' => \App\Http\Middleware\SetDashboardLocale::class,
+            'dashboard.noindex' => \App\Http\Middleware\PreventDashboardIndexing::class,
         ]);
     })
     ->withExceptions(function (Exceptions $exceptions): void {

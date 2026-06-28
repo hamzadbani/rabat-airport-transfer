@@ -13,4 +13,15 @@ class Organization extends Model
     {
         return $this->hasMany(Reservation::class);
     }
+
+    public static function default(): self
+    {
+        return static::query()->firstOrCreate(
+            ['name' => config('site.default_organization_name', config('site.name'))],
+            [
+                'notes' => 'Organisation interne par défaut',
+                'phone' => config('site.phone_display'),
+            ],
+        );
+    }
 }
