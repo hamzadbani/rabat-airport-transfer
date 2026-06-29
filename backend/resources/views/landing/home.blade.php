@@ -73,6 +73,11 @@
                         <li class="rounded-full border border-white/15 bg-white/10 px-3 py-1 text-xs font-medium text-slate-100 backdrop-blur-sm">{{ $badge }}</li>
                     @endforeach
                 </ul>
+                <p class="mt-5 flex flex-wrap gap-x-4 gap-y-2 text-sm">
+                    @foreach (__('landing.hero.links') as $link)
+                        <a href="{{ $link['href'] }}" class="font-semibold text-brand underline decoration-brand/50 underline-offset-2 hover:text-white">{{ $link['label'] }}</a>
+                    @endforeach
+                </p>
             </div>
             @include('partials.booking-form')
         </div>
@@ -216,7 +221,7 @@
                 </div>
             </div>
 
-            <div class="mt-10">
+            <div class="mt-10" x-data="{ lightbox: null }" @keydown.escape.window="lightbox = null">
                 <h3 class="text-center font-display text-lg font-bold text-slate-900 sm:text-xl">
                     {{ __('landing.pricing.flyers_title') }}
                 </h3>
@@ -224,46 +229,59 @@
                     {{ __('landing.pricing.flyers_subtitle') }}
                 </p>
                 <div class="mt-6 grid gap-6 lg:grid-cols-2">
-                    <figure class="overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-sm">
-                        <img
-                            src="{{ config('site.media.marketing.flyer_airport') }}"
-                            alt="{{ __('landing.pricing.flyer_airport_alt') }}"
-                            width="1200"
-                            height="1697"
-                            class="w-full object-contain"
-                            loading="lazy"
-                            decoding="async">
-                    </figure>
-                    <figure class="overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-sm">
-                        <img
-                            src="{{ config('site.media.marketing.flyer_destinations') }}"
-                            alt="{{ __('landing.pricing.flyer_destinations_alt') }}"
-                            width="1200"
-                            height="1697"
-                            class="w-full object-contain"
-                            loading="lazy"
-                            decoding="async">
-                    </figure>
+                    @foreach ([
+                        config('site.media.marketing.flyer_airport') => __('landing.pricing.flyer_airport_alt'),
+                        config('site.media.marketing.flyer_destinations') => __('landing.pricing.flyer_destinations_alt'),
+                    ] as $flyerSrc => $flyerAlt)
+                        <figure class="group relative overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-sm">
+                            <img
+                                src="{{ $flyerSrc }}"
+                                alt="{{ $flyerAlt }}"
+                                width="1200"
+                                height="1697"
+                                class="w-full object-contain"
+                                loading="lazy"
+                                decoding="async">
+                            <button
+                                type="button"
+                                @click="lightbox = @js($flyerSrc)"
+                                class="absolute inset-0 flex items-center justify-center bg-slate-900/0 transition group-hover:bg-slate-900/40 focus-visible:bg-slate-900/40 focus-visible:outline-none"
+                                aria-label="{{ __('landing.pricing.flyers_open') }}">
+                                <span class="flex size-14 items-center justify-center rounded-full bg-white/95 text-slate-800 shadow-lg opacity-100 sm:opacity-0 transition sm:group-hover:opacity-100 sm:group-focus-within:opacity-100">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                                        <path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7Z"/>
+                                        <circle cx="12" cy="12" r="3"/>
+                                    </svg>
+                                </span>
+                            </button>
+                        </figure>
+                    @endforeach
+                </div>
+                <div
+                    x-show="lightbox"
+                    x-cloak
+                    x-transition.opacity
+                    @click="lightbox = null"
+                    class="fixed inset-0 z-50 flex items-center justify-center bg-slate-950/90 p-4 sm:p-8"
+                    role="dialog"
+                    aria-modal="true">
+                    <button
+                        type="button"
+                        @click="lightbox = null"
+                        class="absolute right-4 top-4 flex size-10 items-center justify-center rounded-full bg-white/10 text-white transition hover:bg-white/20"
+                        aria-label="{{ __('landing.pricing.flyers_close') }}">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                            <path d="M18 6 6 18M6 6l12 12"/>
+                        </svg>
+                    </button>
+                    <img
+                        :src="lightbox"
+                        alt=""
+                        class="max-h-[90vh] max-w-full rounded-lg object-contain shadow-2xl"
+                        @click.stop>
                 </div>
             </div>
 
-            <div class="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-                @forelse ($popularRoutes as $route)
-                    <article class="rounded-2xl border border-slate-200 bg-white p-5 shadow-sm">
-                        <p class="text-sm font-medium text-slate-900">{{ $route->fromZone?->name }}</p>
-                        <p class="text-xs text-slate-500">→ {{ $route->toZone?->name }}</p>
-                        <p class="mt-4 text-2xl font-bold text-brand">{{ number_format($route->daytime_price, 0, ',', ' ') }} <span class="text-sm font-medium text-slate-500">{{ __('landing.pricing.currency') }}</span></p>
-                    </article>
-                @empty
-                    @foreach (__('landing.pricing.fallback') as $fallback)
-                        <article class="rounded-2xl border border-slate-200 bg-white p-5 shadow-sm">
-                            <p class="text-sm font-medium text-slate-900">{{ $fallback['from'] }}</p>
-                            <p class="text-xs text-slate-500">→ {{ $fallback['to'] }}</p>
-                            <p class="mt-4 text-2xl font-bold text-brand">{{ __('landing.pricing.from') }} {{ $fallback['price'] }} <span class="text-sm font-medium text-slate-500">{{ __('landing.pricing.currency') }}</span></p>
-                        </article>
-                    @endforeach
-                @endforelse
-            </div>
             <p class="mt-8 text-center text-sm text-slate-600">
                 {{ __('landing.pricing.quote') }}
                 <a href="{{ $wa }}" class="font-semibold text-brand-dark hover:underline">{{ __('landing.pricing.quote_link') }}</a>

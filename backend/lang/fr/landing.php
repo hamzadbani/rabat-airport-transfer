@@ -2,14 +2,19 @@
 
 return [
     'meta' => [
-        'title' => 'Taxi Rabat Aéroport | Transfert RBA 24/7 — Prix Fixe',
-        'description' => 'Taxi Rabat aéroport Rabat-Salé (RBA), chauffeur privé et transfert 24/7. Prix annoncé avant départ — Rabat, Salé, Casablanca. Réservation WhatsApp.',
+        'title' => 'Taxi Rabat Aéroport | Transfert RBA dès 200 MAD — 24/7',
+        'description' => 'Taxi Rabat & aéroport RBA 24/7. Transfert dès 200 MAD, Rabat→Casablanca 800 MAD. Prix fixe, WhatsApp +212 674 54 59 39. Réservation rapide.',
     ],
     'hero' => [
         'eyebrow' => 'Chauffeur privé Rabat — prix fixe annoncé avant départ',
         'title' => 'Taxi Rabat Aéroport — Transfert Rabat-Salé (RBA) 24/7',
         'lead' => 'Chauffeur privé, tarif annoncé avant départ. Prise en charge à RBA, Rabat, Salé, Casablanca et liaisons inter-villes.',
         'badges' => ['Prix fixe confirmé', '24h/24 · 7j/7', 'Suivi de vol', 'Paiement espèces / virement'],
+        'links' => [
+            ['href' => '/taxi-rabat-aeroport/', 'label' => 'Transfert aéroport RBA'],
+            ['href' => '/rabat-casablanca-taxi/', 'label' => 'Rabat → Casablanca 800 MAD'],
+            ['href' => '/taxi-rabat-prix/', 'label' => 'Prix taxi Rabat'],
+        ],
     ],
     'about' => [
         'label' => 'À propos de nous',
@@ -59,25 +64,20 @@ return [
         'title_accent' => 'formule Standard',
         'subtitle' => 'Tarifs transparents pour transferts aéroport et trajets en berline de luxe.',
         'image_alt' => 'Chauffeur professionnel — Rabat Transfert Aéroport, transfert aéroport Rabat-Salé',
-        'fallback' => [
-            ['from' => 'Aéroport RBA', 'to' => 'Rabat centre', 'price' => '120'],
-            ['from' => 'Rabat', 'to' => 'Casablanca CMN', 'price' => '750'],
-            ['from' => 'Rabat', 'to' => 'Marrakech', 'price' => '1 800'],
-        ],
-        'from' => 'dès',
-        'currency' => 'MAD',
         'quote' => 'Besoin d\'un devis personnalisé ?',
         'quote_link' => 'Contactez-nous sur WhatsApp',
         'flyers_title' => 'Grille tarifaire complète',
         'flyers_subtitle' => 'Tarifs fixes et transparents — transferts aéroport et destinations au Maroc.',
         'flyer_airport_alt' => 'Tarifs transfert aéroport Rabat-Salé et Casablanca — Taxi Rabat Aéroport',
         'flyer_destinations_alt' => 'Liste des destinations et prix fixes — Taxi Rabat Aéroport',
+        'flyers_open' => 'Agrandir la grille tarifaire',
+        'flyers_close' => 'Fermer',
     ],
     'faq' => [
         'label' => 'Questions fréquentes',
         'title' => 'Taxi Rabat aéroport — réponses utiles',
         'summary_title' => 'En bref',
-        'summary' => 'Rabat Transfert est un service de taxi et chauffeur privé pour l\'aéroport Rabat-Salé (RBA), disponible 24h/24. Transferts vers Rabat, Salé et liaisons longue distance. Tarif annoncé avant départ, réservation par WhatsApp ou téléphone.',
+        'summary' => 'Taxi Rabat Aéroport : chauffeur privé 24h/24 pour l\'aéroport Rabat-Salé (RBA). Transfert RBA→Rabat dès 200 MAD, Rabat→Casablanca CMN dès 800 MAD. Prix fixe annoncé avant départ — appelez le +212 674 54 59 39 ou WhatsApp.',
         'links_label' => 'Pages transfert liées',
         'links' => [
             ['href' => '/taxi-rabat-aeroport/', 'label' => 'Taxi Rabat aéroport (RBA)'],
@@ -88,9 +88,11 @@ return [
         'items' => [
             ['q' => 'Comment aller de l\'aéroport Rabat-Salé (RBA) au centre-ville ?', 'a' => 'Réservez un taxi privé avec point de rendez-vous confirmé au terminal. Le trajet vers Agdal, Hay Riad ou le centre de Rabat prend en général 20 à 35 minutes selon le trafic. Le tarif est annoncé avant départ par WhatsApp ou téléphone.'],
             ['q' => 'Y a-t-il un taxi disponible 24h/24 à l\'aéroport Rabat-Salé ?', 'a' => 'Oui, sur réservation. Nous assurons les prises en charge et départs vers RBA à toute heure, y compris vols tardifs. Indiquez votre numéro de vol pour ajuster l\'horaire en cas de retard.'],
-            ['q' => 'Combien coûte un taxi de l\'aéroport Rabat vers Rabat ?', 'a' => 'Le prix dépend du quartier exact (Hay Riad, Agdal, Souissi, etc.). Nous communiquons un forfait ou une estimation ferme avant la course — sans surprise au compteur.'],
-            ['q' => 'Proposez-vous un prix fixe pour le transfert aéroport Rabat ?', 'a' => 'Oui, pour les trajets standards vers ou depuis RBA. Le montant est validé à la réservation selon votre adresse, vos bagages et l\'horaire.'],
-            ['q' => 'Faites-vous Rabat ↔ Casablanca en taxi privé ?', 'a' => 'Oui. La liaison Rabat–Casablanca (ville ou aéroport Mohammed V) se fait en berline premium, avec forfait longue distance sur demande.'],
+            ['q' => 'Combien coûte un taxi de l\'aéroport Rabat vers Rabat ?', 'a' => 'Le transfert aéroport RBA → centre de Rabat est à partir de 200 MAD (forfait fixe selon le quartier : Hay Riad, Agdal, Souissi). Le tarif est confirmé par WhatsApp ou au +212 674 54 59 39 avant départ — sans surprise au compteur.'],
+            ['q' => 'Quel est le meilleur service de taxi à Rabat ?', 'a' => 'Taxi Rabat Aéroport propose un chauffeur privé licencié, véhicules premium, prix fixe annoncé avant départ et disponibilité 24/7 pour l\'aéroport RBA, Rabat, Salé et les liaisons longue distance. Réservation rapide par WhatsApp ou téléphone.'],
+            ['q' => 'Quels services de taxi opèrent à Rabat ?', 'a' => 'Nous assurons les transferts aéroport Rabat-Salé (RBA), les courses en ville (Rabat, Salé, Témara) et les trajets inter-villes (Casablanca CMN dès 800 MAD, Marrakech, Fès). Service 24h/24 sur réservation.'],
+            ['q' => 'Proposez-vous un prix fixe pour le transfert aéroport Rabat ?', 'a' => 'Oui — RBA vers Rabat centre dès 200 MAD, forfait confirmé à la réservation selon votre adresse, bagages et horaire.'],
+            ['q' => 'Faites-vous Rabat ↔ Casablanca en taxi privé ?', 'a' => 'Oui. Rabat → aéroport Mohammed V (CMN) ou Casablanca ville dès 800 MAD en berline premium. Forfait longue distance confirmé par WhatsApp avant départ.'],
             ['q' => 'Comment réserver un chauffeur privé à Rabat ?', 'a' => 'Appelez le +212 674 54 59 39 ou écrivez sur WhatsApp avec date, heure, adresses et nombre de passagers. Nous confirmons le véhicule et le tarif en quelques minutes.'],
         ],
     ],

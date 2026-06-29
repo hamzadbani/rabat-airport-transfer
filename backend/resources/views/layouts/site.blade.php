@@ -3,11 +3,24 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>@yield('title', config('site.name'))</title>
-    <meta name="description" content="@yield('description', __('landing.meta.description'))">
-    @hasSection('canonical')
-        <link rel="canonical" href="@yield('canonical')">
-    @endif
+    @php
+        $seoCanonical = trim($__env->yieldContent('canonical')) ?: rtrim(config('site.url'), '/').'/';
+        $seoTitle = trim($__env->yieldContent('title')) ?: config('site.name');
+        $seoDescription = trim($__env->yieldContent('description')) ?: __('landing.meta.description');
+    @endphp
+    <title>{{ $seoTitle }}</title>
+    <meta name="description" content="{{ $seoDescription }}">
+    <link rel="canonical" href="{{ $seoCanonical }}">
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="{{ config('site.name') }}">
+    <meta property="og:title" content="{{ $seoTitle }}">
+    <meta property="og:description" content="{{ $seoDescription }}">
+    <meta property="og:url" content="{{ $seoCanonical }}">
+    <meta property="og:image" content="{{ rtrim(config('site.url'), '/') }}{{ config('site.media.hero_image', config('site.logo')) }}">
+    <meta property="og:locale" content="{{ app()->getLocale() === 'ar' ? 'ar_MA' : (app()->getLocale() === 'en' ? 'en_US' : 'fr_MA') }}">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="{{ $seoTitle }}">
+    <meta name="twitter:description" content="{{ $seoDescription }}">
     <link rel="alternate" hreflang="fr" href="{{ rtrim(config('site.url'), '/') }}/">
     <link rel="alternate" hreflang="en" href="{{ rtrim(config('site.url'), '/') }}/?lang=en">
     <link rel="alternate" hreflang="ar" href="{{ rtrim(config('site.url'), '/') }}/?lang=ar">

@@ -161,30 +161,7 @@ class DemoDataSeeder extends Seeder
             'sort_order' => 6,
         ]);
 
-        $routes = [
-            [$rba->id, $rabat->id, 120, 140, 220, 160, 20, 12],
-            [$rba->id, $sale->id, 100, 120, 190, 140, 18, 10],
-            [$rba->id, $temara->id, 150, 170, 280, 200, 25, 18],
-            [$rabat->id, $cmn->id, 750, 800, 1400, 900, 75, 95],
-            [$rabat->id, $casablanca->id, 700, 750, 1300, 850, 70, 90],
-            [$cmn->id, $rabat->id, 750, 800, 1400, 900, 85, 110],
-        ];
-
-        foreach ($routes as [$from, $to, $day, $night, $ret, $vip, $mins, $km]) {
-            TaxiRoutePrice::create([
-                'from_zone_id' => $from,
-                'to_zone_id' => $to,
-                'vehicle_type' => 'standard',
-                'daytime_price' => $day,
-                'nighttime_price' => $night,
-                'return_price' => $ret,
-                'vip_price' => $vip,
-                'extra_luggage_price' => 15,
-                'child_seat_price' => 50,
-                'estimated_duration_minutes' => $mins,
-                'estimated_distance_km' => $km,
-            ]);
-        }
+        TaxiRoutePrice::query()->delete();
 
         PricingZone::create([
             'name' => 'Aéroport Rabat–Salé (RBA)',

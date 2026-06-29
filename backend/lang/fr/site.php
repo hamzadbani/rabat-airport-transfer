@@ -7,6 +7,7 @@ return [
         'reviews' => 'Avis',
         'services' => 'Services',
         'pricing' => 'Tarifs',
+        'airport' => 'Aéroport RBA',
         'contact' => 'Contact',
         'login' => 'Connexion',
         'dashboard' => 'Tableau de bord',
@@ -29,6 +30,7 @@ return [
         'blog' => 'Blog',
         'seo_links' => [
             ['href' => '/taxi-rabat-aeroport/', 'label' => 'Taxi aéroport RBA'],
+            ['href' => '/taxi-rabat-prix/', 'label' => 'Prix taxi Rabat'],
             ['href' => '/taxi-rabat/', 'label' => 'Taxi Rabat'],
             ['href' => '/rabat-casablanca-taxi/', 'label' => 'Rabat ↔ Casablanca'],
         ],

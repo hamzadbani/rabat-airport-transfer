@@ -7,6 +7,7 @@ return [
         'reviews' => 'آراء العملاء',
         'services' => 'الخدمات',
         'pricing' => 'الأسعار',
+        'airport' => 'مطار RBA',
         'contact' => 'اتصل بنا',
         'login' => 'تسجيل الدخول',
         'dashboard' => 'لوحة التحكم',
@@ -29,6 +30,7 @@ return [
         'blog' => 'المدونة',
         'seo_links' => [
             ['href' => '/taxi-rabat-aeroport/', 'label' => 'تاكسي مطار RBA'],
+            ['href' => '/taxi-rabat-prix/', 'label' => 'أسعار التاكسي'],
             ['href' => '/taxi-rabat/', 'label' => 'تاكسي الرباط'],
             ['href' => '/rabat-casablanca-taxi/', 'label' => 'الرباط ↔ الدار البيضاء'],
         ],

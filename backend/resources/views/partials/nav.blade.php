@@ -6,6 +6,7 @@
     $authLabel = $isAdmin ? __('site.nav.dashboard') : __('site.nav.login');
     $navLinks = [
         ['label' => __('site.nav.home'), 'href' => $section('accueil')],
+        ['label' => __('site.nav.airport'), 'href' => '/taxi-rabat-aeroport/'],
         ['label' => __('site.nav.about'), 'href' => $section('apropos')],
         ['label' => __('site.nav.reviews'), 'href' => $section('avis')],
         ['label' => __('site.nav.services'), 'href' => $section('services')],
