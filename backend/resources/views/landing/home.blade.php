@@ -50,17 +50,14 @@
 @endphp
 <main>
     <section id="accueil" class="relative flex min-h-[620px] items-center overflow-hidden text-white lg:min-h-[720px]" aria-label="{{ __('site.nav.home') }}">
-        <video
+        <img
+            src="{{ config('site.media.hero_image') }}"
+            alt="{{ __('landing.hero.title') }}"
             class="absolute inset-0 h-full w-full object-cover"
-            autoplay
-            muted
-            loop
-            playsinline
-            preload="metadata"
-            poster="{{ config('site.media.hero_poster') }}"
-            aria-label="{{ __('landing.hero.title') }}">
-            <source src="{{ config('site.media.hero_video') }}" type="video/mp4">
-        </video>
+            width="1920"
+            height="1080"
+            fetchpriority="high"
+            decoding="async">
         <div class="absolute inset-0 bg-gradient-to-br from-slate-950/80 via-slate-900/65 to-teal-950/50" aria-hidden="true"></div>
         <div class="relative z-10 mx-auto grid w-full max-w-6xl gap-10 px-4 py-16 sm:px-6 lg:grid-cols-2 lg:items-start lg:py-24">
             <div>
@@ -216,6 +213,37 @@
                         </h3>
                         <p class="mt-3 text-sm leading-relaxed text-slate-600">{{ __('landing.pricing.subtitle') }}</p>
                     </div>
+                </div>
+            </div>
+
+            <div class="mt-10">
+                <h3 class="text-center font-display text-lg font-bold text-slate-900 sm:text-xl">
+                    {{ __('landing.pricing.flyers_title') }}
+                </h3>
+                <p class="mx-auto mt-2 max-w-2xl text-center text-sm text-slate-600">
+                    {{ __('landing.pricing.flyers_subtitle') }}
+                </p>
+                <div class="mt-6 grid gap-6 lg:grid-cols-2">
+                    <figure class="overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-sm">
+                        <img
+                            src="{{ config('site.media.marketing.flyer_airport') }}"
+                            alt="{{ __('landing.pricing.flyer_airport_alt') }}"
+                            width="1200"
+                            height="1697"
+                            class="w-full object-contain"
+                            loading="lazy"
+                            decoding="async">
+                    </figure>
+                    <figure class="overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-sm">
+                        <img
+                            src="{{ config('site.media.marketing.flyer_destinations') }}"
+                            alt="{{ __('landing.pricing.flyer_destinations_alt') }}"
+                            width="1200"
+                            height="1697"
+                            class="w-full object-contain"
+                            loading="lazy"
+                            decoding="async">
+                    </figure>
                 </div>
             </div>
 

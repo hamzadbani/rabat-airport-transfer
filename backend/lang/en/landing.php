@@ -62,12 +62,16 @@ return [
         'fallback' => [
             ['from' => 'RBA Airport', 'to' => 'Rabat city', 'price' => '120'],
             ['from' => 'Rabat', 'to' => 'Casablanca CMN', 'price' => '750'],
-            ['from' => 'Rabat', 'to' => 'Marrakech', 'price' => '1,200'],
+            ['from' => 'Rabat', 'to' => 'Marrakech', 'price' => '1,800'],
         ],
         'from' => 'from',
         'currency' => 'MAD',
         'quote' => 'Need a custom quote?',
         'quote_link' => 'Contact us on WhatsApp',
+        'flyers_title' => 'Full rate card',
+        'flyers_subtitle' => 'Fixed, transparent rates — airport transfers and destinations across Morocco.',
+        'flyer_airport_alt' => 'Rabat-Salé and Casablanca airport transfer rates — Taxi Rabat Aéroport',
+        'flyer_destinations_alt' => 'Destination list and fixed prices — Taxi Rabat Aéroport',
     ],
     'faq' => [
         'label' => 'FAQ',

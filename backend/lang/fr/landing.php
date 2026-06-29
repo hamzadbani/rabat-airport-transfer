@@ -62,12 +62,16 @@ return [
         'fallback' => [
             ['from' => 'Aéroport RBA', 'to' => 'Rabat centre', 'price' => '120'],
             ['from' => 'Rabat', 'to' => 'Casablanca CMN', 'price' => '750'],
-            ['from' => 'Rabat', 'to' => 'Marrakech', 'price' => '1 200'],
+            ['from' => 'Rabat', 'to' => 'Marrakech', 'price' => '1 800'],
         ],
         'from' => 'dès',
         'currency' => 'MAD',
         'quote' => 'Besoin d\'un devis personnalisé ?',
         'quote_link' => 'Contactez-nous sur WhatsApp',
+        'flyers_title' => 'Grille tarifaire complète',
+        'flyers_subtitle' => 'Tarifs fixes et transparents — transferts aéroport et destinations au Maroc.',
+        'flyer_airport_alt' => 'Tarifs transfert aéroport Rabat-Salé et Casablanca — Taxi Rabat Aéroport',
+        'flyer_destinations_alt' => 'Liste des destinations et prix fixes — Taxi Rabat Aéroport',
     ],
     'faq' => [
         'label' => 'Questions fréquentes',
